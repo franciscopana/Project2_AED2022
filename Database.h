@@ -9,7 +9,6 @@
 #include "Graph.h"
 
 class Database {
-private:
     /*
      * AIRPORTS
      * {string airport1Code : Airport* airport1, string airport2Code : Airport* airport2, ...}
@@ -17,15 +16,22 @@ private:
      * AIRLINES
      * {string airline1Code : Airline* airline1, string airline2Code : Airline* airline2, ...}
      * */
-    map<string, Airport*> airports;
-    map<string, Airline*> airlines;
+
+private:
+    map<string, Airline> airlines;
+    map<string, Airport> airports;
     Graph flights;
 
-    void loadAirports();
+
+    int loadAirports();
     void loadAirlines();
     void loadFlights();
+    void printAirports();
+    void printAirlines();
 public:
     Database();
+    const map<string, Airport> &getAirports() const;
+
 };
 
 #endif //TRABALHO2_DATABASE_H

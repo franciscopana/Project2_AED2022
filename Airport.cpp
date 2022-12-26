@@ -1,7 +1,7 @@
 
 #include "Airport.h"
 
-Airport::Airport(string& name, string& code, string& city, string& country, float latitude, float longitude) {
+Airport::Airport(string& code, string& name, string& city, string& country, float latitude, float longitude) {
     this->name = name;
     this->code = code;
     this->city = city;

@@ -16,7 +16,8 @@ private:
     float longitude;
 
 public:
-    Airport(string& name, string& code, string& city, string& country, float latitude, float longitude);
+    //Code,Name,City,Country,Latitude,Longitude
+    Airport(string& code, string& name, string& city , string& country, float latitude, float longitude);
     string getName();
     string getCode();
     string getCity();
