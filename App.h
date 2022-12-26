@@ -1,7 +1,6 @@
 #ifndef TRABALHO2_APP_H
 #define TRABALHO2_APP_H
 
-
 #include "Database.h"
 
 class App {

@@ -1,13 +1,17 @@
-//
-// Created by Francisco Ana on 26/12/2022.
-//
-
 #ifndef TRABALHO2_DATABASEVIEWER_H
 #define TRABALHO2_DATABASEVIEWER_H
 
+#include "Database.h"
 
-class DatabaseViewer {
+class DatabaseViewer{
+private:
+    Database database;
 
+public:
+    DatabaseViewer(Database database) ;
+    void printAirports() const;
+    void printAirlines() const;
+    void printFlights() const;
 };
 
 

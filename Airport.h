@@ -16,7 +16,6 @@ private:
     float longitude;
 
 public:
-    //Code,Name,City,Country,Latitude,Longitude
     Airport(string& code, string& name, string& city , string& country, float latitude, float longitude);
     string getName();
     string getCode();
@@ -26,6 +25,8 @@ public:
     float getLongitude();
 
     bool operator<(const Airport& other);
+
+    void print();
 };
 
 

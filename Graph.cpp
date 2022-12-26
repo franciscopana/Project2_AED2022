@@ -6,7 +6,7 @@ Graph::Graph(bool hasDir) {
 }
 
 void Graph::addNode(std::string& airportCode, Airport* airport) {
-    nodes.insert({airportCode, {{}, airport,false}});
+    nodes.insert({airportCode, {airport, {}, false}});
 }
 
 void Graph::addEdge(string& source, string& dest, string& airline) {
@@ -20,7 +20,8 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
         }
     }
 }
-void Graph::printGraph() {
+
+void Graph::printGraph() const {
     for (auto it = nodes.begin(); it != nodes.end(); ++it) {
         std::cout << it->first << " => ";
         for (auto it2 = it->second.flights.begin(); it2 != it->second.flights.end(); ++it2) {

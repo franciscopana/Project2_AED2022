@@ -21,6 +21,8 @@ public:
     string getCountry();
 
     bool operator<(const Airline& other);
+
+    void print();
 };
 
 

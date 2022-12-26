@@ -1,5 +1,5 @@
-
 #include "Airport.h"
+#include <iostream>
 
 Airport::Airport(string& code, string& name, string& city, string& country, float latitude, float longitude) {
     this->name = name;
@@ -36,4 +36,8 @@ float Airport::getLongitude() {
 
 bool Airport::operator<(const Airport& other) {
     return this->code < other.code;
+}
+
+void Airport::print() {
+    cout << "Code: " << code << "  |  Name: " << name << "  |  City: " << city << "  |  Country: " << country << "  |  Latitude: " << latitude << "  |  Longitude: " << longitude << endl;
 }

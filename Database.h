@@ -9,28 +9,20 @@
 #include "Graph.h"
 
 class Database {
-    /*
-     * AIRPORTS
-     * {string airport1Code : Airport* airport1, string airport2Code : Airport* airport2, ...}
-     *
-     * AIRLINES
-     * {string airline1Code : Airline* airline1, string airline2Code : Airline* airline2, ...}
-     * */
-
 private:
-    map<string, Airline> airlines;
-    map<string, Airport> airports;
+    map<string, Airport*> airports;
+    map<string, Airline*> airlines;
     Graph flights;
 
-
-    int loadAirports();
+    void loadAirports();
     void loadAirlines();
     void loadFlights();
-    void printAirports();
-    void printAirlines();
+
 public:
     Database();
-    const map<string, Airport> &getAirports() const;
+    const map<string, Airport *> &getAirports() const;
+    const map<string, Airline *> &getAirlines() const;
+    const Graph &getFlights() const;
 
 };
 

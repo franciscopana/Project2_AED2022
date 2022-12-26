@@ -8,25 +8,14 @@
 
 using namespace std;
 
-int Database::loadAirports() {
-    // reads dataset/airports.csv and creates a map of airports (its code and a reference to the airport object)
-    // the map is stored in the airports attribute
-
-    // the file has the following columns:
-    // Code,Name,City,Country,Latitude,Longitude
-
-    // TODO: implement this method
-
+void Database::loadAirports() {
     ifstream file("../dataset/airports.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
         std::cerr << "Error opening file" << std::endl;
-        return 1;
     }
     string line;
     while (std::getline(file, line)) {
-        // Divide a linha em campos usando o caractere ',' como separador
-
         vector<string> fields;
         istringstream stream(line);
         string field;
@@ -37,35 +26,22 @@ int Database::loadAirports() {
             std::cerr << "Invalid line on: " << line << std::endl;
             continue;
         }
-        flights.addNode(fields[0], new Airport(fields[0], fields[1], fields[2], fields[3], stod(fields[4]), stod(fields[5])));
-        Airport airport(fields[0], fields[1], fields[2], fields[3], stod(fields[4]), stod(fields[5]));
-        airports.insert(pair<string, Airport >(fields[0], airport));
+        flights.addNode(fields[0], new Airport(fields[0], fields[1], fields[2], fields[3], stof(fields[4]), stof(fields[5])));
+        auto* airport = new Airport(fields[0], fields[1], fields[2], fields[3], stof(fields[4]), stof(fields[5]));
+        airports.insert(pair<string, Airport*> (fields[0], airport));
     }
+    file.close();
 }
-
-void Database::printAirports() {
-    // prints the airports map
-    for(auto it = airports.begin(); it != airports.end(); ++it) {
-        string name = it->second.getName();
-        cout << it->first << " => " << name << endl;
-    }
-}
-
-
-
-// TODO: implements loadAirlines() (similar to loadAirports())
 
 void Database::loadAirlines(){
     ifstream file("../dataset/airlines.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
-        std::cerr << "Error opening file" << std::endl;
+        cerr << "Error opening file" << std::endl;
         return;
     }
     string line;
     while (std::getline(file, line)) {
-        // Divide a linha em campos usando o caractere ',' como separador
-
         vector<string> fields;
         istringstream stream(line);
         string field;
@@ -73,39 +49,24 @@ void Database::loadAirlines(){
             fields.push_back(field);
         }
         if (fields.size() != 4) {
-            std::cerr << "Invalid line on: " << line << std::endl;
+            cerr << "Invalid line on: " << line << std::endl;
             continue;
         }
-        Airline airline = Airline(fields[0], fields[1], fields[2], fields[3]);
-        airlines.insert(pair<string, Airline>(fields[0], airline));
+        auto* airline = new Airline(fields[0], fields[1], fields[2], fields[3]);
+        airlines.insert(pair<string, Airline*>(fields[0], airline));
     }
+    file.close();
 }
-
-void Database::printAirlines() {
-    // prints the airports map
-    for(auto it = airlines.begin(); it != airlines.end(); ++it) {
-        string name = it->second.getName();
-        cout << it->first << " => " << name << endl;
-    }
-}
-
-
-
-// TODO: implements loadFlights() (build our graph)
-//Source,Target,Airline
 
 void Database::loadFlights(){
-    //reads dataset/flights.csv and creates a graph of flights (its code and a reference to the airport object)
     ifstream file("../dataset/flights.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
-        std::cerr << "Error opening file" << std::endl;
+        cerr << "Error opening file" << std::endl;
         return;
     }
     string line;
     while (std::getline(file, line)) {
-        // Divide a linha em campos usando o caractere ',' como separador
-
         vector<string> fields;
         istringstream stream(line);
         string field;
@@ -113,7 +74,7 @@ void Database::loadFlights(){
             fields.push_back(field);
         }
         if (fields.size() != 3) {
-            std::cerr << "Invalid line on: " << line << std::endl;
+            cerr << "Invalid line on: " << line << std::endl;
             continue;
         }
         flights.addEdge(fields[0], fields[1], fields[2]);
@@ -122,9 +83,18 @@ void Database::loadFlights(){
 
 Database::Database() {
     loadAirports();
-    //printAirports();
     loadAirlines();
-    //printAirlines();
     loadFlights();
-    flights.printGraph();
+}
+
+const map<string, Airport *> &Database::getAirports() const {
+    return airports;
+}
+
+const map<string, Airline *> &Database::getAirlines() const {
+    return airlines;
+}
+
+const Graph &Database::getFlights() const {
+    return flights;
 }

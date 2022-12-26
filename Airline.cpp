@@ -1,4 +1,4 @@
-
+#include "iostream"
 #include "Airline.h"
 
 Airline::Airline(string& code, string& name, string& callSign, string& country){
@@ -26,4 +26,8 @@ string Airline::getCountry() {
 
 bool Airline::operator<(const Airline& other) {
     return this->code < other.code;
+}
+
+void Airline::print() {
+    cout << "Code: " << code << "  |  Name: " << name << "  |  Call Sign: " << callSign << "  |  Country: " << country << endl;
 }
