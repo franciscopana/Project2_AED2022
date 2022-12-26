@@ -95,7 +95,6 @@ void Database::printAirlines() {
 //Source,Target,Airline
 
 void Database::loadFlights(){
-    //reads dataset/flights.csv and creates a graph of flights (its code and a reference to the airport object)
     ifstream file("../dataset/flights.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
@@ -104,8 +103,6 @@ void Database::loadFlights(){
     }
     string line;
     while (std::getline(file, line)) {
-        // Divide a linha em campos usando o caractere ',' como separador
-
         vector<string> fields;
         istringstream stream(line);
         string field;

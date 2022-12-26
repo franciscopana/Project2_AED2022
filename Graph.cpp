@@ -14,7 +14,20 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
     auto destIt = nodes.find(dest);
 
     if (sourceIt != nodes.end() && destIt != nodes.end() && source != dest) {
-        sourceIt->second.flights.push_back({dest, {airline}});
+
+        bool hasEdge = false;
+        for (auto& edge : sourceIt->second.flights) {
+            if (edge.destAirport == dest) {
+                edge.airlines.insert(airline);
+                hasEdge = true;
+                break;
+            }
+        }
+
+        if (!hasEdge) {
+            sourceIt->second.flights.push_back({dest, {airline}});
+        }
+
         if (!hasDir) {
             destIt->second.flights.push_back({source, {airline}});
         }
