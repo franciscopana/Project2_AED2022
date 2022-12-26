@@ -37,6 +37,7 @@ int Database::loadAirports() {
             std::cerr << "Invalid line on: " << line << std::endl;
             continue;
         }
+        flights.addNode(fields[0], new Airport(fields[0], fields[1], fields[2], fields[3], stod(fields[4]), stod(fields[5])));
         Airport airport(fields[0], fields[1], fields[2], fields[3], stod(fields[4]), stod(fields[5]));
         airports.insert(pair<string, Airport >(fields[0], airport));
     }
@@ -91,15 +92,39 @@ void Database::printAirlines() {
 
 
 // TODO: implements loadFlights() (build our graph)
+//Source,Target,Airline
 
 void Database::loadFlights(){
+    //reads dataset/flights.csv and creates a graph of flights (its code and a reference to the airport object)
+    ifstream file("../dataset/flights.csv");
+    file.ignore(1000, '\n');
+    if (!file.is_open()) {
+        std::cerr << "Error opening file" << std::endl;
+        return;
+    }
+    string line;
+    while (std::getline(file, line)) {
+        // Divide a linha em campos usando o caractere ',' como separador
 
+        vector<string> fields;
+        istringstream stream(line);
+        string field;
+        while (getline(stream, field, ',')) {
+            fields.push_back(field);
+        }
+        if (fields.size() != 3) {
+            std::cerr << "Invalid line on: " << line << std::endl;
+            continue;
+        }
+        flights.addEdge(fields[0], fields[1], fields[2]);
+    }
 }
 
 Database::Database() {
     loadAirports();
     //printAirports();
     loadAirlines();
-    printAirlines();
+    //printAirlines();
     loadFlights();
+    flights.printGraph();
 }

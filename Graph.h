@@ -30,6 +30,7 @@ public:
     Graph(bool hasDir = true);
     void addNode(string& airportCode,Airport* airport);
     void addEdge(string& source, string& dest, string& airline);
+    void printGraph();
 };
 
 

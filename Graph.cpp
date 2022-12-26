@@ -1,14 +1,15 @@
+#include <iostream>
 #include "Graph.h"
 
 Graph::Graph(bool hasDir) {
     this->hasDir = hasDir;
 }
 
-void Graph::addNode(int &airportCode, Airport *airport) {
-    nodes.insert({airportCode, {airport, {}, false}});
+void Graph::addNode(std::string& airportCode, Airport* airport) {
+    nodes.insert({airportCode, {{}, airport,false}});
 }
 
-void Graph::void addEdge(string& source, string& dest, string& airline) {
+void Graph::addEdge(string& source, string& dest, string& airline) {
     auto sourceIt = nodes.find(source);
     auto destIt = nodes.find(dest);
 
@@ -17,5 +18,14 @@ void Graph::void addEdge(string& source, string& dest, string& airline) {
         if (!hasDir) {
             destIt->second.flights.push_back({source, {airline}});
         }
+    }
+}
+void Graph::printGraph() {
+    for (auto it = nodes.begin(); it != nodes.end(); ++it) {
+        std::cout << it->first << " => ";
+        for (auto it2 = it->second.flights.begin(); it2 != it->second.flights.end(); ++it2) {
+            std::cout << it2->destAirport << " ";
+        }
+        cout << endl;
     }
 }
