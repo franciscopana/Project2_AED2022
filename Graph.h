@@ -32,6 +32,7 @@ public:
     void addEdge(string& source, string& dest, string& airline);
 
     void printGraph() const;
+    void printEdges(string& airportCode) const;
 };
 
 

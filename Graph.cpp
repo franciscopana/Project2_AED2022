@@ -30,3 +30,12 @@ void Graph::printGraph() const {
         cout << endl;
     }
 }
+void Graph::printEdges(std::string &airportCode) const {
+    auto it = nodes.find(airportCode);
+    if (it != nodes.end()) {
+        for (const auto & edge : it->second.edges) {
+            std::cout << edge.destAirport << ": " << edge.airlines.size() << " airlines  |  ";
+        }
+        cout << endl;
+    }
+}

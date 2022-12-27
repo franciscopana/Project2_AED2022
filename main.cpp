@@ -6,6 +6,6 @@
 int main() {
     Database database;
     DatabaseViewer dbViewer(database);
-    dbViewer.printFlights();
+    dbViewer.printFlightsFrom("OPO");
     return 0;
 }

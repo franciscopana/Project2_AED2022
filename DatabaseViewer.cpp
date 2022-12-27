@@ -15,3 +15,7 @@ void DatabaseViewer::printAirlines() const {
 void DatabaseViewer::printFlights() const {
     database.getFlights().printGraph();
 }
+
+void DatabaseViewer::printFlightsFrom(string airportCode) const {
+    database.getFlights().printEdges(airportCode);
+}
