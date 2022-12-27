@@ -10,7 +10,6 @@
 
 class Database {
 private:
-    map<string, Airport*> airports;
     map<string, Airline*> airlines;
     Graph flights;
 
@@ -20,10 +19,10 @@ private:
 
 public:
     Database();
-    const map<string, Airport *> &getAirports() const;
-    const map<string, Airline *> &getAirlines() const;
-    const Graph &getFlights() const;
 
+    const map<string, Airline *> &getAirlines() const;
+
+    const Graph &getFlights() const;
 };
 
 #endif //TRABALHO2_DATABASE_H

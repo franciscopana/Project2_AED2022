@@ -20,15 +20,14 @@ private:
 
     struct Node {
         Airport* airport;
-        list<Edge> flights;
+        list<Edge> edges;
         bool visited;
     };
 
-    bool hasDir;
-    unordered_map<std::string, Node> nodes;
+    unordered_map<string, Node> nodes;
 
 public:
-    Graph(bool hasDir = true);
+    Graph() = default;
     void addNode(string& airportCode,Airport* airport);
     void addEdge(string& source, string& dest, string& airline);
 

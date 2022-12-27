@@ -27,8 +27,6 @@ void Database::loadAirports() {
             continue;
         }
         flights.addNode(fields[0], new Airport(fields[0], fields[1], fields[2], fields[3], stof(fields[4]), stof(fields[5])));
-        auto* airport = new Airport(fields[0], fields[1], fields[2], fields[3], stof(fields[4]), stof(fields[5]));
-        airports.insert(pair<string, Airport*> (fields[0], airport));
     }
     file.close();
 }
@@ -85,10 +83,6 @@ Database::Database() {
     loadAirports();
     loadAirlines();
     loadFlights();
-}
-
-const map<string, Airport *> &Database::getAirports() const {
-    return airports;
 }
 
 const map<string, Airline *> &Database::getAirlines() const {

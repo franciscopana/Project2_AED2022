@@ -8,8 +8,7 @@ private:
     Database database;
 
 public:
-    DatabaseViewer(Database database) ;
-    void printAirports() const;
+    DatabaseViewer(Database database);
     void printAirlines() const;
     void printFlights() const;
 };

@@ -1,11 +1,8 @@
 #include <iostream>
 #include "Graph.h"
 
-Graph::Graph(bool hasDir) {
-    this->hasDir = hasDir;
-}
 
-void Graph::addNode(std::string& airportCode, Airport* airport) {
+void Graph::addNode(string& airportCode, Airport* airport) {
     nodes.insert({airportCode, {airport, {}, false}});
 }
 
@@ -14,31 +11,21 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
     auto destIt = nodes.find(dest);
 
     if (sourceIt != nodes.end() && destIt != nodes.end() && source != dest) {
-
-        bool hasEdge = false;
-        for (auto& edge : sourceIt->second.flights) {
+        for (auto& edge : sourceIt->second.edges) {
             if (edge.destAirport == dest) {
                 edge.airlines.insert(airline);
-                hasEdge = true;
-                break;
+                return;
             }
         }
-
-        if (!hasEdge) {
-            sourceIt->second.flights.push_back({dest, {airline}});
-        }
-
-        if (!hasDir) {
-            destIt->second.flights.push_back({source, {airline}});
-        }
+        sourceIt->second.edges.push_back({dest, {airline}});
     }
 }
 
 void Graph::printGraph() const {
-    for (auto it = nodes.begin(); it != nodes.end(); ++it) {
-        std::cout << it->first << " => ";
-        for (auto it2 = it->second.flights.begin(); it2 != it->second.flights.end(); ++it2) {
-            std::cout << it2->destAirport << " ";
+    for (const auto & node : nodes) {
+        cout << node.first << " => ";
+        for (const auto & edge : node.second.edges) {
+            std::cout << edge.destAirport << ": " << edge.airlines.size() << " airlines  |  ";
         }
         cout << endl;
     }
