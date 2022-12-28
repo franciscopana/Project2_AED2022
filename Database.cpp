@@ -104,7 +104,7 @@ void Database::printFlights() const {
     flights.printGraph();
 }
 
-void Database::printFlightsFrom(string& airportCode) const {
+void Database::printFlightsFromAirport(std::string &airportCode) const {
     flights.printEdges(airportCode);
 }
 

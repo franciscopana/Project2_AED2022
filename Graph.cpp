@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <utility>
+#include <iomanip>
 #include "Graph.h"
 
 
@@ -32,17 +33,19 @@ void Graph::printGraph() const {
         cout << endl;
     }
 }
+
 void Graph::printEdges(string &airportCode) const {
     auto it = nodes.find(airportCode);
     if (it != nodes.end()) {
         cout << ">> Source Airport: "; it->second.airport->printHeader(); cout << endl;
         cout << ">> Destination Airports:" << endl;
+        cout << left << setw(20) << "Airport Code" << setw(40) << "Airport Name" << setw(40) << "Airlines" << endl;
         for (const auto & edge : it->second.edges) {
-            cout << "     ";
             string destAirportCode = edge.destAirport;
             auto destIt = nodes.find(destAirportCode);
-            destIt->second.airport->printHeader();
-            cout << "\t|\tAirlines: ";
+            cout << left << setw(20) << destIt->second.airport->getCode()
+                 << setw(40) << destIt->second.airport->getName();
+            cout << setw(20) << " ";
             for (const auto & airline : edge.airlines) {
                 cout << airline << " ";
             }
@@ -51,6 +54,7 @@ void Graph::printEdges(string &airportCode) const {
     }
     cout << endl;
 }
+
 
 list<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n=-1) {
     list<vector<Node*>> airports;

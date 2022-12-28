@@ -22,7 +22,7 @@ public:
     // Printers
     void printAirlines() const;
     void printFlights() const;
-    void printFlightsFrom(string& airportCode) const;
+    void printFlightsFromAirport(string& airportCode) const;
     void printAirportsReachableFrom(string& airportCode, int flights);
     void printAirportsFromCity(string& city) const;
 };

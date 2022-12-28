@@ -3,10 +3,10 @@
 #define TRABALHO2_GRAPH_H
 
 #include <string>
+#include <vector>
 #include <set>
 #include <list>
 #include <unordered_map>
-#include "Airline.h"
 #include "Airport.h"
 
 using namespace std;

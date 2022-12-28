@@ -1,10 +1,11 @@
 #include <iostream>
 
 #include "App.h"
+#include "Menu.h"
 
 int main() {
     Database database;
-    string search = "OPO";
-    database.printAirportsReachableFrom(search, 9);
+    Menu menu;
+    menu.showInitialMenu(database);
     return 0;
 }
