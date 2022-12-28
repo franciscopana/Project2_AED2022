@@ -1,7 +1,3 @@
-//
-// Created by adria_ek1ciji on 28/12/2022.
-//
-
 #ifndef TRABALHO2_MENU_H
 #define TRABALHO2_MENU_H
 
@@ -13,6 +9,10 @@ class Menu {
         void showInitialMenu(Database& database);
         void showSearchFlightsMenu(Database& database);
         void showSearchAirportsMenu(Database& database);
+
+        bool getYesOrNo();
+        string getAirportCode(Database& database);
+        void clearScreen();
 };
 
 

@@ -32,6 +32,11 @@ public:
     // Adders
     void addNode(string& airportCode,Airport* airport);
     void addEdge(string& source, string& dest, string& airline);
+    bool hasAirport(const string& code) const;
+
+    int getNumberOfEdges(const string& code) const;
+    list<Edge> getEdges(const string& code) const;
+
 
     // Searchers
     list<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);

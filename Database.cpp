@@ -94,6 +94,10 @@ Database::Database() {
     loadFlights();
 }
 
+bool Database::hasAirport(const std::string &code) const {
+    return flights.hasAirport(code);
+}
+
 void Database::printAirlines() const {
     for(auto &airline : airlines) {
         airline.second->print();
@@ -104,8 +108,19 @@ void Database::printFlights() const {
     flights.printGraph();
 }
 
+int Database::getNumberOfFlights(string &airportCode) const {
+    return flights.getNumberOfEdges(airportCode);
+}
+
+int Database::getNumberOfAirlines(string &airportCode) const {
+    int count = 0;
+}
 void Database::printFlightsFromAirport(std::string &airportCode) const {
     flights.printEdges(airportCode);
+}
+
+void Database::printAirlinesFromAirport(const std::string &airportCode) const {
+
 }
 
 void Database::printAirportsReachableFrom(string &airportCode, int nFlights) {

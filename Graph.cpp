@@ -24,6 +24,18 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
     }
 }
 
+bool Graph::hasAirport(const string& code) const {
+    return nodes.find(code) != nodes.end();
+}
+
+int Graph::getNumberOfEdges(const string& code) const {
+    return nodes.find(code)->second.edges.size();
+}
+
+list<Edge> Graph::getEdges(const string& code) const {
+    return nodes.find(code)->second.edges;
+}
+
 void Graph::printGraph() const {
     for (const auto & node : nodes) {
         cout << node.first << " => ";
