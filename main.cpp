@@ -4,7 +4,7 @@
 
 int main() {
     Database database;
-    string search = "London";
-    database.printAirportsFromCity(search);
+    string search = "OPO";
+    database.printAirportsReachableFrom(search, 9);
     return 0;
 }

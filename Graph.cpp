@@ -52,36 +52,37 @@ void Graph::printEdges(string &airportCode) const {
     cout << endl;
 }
 
-void Graph::bfsWithNSteps(string &srcAirport, int n) {
-    queue<Node*> visitedNodes;
+list<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n=-1) {
+    list<vector<Node*>> airports;
     int distance = 0, currentDistance = 0;
+
     auto srcNodeIt = nodes.find(srcAirport);
     queue<pair<Node*, int>> q;
     q.emplace(&srcNodeIt->second, distance);
     srcNodeIt->second.visited = true;
-    visitedNodes.push(&srcNodeIt->second);
-    cout << ">> Source Airport: " << endl;
+    airports.push_back({&srcNodeIt->second});
+
     while (!q.empty() && (distance = q.front().second) <= n) {
         if(distance > currentDistance) {
-            cout << ">> " << distance << " flight(s) away:" << endl;
+            airports.emplace_back();
             currentDistance = distance;
         };
         Node* u = q.front().first;
         q.pop();
-        cout << "     ";
-        u->airport->printHeader();
-        cout << endl;
         for (auto& edge : u->edges) {
             auto destNodeIt = nodes.find(edge.destAirport);
             if (!destNodeIt->second.visited) {
                 q.emplace(&destNodeIt->second, distance + 1);
                 destNodeIt->second.visited = true;
-                visitedNodes.push(&destNodeIt->second);
+                airports.back().push_back(&destNodeIt->second);
             }
         }
     }
-    while (!visitedNodes.empty()) {
-        visitedNodes.front()->visited = false;
-        visitedNodes.pop();
+
+    for(auto& airportsVector : airports) {
+        for(auto& node : airportsVector) {
+            node->visited = false;
+        }
     }
+    return airports;
 }

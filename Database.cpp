@@ -109,16 +109,32 @@ void Database::printFlightsFrom(string& airportCode) const {
 }
 
 void Database::printAirportsReachableFrom(string &airportCode, int nFlights) {
-    flights.bfsWithNSteps(airportCode, nFlights);
+    auto airports = flights.bfsWithNSteps(airportCode, nFlights);
+    int flightsCounter = 0;
+    unsigned totalFlights = 0;
+    for (auto& airportsVector : airports) {
+        if(airportsVector == airports.front()){
+            cout << ">> Source Airport: "; airportsVector.front()->airport->printHeader(); cout << endl;
+        } else {
+            cout << ">> " << airportsVector.size() <<" Airports after " << flightsCounter << " flight(s):" << endl;
+            totalFlights += airportsVector.size();
+            for (auto& node : airportsVector) {
+                cout << "     "; node->airport->printHeader(); cout << endl;
+            }
+        }
+        flightsCounter++;
+    }
+    cout << ">> Total of " << totalFlights << " airports after " << nFlights << " flights." << endl;
 }
 
 void Database::printAirportsFromCity(string &city) const {
     auto cityIt = cities.find(city);
     if (cityIt != cities.end()) {
+        cout << ">> "<< cityIt->second.size() << " airport(s) from " << city << ":" << endl;
         for (auto airport : cityIt->second) {
-            cout << ">> " << airport->getName() << " (" << airport->getCode() << ")\t|\tCoordinates: " << airport->getLatitude() << ", " << airport->getLongitude() << endl;
+            cout << "     " << airport->getName() << " (" << airport->getCode() << ")\t|\tCoordinates: " << airport->getLatitude() << ", " << airport->getLongitude() << endl;
         }
     } else {
-        cout << "No airports found in city " << city << endl;
+        cout << ">> No airports found in city " << city << endl;
     }
 }

@@ -11,29 +11,34 @@
 
 using namespace std;
 
+struct Edge {
+    string destAirport;
+    set<string> airlines;
+};
+
+struct Node {
+    Airport* airport;
+    list<Edge> edges;
+    bool visited;
+};
+
 class Graph {
 private:
-    struct Edge {
-        string destAirport;
-        set<string> airlines;
-    };
-
-    struct Node {
-        Airport* airport;
-        list<Edge> edges;
-        bool visited;
-    };
-
     unordered_map<string, Node> nodes;
 
 public:
     Graph() = default;
+
+    // Adders
     void addNode(string& airportCode,Airport* airport);
     void addEdge(string& source, string& dest, string& airline);
 
+    // Searchers
+    list<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
+
+    // Printers
     void printGraph() const;
     void printEdges(string& airportCode) const;
-    void bfsWithNSteps(string& srcAirport, int n);
 };
 
 
