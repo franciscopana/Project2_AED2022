@@ -26,7 +26,17 @@ void Database::loadAirports() {
             std::cerr << "Invalid line on: " << line << std::endl;
             continue;
         }
-        flights.addNode(fields[0], new Airport(fields[0], fields[1], fields[2], fields[3], stof(fields[4]), stof(fields[5])));
+        string code = fields[0];
+        string city = fields[2];
+        auto* airportPtr = new Airport(code, fields[1], city, fields[3], stof(fields[4]), stof(fields[5]));
+        flights.addNode(code, airportPtr);
+
+        auto cityIt = cities.find(city);
+        if (cityIt != cities.end()) {
+            cityIt->second.insert(airportPtr);
+        } else {
+            cities.insert({city, {airportPtr}});
+        }
     }
     file.close();
 }
@@ -85,10 +95,31 @@ Database::Database() {
     loadFlights();
 }
 
-const map<string, Airline *> &Database::getAirlines() const {
-    return airlines;
+void Database::printAirlines() const {
+    for(auto &airline : airlines) {
+        airline.second->print();
+    }
 }
 
-const Graph &Database::getFlights() const {
-    return flights;
+void Database::printFlights() const {
+    flights.printGraph();
+}
+
+void Database::printFlightsFrom(string& airportCode) const {
+    flights.printEdges(airportCode);
+}
+
+void Database::printAirportsReachableFrom(string &airportCode, int nFlights) {
+    flights.bfsWithNSteps(airportCode, nFlights);
+}
+
+void Database::printAirportsFromCity(string &city) const {
+    auto cityIt = cities.find(city);
+    if (cityIt != cities.end()) {
+        for (auto airport : cityIt->second) {
+            cout << ">> " << airport->getCode() << ": " << airport->getName() << endl;
+        }
+    } else {
+        cout << "No airports found in city " << city << endl;
+    }
 }

@@ -33,6 +33,7 @@ public:
 
     void printGraph() const;
     void printEdges(string& airportCode) const;
+    void bfsWithNSteps(string& srcAirport, int n);
 };
 
 

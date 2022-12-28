@@ -1,11 +1,10 @@
 #include <iostream>
 
 #include "App.h"
-#include "DatabaseViewer.h"
 
 int main() {
     Database database;
-    DatabaseViewer dbViewer(database);
-    dbViewer.printFlightsFrom("OPO");
+    string search = "London";
+    database.printAirportsFromCity(search);
     return 0;
 }
