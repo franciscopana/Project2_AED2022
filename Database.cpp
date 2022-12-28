@@ -1,4 +1,3 @@
-
 #include <fstream>
 #include <iostream>
 #include <sstream>
@@ -117,7 +116,7 @@ void Database::printAirportsFromCity(string &city) const {
     auto cityIt = cities.find(city);
     if (cityIt != cities.end()) {
         for (auto airport : cityIt->second) {
-            cout << ">> " << airport->getCode() << ": " << airport->getName() << endl;
+            cout << ">> " << airport->getName() << " (" << airport->getCode() << ")\t|\tCoordinates: " << airport->getLatitude() << ", " << airport->getLongitude() << endl;
         }
     } else {
         cout << "No airports found in city " << city << endl;
