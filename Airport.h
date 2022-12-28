@@ -26,7 +26,8 @@ public:
 
     bool operator<(const Airport& other);
 
-    void print();
+    void print() const;
+    void printHeader() const;
 };
 
 
