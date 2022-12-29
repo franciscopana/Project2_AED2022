@@ -3,10 +3,12 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <unordered_set>
 #include "Database.h"
 
 using namespace std;
 
+/*    Loaders    */
 void Database::loadAirports() {
     ifstream file("../dataset/airports.csv");
     file.ignore(1000, '\n');
@@ -94,6 +96,8 @@ Database::Database() {
     loadFlights();
 }
 
+
+/*    Printers    */
 void Database::printAirlines() const {
     for(auto &airline : airlines) {
         airline.second->print();
@@ -108,25 +112,6 @@ void Database::printFlightsFrom(string& airportCode) const {
     flights.printEdges(airportCode);
 }
 
-void Database::printAirportsReachableFrom(string &airportCode, int nFlights) {
-    auto airports = flights.bfsWithNSteps(airportCode, nFlights);
-    int flightsCounter = 0;
-    unsigned totalFlights = 0;
-    for (auto& airportsVector : airports) {
-        if(airportsVector == airports.front()){
-            cout << ">> Source Airport: "; airportsVector.front()->airport->printHeader(); cout << endl;
-        } else {
-            cout << ">> " << airportsVector.size() <<" Airports after " << flightsCounter << " flight(s):" << endl;
-            totalFlights += airportsVector.size();
-            for (auto& node : airportsVector) {
-                cout << "     "; node->airport->printHeader(); cout << endl;
-            }
-        }
-        flightsCounter++;
-    }
-    cout << ">> Total of " << totalFlights << " airports after " << nFlights << " flights." << endl;
-}
-
 void Database::printAirportsFromCity(string &city) const {
     auto cityIt = cities.find(city);
     if (cityIt != cities.end()) {
@@ -137,4 +122,50 @@ void Database::printAirportsFromCity(string &city) const {
     } else {
         cout << ">> No airports found in city " << city << endl;
     }
+}
+
+void Database::printAirportsReachableFrom(string &airportCode, int nFlights) {
+    auto airports = flights.bfsWithNSteps(airportCode, nFlights);
+    cout << ">> Source Airport: "; airports[0][0]->airport->printHeader(); cout << endl;
+    unsigned totalFlights = 0;
+    for (int i = 1; i < airports.size(); i++) {
+        cout << ">> " << airports[i].size() << " Airports after " << i << " flight(s):" << endl;
+        totalFlights += airports[i].size();
+        for (auto& node : airports[i]) {
+            cout << "     "; node->airport->printHeader(); cout << endl;
+        }
+    }
+    cout << ">> Total of " << totalFlights << " airports reachable after " << nFlights << " flights." << endl;
+}
+
+void Database::printCitiesReachableFrom(string &airportCode, int nFlights) {
+
+}
+
+void Database::printCountriesReachableFrom(string &airportCode, int nFlights) {
+    auto airports = flights.bfsWithNSteps(airportCode, nFlights);
+    cout << ">> Source Airport: "; airports[0][0]->airport->printHeader(); cout << endl;
+
+    unordered_set<string> countries;
+    vector<set<string>> countriesByLevel;
+    countriesByLevel.emplace_back();
+    for(int i = 1; i < airports.size(); i++){
+        for(auto& node : airports[i]){
+            if(countries.insert(node->airport->getCountry()).second){
+                if(countriesByLevel.size() < i+1){
+                    countriesByLevel.push_back({node->airport->getCountry()});
+                } else {
+                    countriesByLevel[i].insert(node->airport->getCountry());
+                }
+            }
+        }
+    }
+
+    for(int i = 1; i < countriesByLevel.size(); i++){
+        cout << ">> " << countriesByLevel[i].size() << " Countries after " << i << " flight(s):" << endl;
+        for(auto& country : countriesByLevel[i]){
+            cout << "     " << country << endl;
+        }
+    }
+    cout << ">> Total of " << countries.size() << " countries reachable after " << nFlights << " flights." << endl;
 }

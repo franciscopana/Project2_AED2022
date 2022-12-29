@@ -52,10 +52,10 @@ void Graph::printEdges(string &airportCode) const {
     cout << endl;
 }
 
-list<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n=-1) {
-    list<vector<Node*>> airports;
-    int distance = 0, currentDistance = 0;
+vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n=-1) {
+    vector<vector<Node*>> airports;
 
+    int distance = 0, currentDistance = 0;
     auto srcNodeIt = nodes.find(srcAirport);
     queue<pair<Node*, int>> q;
     q.emplace(&srcNodeIt->second, distance);
@@ -66,7 +66,7 @@ list<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n=-1) {
         if(distance > currentDistance) {
             airports.emplace_back();
             currentDistance = distance;
-        };
+        }
         Node* u = q.front().first;
         q.pop();
         for (auto& edge : u->edges) {

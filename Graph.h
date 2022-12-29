@@ -34,7 +34,7 @@ public:
     void addEdge(string& source, string& dest, string& airline);
 
     // Searchers
-    list<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
+    vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
 
     // Printers
     void printGraph() const;

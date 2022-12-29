@@ -5,6 +5,6 @@
 int main() {
     Database database;
     string search = "OPO";
-    database.printAirportsReachableFrom(search, 9);
+    database.printCountriesReachableFrom(search, 2);
     return 0;
 }

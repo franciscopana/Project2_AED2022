@@ -12,6 +12,7 @@ private:
     unordered_map<string, set<Airport*>> cities;
     Graph flights;
 
+    // Loaders
     void loadAirports();
     void loadAirlines();
     void loadFlights();
@@ -23,8 +24,10 @@ public:
     void printAirlines() const;
     void printFlights() const;
     void printFlightsFrom(string& airportCode) const;
-    void printAirportsReachableFrom(string& airportCode, int flights);
     void printAirportsFromCity(string& city) const;
+    void printAirportsReachableFrom(string& airportCode, int flights);
+    void printCitiesReachableFrom(string& airportCode, int nFlights);
+    void printCountriesReachableFrom(string& airportCode, int nFlights);
 };
 
 #endif //TRABALHO2_DATABASE_H
