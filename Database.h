@@ -6,6 +6,9 @@
 #include "Airline.h"
 #include "Graph.h"
 
+using namespace std;
+
+
 class Database {
 private:
     unordered_map<string, Airline*> airlines;
@@ -19,6 +22,11 @@ private:
 
 public:
     Database();
+
+    // Getters
+    vector<set<string>> getCitiesReachableFrom(string& airportCode, int nFlights);
+    vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights);
+
 
     // Printers
     void printAirlines() const;

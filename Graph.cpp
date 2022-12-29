@@ -4,6 +4,7 @@
 #include "Graph.h"
 
 
+/*    Adders    */
 void Graph::addNode(string& airportCode, Airport* airport) {
     nodes.insert({airportCode, {airport, {}, false}});
 }
@@ -23,33 +24,14 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
     }
 }
 
-void Graph::printGraph() const {
-    for (const auto & node : nodes) {
-        cout << node.first << " => ";
-        for (const auto & edge : node.second.edges) {
-            std::cout << edge.destAirport << ": " << edge.airlines.size() << " airlines  |  ";
-        }
-        cout << endl;
-    }
-}
-void Graph::printEdges(string &airportCode) const {
+
+/*    Searchers    */
+Node* Graph::getNode(string& airportCode) {
     auto it = nodes.find(airportCode);
     if (it != nodes.end()) {
-        cout << ">> Source Airport: "; it->second.airport->printHeader(); cout << endl;
-        cout << ">> Destination Airports:" << endl;
-        for (const auto & edge : it->second.edges) {
-            cout << "     ";
-            string destAirportCode = edge.destAirport;
-            auto destIt = nodes.find(destAirportCode);
-            destIt->second.airport->printHeader();
-            cout << "\t|\tAirlines: ";
-            for (const auto & airline : edge.airlines) {
-                cout << airline << " ";
-            }
-            cout << endl;
-        }
+        return &it->second;
     }
-    cout << endl;
+    return nullptr;
 }
 
 vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n=-1) {
@@ -86,3 +68,36 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n=-1) {
     }
     return airports;
 }
+
+
+/*    Printers    */
+void Graph::printGraph() const {
+    for (const auto & node : nodes) {
+        cout << node.first << " => ";
+        for (const auto & edge : node.second.edges) {
+            std::cout << edge.destAirport << ": " << edge.airlines.size() << " airlines  |  ";
+        }
+        cout << endl;
+    }
+}
+
+void Graph::printEdges(string &airportCode) const {
+    auto it = nodes.find(airportCode);
+    if (it != nodes.end()) {
+        cout << ">> Source Airport: "; it->second.airport->printHeader(); cout << endl;
+        cout << ">> Destination Airports:" << endl;
+        for (const auto & edge : it->second.edges) {
+            cout << "     ";
+            string destAirportCode = edge.destAirport;
+            auto destIt = nodes.find(destAirportCode);
+            destIt->second.airport->printHeader();
+            cout << "\t|\tAirlines: ";
+            for (const auto & airline : edge.airlines) {
+                cout << airline << " ";
+            }
+            cout << endl;
+        }
+    }
+    cout << endl;
+}
+

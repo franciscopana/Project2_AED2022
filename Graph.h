@@ -11,16 +11,19 @@
 
 using namespace std;
 
+
 struct Edge {
     string destAirport;
     set<string> airlines;
 };
+
 
 struct Node {
     Airport* airport;
     list<Edge> edges;
     bool visited;
 };
+
 
 class Graph {
 private:
@@ -34,6 +37,7 @@ public:
     void addEdge(string& source, string& dest, string& airline);
 
     // Searchers
+    Node* getNode(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
 
     // Printers
