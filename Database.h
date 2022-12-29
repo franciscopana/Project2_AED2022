@@ -2,9 +2,18 @@
 #ifndef TRABALHO2_DATABASE_H
 #define TRABALHO2_DATABASE_H
 
+#include <fstream>
+#include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
+#include <unordered_set>
 #include "Airport.h"
 #include "Airline.h"
 #include "Graph.h"
+
+using namespace std;
+
 
 class Database {
 private:
@@ -12,6 +21,7 @@ private:
     unordered_map<string, set<Airport*>> cities;
     Graph flights;
 
+    // Loaders
     void loadAirports();
     void loadAirlines();
     void loadFlights();
@@ -19,18 +29,22 @@ private:
 public:
     Database();
 
+    // Booleans
     bool hasAirport(const string& code) const;
 
+    // Getters
+    vector<set<string>> getCitiesReachableFrom(string& airportCode, int nFlights);
+    vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights);
     int getNumberOfFlights(string& airportCode) const;
     int getNumberOfAirlines(string& airportCode) const;
-    void printFlightsFromAirport(string& airportCode) const;
 
     // Printers
     void printAirlines() const;
-    void printFlights() const;
     void printAirlinesFromAirport(const string& airportCode) const;
-    void printAirportsReachableFrom(string& airportCode, int flights);
     void printAirportsFromCity(string& city) const;
+    void printAirportsReachableFrom(string& airportCode, int nFlights);
+    void printCitiesReachableFrom(string& airportCode, int nFlights);
+    void printCountriesReachableFrom(string& airportCode, int nFlights);
 };
 
 #endif //TRABALHO2_DATABASE_H

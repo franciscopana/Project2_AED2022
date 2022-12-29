@@ -1,10 +1,6 @@
-#include <iostream>
-#include <queue>
-#include <utility>
-#include <iomanip>
 #include "Graph.h"
 
-
+/*    Adders    */
 void Graph::addNode(string& airportCode, Airport* airport) {
     nodes.insert({airportCode, {airport, {}, false}});
 }
@@ -36,69 +32,51 @@ list<Edge> Graph::getEdges(const string& code) const {
     return nodes.find(code)->second.edges;
 }
 
-void Graph::printGraph() const {
-    for (const auto & node : nodes) {
-        cout << node.first << " => ";
-        for (const auto & edge : node.second.edges) {
-            std::cout << edge.destAirport << ": " << edge.airlines.size() << " airlines  |  ";
-        }
-        cout << endl;
-    }
-}
 
-void Graph::printEdges(string &airportCode) const {
+/*    Searchers    */
+Node* Graph::getNode(string& airportCode) {
     auto it = nodes.find(airportCode);
     if (it != nodes.end()) {
-        cout << ">> Source Airport: "; it->second.airport->printHeader(); cout << endl;
-        cout << ">> Destination Airports:" << endl;
-        cout << left << setw(20) << "Airport Code" << setw(40) << "Airport Name" << setw(40) << "Airlines" << endl;
-        for (const auto & edge : it->second.edges) {
-            string destAirportCode = edge.destAirport;
-            auto destIt = nodes.find(destAirportCode);
-            cout << left << setw(20) << destIt->second.airport->getCode()
-                 << setw(40) << destIt->second.airport->getName();
-            cout << setw(20) << " ";
-            for (const auto & airline : edge.airlines) {
-                cout << airline << " ";
-            }
-            cout << endl;
-        }
+        return &it->second;
     }
-    cout << endl;
+    return nullptr;
 }
 
-
-list<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n=-1) {
-    list<vector<Node*>> airports;
-    int distance = 0, currentDistance = 0;
-
+vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
+    vector<vector<Node*>> airports;
+    int distance = 0;
     auto srcNodeIt = nodes.find(srcAirport);
     queue<pair<Node*, int>> q;
     q.emplace(&srcNodeIt->second, distance);
     srcNodeIt->second.visited = true;
     airports.push_back({&srcNodeIt->second});
 
-    while (!q.empty() && (distance = q.front().second) <= n) {
-        if(distance > currentDistance) {
-            airports.emplace_back();
-            currentDistance = distance;
-        };
+    while (!q.empty() && (distance = q.front().second) < n) {
         Node* u = q.front().first;
         q.pop();
+        distance++;
         for (auto& edge : u->edges) {
             auto destNodeIt = nodes.find(edge.destAirport);
             if (!destNodeIt->second.visited) {
-                q.emplace(&destNodeIt->second, distance + 1);
+                q.emplace(&destNodeIt->second, distance);
                 destNodeIt->second.visited = true;
-                airports.back().push_back(&destNodeIt->second);
+                if(airports.size() > distance) {
+                    airports[distance].push_back(&destNodeIt->second);
+                } else {
+                    airports.push_back({&destNodeIt->second});
+                }
             }
         }
     }
 
     for(auto& airportsVector : airports) {
+        sort(airportsVector.begin(), airportsVector.end(), [](Node* a, Node* b) {
+            return a->airport->getCode() < b->airport->getCode();
+        });
         for(auto& node : airportsVector) {
             node->visited = false;
         }
     }
+
     return airports;
 }

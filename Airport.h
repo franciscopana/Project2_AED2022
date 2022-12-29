@@ -1,7 +1,7 @@
-
 #ifndef TRABALHO2_AIRPORT_H
 #define TRABALHO2_AIRPORT_H
 
+#include <iostream>
 #include <string>
 
 using namespace std;

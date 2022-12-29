@@ -1,18 +1,26 @@
 #ifndef TRABALHO2_MENU_H
 #define TRABALHO2_MENU_H
 
-
+#include <iostream>
+#include <limits>
 #include "Database.h"
 
-class Menu {
-    public:
-        void showInitialMenu(Database& database);
-        void showSearchFlightsMenu(Database& database);
-        void showSearchAirportsMenu(Database& database);
+using namespace std;
 
-        bool getYesOrNo();
-        string getAirportCode(Database& database);
-        void clearScreen();
+class Menu {
+private:
+    Database database;
+
+public:
+    Menu(Database& database) : database(database) {};
+
+    void showInitialMenu();
+    void showSearchFlightsMenu();
+    void showSearchAirportsMenu();
+
+    bool getYesOrNo();
+    string getAirportCode();
+    void clearScreen();
 };
 
 

@@ -1,7 +1,9 @@
-
 #ifndef TRABALHO2_GRAPH_H
 #define TRABALHO2_GRAPH_H
 
+#include <iostream>
+#include <queue>
+#include <utility>
 #include <string>
 #include <vector>
 #include <set>
@@ -11,16 +13,19 @@
 
 using namespace std;
 
+
 struct Edge {
     string destAirport;
     set<string> airlines;
 };
+
 
 struct Node {
     Airport* airport;
     list<Edge> edges;
     bool visited;
 };
+
 
 class Graph {
 private:
@@ -39,11 +44,8 @@ public:
 
 
     // Searchers
-    list<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
-
-    // Printers
-    void printGraph() const;
-    void printEdges(string& airportCode) const;
+    Node* getNode(string& airportCode);
+    vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
 };
 
 

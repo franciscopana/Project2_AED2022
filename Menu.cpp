@@ -1,11 +1,7 @@
-#include <iostream>
-#include <limits>
 #include "Menu.h"
-#include "Database.h"
 
-using namespace std;
 
-void Menu::showInitialMenu(Database& database) {
+void Menu::showInitialMenu() {
     cout << "Welcome to the Flight Search Engine!" << endl;
     cout << "Please select an option:" << endl;
     cout << "1 - Search for flights" << endl;
@@ -18,31 +14,31 @@ void Menu::showInitialMenu(Database& database) {
         cout << "Invalid input" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        showInitialMenu(database);
+        showInitialMenu();
     }
     else {
         switch (option) {
             case 1:
-                showSearchFlightsMenu(database);
+                showSearchFlightsMenu();
                 break;
             case 2:
-                showSearchAirportsMenu(database);
+                showSearchAirportsMenu();
                 break;
             case 3:
                 exit(0);
             default:
                 cout << "Invalid option" << endl;
-                showInitialMenu(database);
+                showInitialMenu();
         }
     }
 }
 
-void Menu::showSearchFlightsMenu(Database &database) {
+void Menu::showSearchFlightsMenu() {
 
 }
 
-void Menu::showSearchAirportsMenu(Database& database) {
-    string code = getAirportCode(database);
+void Menu::showSearchAirportsMenu() {
+    string code = getAirportCode();
 
     cout << "Please select an option:" << endl;
     cout << "1 - How many flights depart from " << code << "?\n";
@@ -56,14 +52,14 @@ void Menu::showSearchAirportsMenu(Database& database) {
         cout << "Invalid input" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        showInitialMenu(database);
+        showInitialMenu();
     }
     else {
         switch (option) {
             case 1:
                 cout<<"There are "<<database.getNumberOfFlights(code)<<" flights departing from "<<code<<". Do you want to see them? (y/n)"<<endl;
                 if(getYesOrNo()){
-                    database.printFlightsFromAirport(code);
+                    database.printAirportsReachableFrom(code, 1);
                 }
                 break;
             case 2:
@@ -78,13 +74,13 @@ void Menu::showSearchAirportsMenu(Database& database) {
                 break;
             default:
                 cout << "Invalid option" << endl;
-                showSearchAirportsMenu(database);
+                showSearchAirportsMenu();
         }
     }
 
 }
 
-string Menu::getAirportCode(Database& database) {
+string Menu::getAirportCode() {
     cout << "Please enter the airport code:" << endl;
     string code;
     cin >> code;
@@ -93,7 +89,7 @@ string Menu::getAirportCode(Database& database) {
         cout << "Invalid input" << endl;
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        showInitialMenu(database);
+        showInitialMenu();
     }
     else {
         if (database.hasAirport(code)) {
@@ -101,7 +97,7 @@ string Menu::getAirportCode(Database& database) {
         }
         else {
             cout << "Airport not found" << endl;
-            code = getAirportCode(database);
+            code = getAirportCode();
         }
     }
 }
@@ -112,16 +108,9 @@ bool Menu::getYesOrNo(){
     if(answer=="y" || answer=="Y"){
         return true;
     }
-    else if(answer=="n" || answer=="N"){
+    if(answer=="n" || answer=="N"){
         return false;
     }
-    else{
-        cout<<"Invalid input. Please enter y or n."<<endl;
-        getYesOrNo();
-    }
-}
-
-
-void Menu::clearScreen() {
-    system("cls");
+    cout<<"Invalid input. Please enter y or n."<<endl;
+    answer = getYesOrNo();
 }
