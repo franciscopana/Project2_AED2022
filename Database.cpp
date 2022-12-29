@@ -12,7 +12,7 @@ void Database::loadAirports() {
     ifstream file("../dataset/airports.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
-        std::cerr << "Error opening file" << std::endl;
+        cerr << "Error opening file" << std::endl;
     }
     string line;
     while (std::getline(file, line)) {
@@ -143,14 +143,6 @@ void Database::printAirlines() const {
     for(auto &airline : airlines) {
         airline.second->print();
     }
-}
-
-void Database::printFlights() const {
-    flights.printGraph();
-}
-
-void Database::printFlightsFrom(string& airportCode) const {
-    flights.printEdges(airportCode);
 }
 
 void Database::printAirportsFromCity(string &city) const {

@@ -27,11 +27,8 @@ public:
     vector<set<string>> getCitiesReachableFrom(string& airportCode, int nFlights);
     vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights);
 
-
     // Printers
     void printAirlines() const;
-    void printFlights() const;
-    void printFlightsFrom(string& airportCode) const;
     void printAirportsFromCity(string& city) const;
     void printAirportsReachableFrom(string& airportCode, int flights);
     void printCitiesReachableFrom(string& airportCode, int nFlights);

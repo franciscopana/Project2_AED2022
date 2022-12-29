@@ -39,10 +39,6 @@ public:
     // Searchers
     Node* getNode(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
-
-    // Printers
-    void printGraph() const;
-    void printEdges(string& airportCode) const;
 };
 
 
