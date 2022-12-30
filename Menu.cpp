@@ -35,9 +35,9 @@ void Menu::showInitialMenu() {
 }
 
 void Menu::showSearchFlightsMenu() {
-    cout << "From:" << endl;
+    cout << "From:";
     string origin = getAirportCode();
-    cout << "To:" << endl;
+    cout << "To:";
     string destination = getAirportCode();
 
     cout << "Please select an option:" << endl;
