@@ -1,11 +1,9 @@
 #include <iostream>
-
-#include "App.h"
+#include "Menu.h"
 
 int main() {
     Database database;
-    string source = "OPO";
-    string destination = "NAV";
-    database.printPath(source, destination);
+    Menu menu(database);
+    menu.showInitialMenu();
     return 0;
 }

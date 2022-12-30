@@ -1,4 +1,3 @@
-
 #ifndef TRABALHO2_GRAPH_H
 #define TRABALHO2_GRAPH_H
 
@@ -42,6 +41,7 @@ public:
     Node* getNode(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
     vector<stack<Node*>> bfsWithDest(string &srcAirport, string &destAirport);
+    bool hasAirport(const string& airportCode) const;
 };
 
 

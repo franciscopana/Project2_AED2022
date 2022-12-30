@@ -1,5 +1,4 @@
 #include "Airport.h"
-#include <iostream>
 
 Airport::Airport(string& code, string& name, string& city, string& country, float latitude, float longitude) {
     this->name = name;

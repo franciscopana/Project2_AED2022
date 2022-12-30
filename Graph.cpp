@@ -135,5 +135,15 @@ vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport)
         paths.push_back(path);
         solutions.pop();
     }
+
+    for(auto& airportsVector : adjacent) {
+        for(auto& pair : airportsVector) {
+            pair.second->visited = false;
+        }
+    }
     return paths;
+}
+
+bool Graph::hasAirport(const string& airportCode) const{
+    return nodes.find(airportCode) != nodes.end();
 }
