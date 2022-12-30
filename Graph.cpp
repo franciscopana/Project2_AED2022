@@ -35,7 +35,19 @@ Node* Graph::getNode(string& airportCode) {
     return nullptr;
 }
 
-vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
+list<Edge> Graph::getEdges(string& airportCode) {
+    auto it = nodes.find(airportCode);
+    if (it != nodes.end()) {
+        return it->second.edges;
+    }
+    return {};
+}
+
+bool includes(set<string> &set1, set<string> &set2){
+    return includes(set1.begin(), set1.end(), set2.begin(), set2.end());
+}
+
+vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string>& airlines){
     vector<vector<Node*>> airports;
 
     int numSteps = 0;
@@ -50,6 +62,10 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
         q.pop();
         numSteps++;
         for (auto& edge : u->edges) {
+            if(!airlines.empty() && !includes(airlines, edge.airlines)){
+                continue;
+            }
+
             auto destNodeIt = nodes.find(edge.destAirport);
             if (!destNodeIt->second.visited) {
                 q.emplace(&destNodeIt->second, numSteps);
@@ -75,7 +91,7 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
     return airports;
 }
 
-vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport) {
+vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport, set<string> &airlines){
     vector<vector<pair<Node *, Node *>>> adjacent;
 
     auto srcNodeIt = nodes.find(srcAirport);
@@ -93,8 +109,14 @@ vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport)
 
     for(int i = 0; i < distance; i++){
         adjacent.emplace_back();
+        bool loop = false;
         for(auto& pair : adjacent[i]){
+            loop = true;
             for(auto& edge : pair.second->edges){
+                if(!airlines.empty() && !includes(airlines, edge.airlines)){
+                    continue;
+                }
+
                 auto nextNodeIt = nodes.find(edge.destAirport);
                 Node* nextNode = &nextNodeIt->second;
                 if(!nextNode->visited){
@@ -108,8 +130,7 @@ vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport)
                 }
             }
         }
-        if(!found)
-            distance++;
+        if(!found && loop) distance++;
     }
 
     vector<stack<Node*>> paths;
@@ -153,7 +174,7 @@ struct vertexDistance{
     }
 };
 
-vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport){
+vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport, set<string> &airlines){
     unordered_map<string, double> distances;
     vector<Node*> visitedNodes;
     for(auto& node : nodes){
@@ -176,6 +197,10 @@ vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport){
         visitedNodes.push_back(current.node);
 
         for(Edge& edge : current.node->edges){
+            if(!airlines.empty() && !includes(airlines, edge.airlines)){
+                continue;
+            }
+
             double distance = current.distance + edge.distance;
             if(distance < distances[edge.destAirport]){
                 distances[edge.destAirport] = distance;
@@ -192,6 +217,7 @@ vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport){
         path.push_back(current);
         current = previous[current->airport->getCode()];
     }
+    if(path.size() <2) {path.clear();}
     reverse(path.begin(), path.end());
 
     for(auto& node : visitedNodes){node->visited = false;}
