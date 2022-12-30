@@ -12,8 +12,8 @@ private:
     string code;
     string city;
     string country;
-    float latitude;
-    float longitude;
+    double latitude;
+    double longitude;
 
 public:
     Airport(string& code, string& name, string& city , string& country, float latitude, float longitude);
@@ -23,6 +23,7 @@ public:
     string getCountry();
     float getLatitude();
     float getLongitude();
+    float getDistance(Airport* other);
 
     bool operator<(const Airport& other);
 

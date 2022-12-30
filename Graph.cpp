@@ -2,6 +2,7 @@
 #include <queue>
 #include <utility>
 #include <algorithm>
+#include <cmath>
 #include "Graph.h"
 
 
@@ -21,10 +22,9 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
                 return;
             }
         }
-        sourceIt->second.edges.push_back({dest, {airline}});
+        sourceIt->second.edges.push_back({dest, {airline}, sourceIt->second.airport->getDistance(destIt->second.airport)});
     }
 }
-
 
 /*    Searchers    */
 Node* Graph::getNode(string& airportCode) {
@@ -38,24 +38,24 @@ Node* Graph::getNode(string& airportCode) {
 vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
     vector<vector<Node*>> airports;
 
-    int distance = 0;
+    int numSteps = 0;
     auto srcNodeIt = nodes.find(srcAirport);
     queue<pair<Node*, int>> q;
-    q.emplace(&srcNodeIt->second, distance);
+    q.emplace(&srcNodeIt->second, numSteps);
     srcNodeIt->second.visited = true;
     airports.push_back({&srcNodeIt->second});
 
-    while (!q.empty() && (distance = q.front().second) < n) {
+    while (!q.empty() && (numSteps = q.front().second) < n) {
         Node* u = q.front().first;
         q.pop();
-        distance++;
+        numSteps++;
         for (auto& edge : u->edges) {
             auto destNodeIt = nodes.find(edge.destAirport);
             if (!destNodeIt->second.visited) {
-                q.emplace(&destNodeIt->second, distance);
+                q.emplace(&destNodeIt->second, numSteps);
                 destNodeIt->second.visited = true;
-                if(airports.size() > distance) {
-                    airports[distance].push_back(&destNodeIt->second);
+                if(airports.size() > numSteps) {
+                    airports[numSteps].push_back(&destNodeIt->second);
                 } else {
                     airports.push_back({&destNodeIt->second});
                 }
