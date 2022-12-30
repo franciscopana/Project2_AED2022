@@ -75,43 +75,54 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
     return airports;
 }
 
-vector<Node*> Graph::findPath(string &srcAirport, string &destAirport) {
-    vector<Node*> path;
-    unordered_map<string, vector<Node*>> paths;
-
-    int distance = 0;
+vector<stack<pair<Node*,Node*>>> Graph::bfsWithDest(string &srcAirport, string &destAirport) {
+    vector<stack<pair<Node*, Node*>>> paths;
     auto srcNodeIt = nodes.find(srcAirport);
-    queue<pair<Node*, int>> q;
-    q.emplace(&srcNodeIt->second, distance);
+    pair<Node*, Node*> srcPair = {nullptr, &srcNodeIt->second};
+    queue<pair<Node*, Node*>> q;
+    q.emplace(srcPair);
     srcNodeIt->second.visited = true;
-    paths[srcNodeIt->second.airport->getCode()] = {&srcNodeIt->second};
-
-    while (!q.empty()) {
-        Node* u = q.front().first;
-        distance = q.front().second;
+    bool found = false;
+    int maxDistance = nodes.size(), distance = 0;
+    while(!q.empty() && !found && maxDistance >= distance) {
+        distance = maxDistance;
+        auto u = q.front();
         q.pop();
-        if (u->airport->getCode() == destAirport) {
-            path = paths[u->airport->getName()];
-            break;
-        }
-        for (auto& edge : u->edges) {
+        for(auto& edge : u.second->edges) {
             auto destNodeIt = nodes.find(edge.destAirport);
-            if (!destNodeIt->second.visited) {
-                q.emplace(&destNodeIt->second, distance + 1);
+            if(!destNodeIt->second.visited) {
+                pair<Node*, Node*> destPair = {u.second, &destNodeIt->second};
+                q.emplace(destPair);
                 destNodeIt->second.visited = true;
-                paths[destNodeIt->second.airport->getCode()] = paths[u->airport->getCode()];
-                paths[destNodeIt->second.airport->getCode()].push_back(&destNodeIt->second);
+                if(destNodeIt->second.airport->getCode() == destAirport) {
+                    stack<pair<Node*, Node*>> s;
+                    s.push(destPair);
+                    paths.push_back(s);
+                    maxDistance = distance + 1;
+                    found = true;
+                }
             }
         }
     }
-
-    // Reset visited flag on all nodes
-    for (auto& node : nodes) {
-        node.second.visited = false;
-    }
-
-    return path;
+// Reset visited flag on all nodes
+for (auto& node : nodes) {
+    node.second.visited = false;
 }
 
+// Create path by tracing back from the destination airport to the source airport
+for (stack<pair<Node*, Node*>>& path : paths) {
+    while (path.top().first != nullptr) {
+        Node* previous = path.top().first;
+        for (auto& edge : previous->edges) {
+            auto destNodeIt = nodes.find(edge.destAirport);
+            if (destNodeIt->second.airport->getCode() == path.top().second->airport->getCode()) {
+                pair<Node*, Node*> destPair = {previous, &destNodeIt->second};
+                path.push(destPair);
+                break;
+            }
+        }
+    }
+}
 
-
+return paths;
+}

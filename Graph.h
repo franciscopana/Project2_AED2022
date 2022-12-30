@@ -7,6 +7,7 @@
 #include <set>
 #include <list>
 #include <unordered_map>
+#include <stack>
 #include "Airline.h"
 #include "Airport.h"
 
@@ -40,7 +41,7 @@ public:
     // Searchers
     Node* getNode(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
-    vector<Node *> findPath(string &srcAirport, string &destAirport);
+    vector<stack<pair<Node*,Node*>>> bfsWithDest(string &srcAirport, string &destAirport);
 };
 
 

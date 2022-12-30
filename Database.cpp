@@ -137,16 +137,6 @@ vector<set<string>> Database::getCountriesReachableFrom(string &airportCode, int
     return countriesByLevel;
 }
 
-set<string> Database::getPath(string &source, string &destination) {
-    auto path = flights.findPath(source, destination);
-    set<string> pathCodes;
-    for(auto& node : path){
-        pathCodes.insert(node->airport->getCode());
-    }
-    return pathCodes;
-}
-
-
 /*    Printers    */
 void Database::printAirlines() const {
     for(auto &airline : airlines) {
@@ -209,9 +199,16 @@ void Database::printCountriesReachableFrom(string &airportCode, int nFlights) {
 }
 
 void Database::printPath(string &source, string &destination){
-    auto path = flights.findPath(source, destination);
-    cout << ">> Path from " << source << " to " << destination << ":" << endl;
-    for(auto& node : path){
-        cout << "     "; node->airport->printHeader(); cout << endl;
+    auto paths = flights.bfsWithDest(source, destination);
+    if(paths.empty()){
+        cout << ">> No path found between " << source << " and " << destination << endl;
+    } else {
+        cout << ">> Path from " << source << " to " << destination << ":" << endl;
+        for(auto& path : paths){
+            while(!path.empty()){
+                cout << "     " << path.top().first->airport->getCode() << " - " << path.top().second->airport->getName() << endl;
+                path.pop();
+            }
+        }
     }
 }
