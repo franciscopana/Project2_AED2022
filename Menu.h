@@ -17,10 +17,13 @@ public:
     void showInitialMenu();
     void showSearchFlightsMenu();
     void showSearchAirportsMenu();
+    void listReachableAirports(string code);
+    void listReachableCities(string code);
+    void listReachableCountries(string code);
 
     bool getYesOrNo();
     string getAirportCode();
-    void clearScreen();
+    int getNumberOfFlights();
 };
 
 

@@ -1,3 +1,4 @@
+#include <iomanip>
 #include "Database.h"
 
 
@@ -95,7 +96,6 @@ bool Database::hasAirport(const std::string &code) const {
     return flights.hasAirport(code);
 }
 
-
 /*    Getters    */
 vector<set<string>> Database::getCitiesReachableFrom(string &airportCode, int nFlights) {
     auto airports = flights.bfsWithNSteps(airportCode, nFlights);
@@ -137,12 +137,8 @@ vector<set<string>> Database::getCountriesReachableFrom(string &airportCode, int
     return countriesByLevel;
 }
 
-int Database::getNumberOfFlights(string &airportCode) const {
-    return flights.getNumberOfEdges(airportCode);
-}
+set<string> Database::getPath(string &source, string &destination){
 
-int Database::getNumberOfAirlines(string &airportCode) const {
-    int count = 0;
 }
 
 /*    Printers    */
@@ -171,13 +167,13 @@ void Database::printAirportsFromCity(string &city) const {
 
 void Database::printAirportsReachableFrom(string &airportCode, int nFlights) {
     auto airports = flights.bfsWithNSteps(airportCode, nFlights);
-    cout << ">> Source Airport: "; airports[0][0]->airport->printHeader(); cout << endl;
-    unsigned totalFlights = 0;
+    cout << ">> Source Airport: "; airports[0][0]->airport->printHeader(); cout << endl;    unsigned totalFlights = 0;
     for (int i = 1; i < airports.size(); i++) {
         cout << ">> " << airports[i].size() << " airports after " << i << " flight(s):" << endl;
         totalFlights += airports[i].size();
+        cout << " " << setw(20) << left << "Code" << setw(40) << left << "Name" << setw(20) << left << "Country" << endl;
         for (auto& node : airports[i]) {
-            cout << "     "; node->airport->printHeader(); cout << endl;
+            cout << " " << setw(20) << left << node->airport->getCode() << setw(40) << left << node->airport->getName() << setw(20) << left << node->airport->getCountry() << endl;
         }
     }
     cout << ">> Total of " << totalFlights << " airports reachable after " << nFlights << " flights." << endl;

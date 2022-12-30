@@ -140,3 +140,7 @@ vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport)
     }
     return paths;
 }
+
+bool Graph::hasAirport(const string& airportCode) const{
+    return nodes.find(airportCode) != nodes.end();
+}
