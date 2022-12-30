@@ -44,6 +44,7 @@ public:
     void printCitiesReachableFrom(string& airportCode, int nFlights);
     void printCountriesReachableFrom(string& airportCode, int nFlights);
     void printPath(string &source, string &destination);
+    void printShortestPath(string &source, string &destination);
 
 };
 

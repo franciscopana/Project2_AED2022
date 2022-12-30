@@ -41,6 +41,7 @@ public:
     Node* getNode(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
     vector<stack<Node*>> bfsWithDest(string &srcAirport, string &destAirport);
+    vector<Node*> dijkstra(string &srcAirport, string &destAirport);
     bool hasAirport(const string& airportCode) const;
 };
 

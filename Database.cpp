@@ -238,3 +238,19 @@ void Database::printPath(string &source, string &destination) {
 
     cout << ">> Minimum number of flights: " << nMinFlights << endl;
 }
+
+void Database::printShortestPath(string &source, string &destination) {
+    vector<Node*> path = flights.dijkstra(source, destination);
+    if (path.empty()) {
+        cout << ">> No path found between " << source << " and " << destination << endl;
+        return;
+    }
+    cout << ">> Shortest route from " << source << " to " << destination << ":" << endl;
+    cout << "     ";
+
+    for(Node* node : path){
+        node->airport->printHeader();
+        cout << "\t=>\t";
+    }
+    cout << endl;
+}
