@@ -142,14 +142,22 @@ set<string> Database::getPath(string &source, string &destination){
 }
 
 /*    Printers    */
-void Database::printAirlines() const {
-    for(auto &airline : airlines) {
-        airline.second->print();
+
+void Database::printAirlinesFromAirport(std::string &airportCode) {
+    auto airports = flights.bfsWithNSteps(airportCode, 1);
+    set<string> airlines_;
+    for(auto& node : airports[1]){
+        for(auto& edge : node->edges){
+            for(auto& airline : edge.airlines){
+                airlines_.insert(airline);
+            }
+        }
     }
-}
 
-void Database::printAirlinesFromAirport(const std::string &airportCode) const {
-
+    cout << "There are a total of " << airlines_.size() << " airlines that fly from " << airportCode << endl;
+    for(auto& airline : airlines_){
+        cout << setw(5) << left << airline << setw(40) << left << airlines.at(airline)->getName() << setw(20) << left << airlines.at(airline)->getCountry() << endl;
+    }
 }
 
 

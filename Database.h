@@ -38,8 +38,7 @@ public:
     set<string> getPath(string &source, string &destination);
 
     // Printers
-    void printAirlines() const;
-    void printAirlinesFromAirport(const string& airportCode) const;
+    void printAirlinesFromAirport(string& airportCode);
     void printAirportsFromCity(string& city) const;
     void printAirportsReachableFrom(string& airportCode, int nFlights);
     void printCitiesReachableFrom(string& airportCode, int nFlights);

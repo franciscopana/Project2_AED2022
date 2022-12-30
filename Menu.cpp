@@ -79,7 +79,7 @@ void Menu::showSearchAirportsMenu() {
                 listReachableCountries(code);
                 break;
             case 4:
-                //database.printCountriesFromAirport(code);
+                listDepartingAirlines(code);
                 break;
             default:
                 cout << "Invalid option" << endl;
@@ -248,6 +248,36 @@ void Menu::listReachableCountries(std::string code) {
             default:
                 cout << "Invalid option" << endl;
                 listReachableCountries(code);
+        }
+    }
+}
+
+void Menu::listDepartingAirlines(std::string code) {
+    database.printAirlinesFromAirport(code);
+
+    cout << "Please select an option:" << endl;
+    cout << "1 - Search for another airport" << endl;
+    cout << "2 - Go back to the main menu" << endl;
+
+    int option;
+    cin >> option;
+    if (cin.fail()) {
+        cout << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        showInitialMenu();
+    }
+    else {
+        switch (option) {
+            case 1:
+                showSearchAirportsMenu();
+                break;
+            case 2:
+                showInitialMenu();
+                break;
+            default:
+                cout << "Invalid option" << endl;
+                listDepartingAirlines(code);
         }
     }
 }

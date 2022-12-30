@@ -20,6 +20,7 @@ public:
     void listReachableAirports(string code);
     void listReachableCities(string code);
     void listReachableCountries(string code);
+    void listDepartingAirlines(string code);
 
     bool getYesOrNo();
     string getAirportCode();
