@@ -36,7 +36,6 @@ public:
     // Getters
     vector<set<string>> getCitiesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
-    set<string> getPath(string &source, string &destination);
 
     // Printers
     void printAirlinesFromAirport(string& airportCode);

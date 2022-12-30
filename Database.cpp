@@ -141,12 +141,6 @@ vector<set<string>> Database::getCountriesReachableFrom(string &airportCode, int
     return countriesByLevel;
 }
 
-set<string> Database::getPath(string &source, string &destination){
-
-}
-
-/*    Printers    */
-
 void Database::printAirlinesFromAirport(string &airportCode) {
     list<Edge> edges = flights.getEdges(airportCode);
     set <string> airlines_ = {};
@@ -250,7 +244,7 @@ void Database::printShortestPath(string &source, string &destination, set<string
     if (path.empty()) {
         cout << ">> No path found between " << source << " and " << destination << endl;
         if(airlines.size() > 0){
-            cout << ">> using airlines: "; for(auto& airline : airlines) cout << airline << " "; cout << endl;
+            cout << ">> Using airlines: "; for(auto& airline : airlines) cout << airline << " "; cout << endl;
         }
         return;
     }
