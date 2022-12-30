@@ -75,54 +75,68 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
     return airports;
 }
 
-vector<stack<pair<Node*,Node*>>> Graph::bfsWithDest(string &srcAirport, string &destAirport) {
-    vector<stack<pair<Node*, Node*>>> paths;
+vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport) {
+    vector<vector<pair<Node *, Node *>>> adjacent;
+
     auto srcNodeIt = nodes.find(srcAirport);
-    pair<Node*, Node*> srcPair = {nullptr, &srcNodeIt->second};
-    queue<pair<Node*, Node*>> q;
-    q.emplace(srcPair);
-    srcNodeIt->second.visited = true;
+    Node *srcNode = &srcNodeIt->second;
+    auto destNodeIt = nodes.find(destAirport);
+    Node *destNode = &destNodeIt->second;
+
+    long distance = 0;
+    int numberPaths = 0;
     bool found = false;
-    int maxDistance = nodes.size(), distance = 0;
-    while(!q.empty() && !found && maxDistance >= distance) {
-        distance = maxDistance;
-        auto u = q.front();
+
+    pair<Node *, Node *> srcPair = {nullptr, srcNode};
+    adjacent.push_back({srcPair});
+    srcNode->visited = true;
+    queue<pair<Node *, int>> q;
+    q.emplace(srcNode, distance);
+
+    while (!q.empty() && !found) {
+        Node* u = q.front().first;
+        distance = q.front().second;
         q.pop();
-        for(auto& edge : u.second->edges) {
-            auto destNodeIt = nodes.find(edge.destAirport);
-            if(!destNodeIt->second.visited) {
-                pair<Node*, Node*> destPair = {u.second, &destNodeIt->second};
-                q.emplace(destPair);
-                destNodeIt->second.visited = true;
-                if(destNodeIt->second.airport->getCode() == destAirport) {
-                    stack<pair<Node*, Node*>> s;
-                    s.push(destPair);
-                    paths.push_back(s);
-                    maxDistance = distance + 1;
-                    found = true;
+        distance++;
+        for (auto &edge: u->edges) {
+            auto nextNodeIt = nodes.find(edge.destAirport);
+            Node* nextNode = &nextNodeIt->second;
+            if (!nextNode->visited) {
+                pair<Node*, Node*> nextPair = {u, nextNode};
+                q.emplace(nextNode, distance);
+                nextNode->visited = true;
+                if (adjacent.size() > distance) {
+                    adjacent[distance].push_back(nextPair);
+                }else{
+                    adjacent.push_back({nextPair});
                 }
             }
-        }
-    }
-// Reset visited flag on all nodes
-for (auto& node : nodes) {
-    node.second.visited = false;
-}
-
-// Create path by tracing back from the destination airport to the source airport
-for (stack<pair<Node*, Node*>>& path : paths) {
-    while (path.top().first != nullptr) {
-        Node* previous = path.top().first;
-        for (auto& edge : previous->edges) {
-            auto destNodeIt = nodes.find(edge.destAirport);
-            if (destNodeIt->second.airport->getCode() == path.top().second->airport->getCode()) {
-                pair<Node*, Node*> destPair = {previous, &destNodeIt->second};
-                path.push(destPair);
-                break;
+            if (nextNode == destNode) {
+                found = true;
+                numberPaths++;
+                nextNode->visited = false;
             }
         }
     }
-}
 
-return paths;
+    vector<stack<Node*>> paths;
+    if(found) {
+        for (int i = 0; i < numberPaths; i++) {
+            stack<Node*> path;
+            path.push(destNode);
+            while(path.top() != srcNode) {
+                vector<pair<Node*, Node*>> &adjacentNodes = adjacent[distance];
+                for(auto& pair : adjacentNodes) {
+                    if(pair.second == path.top()) {
+                        path.push(pair.first);
+                        distance--;
+                        adjacentNodes.erase(remove(adjacentNodes.begin(), adjacentNodes.end(), pair), adjacentNodes.end());
+                        break;
+                    }
+                }
+            }
+            paths.push_back(path);
+        }
+    }
+    return paths;
 }

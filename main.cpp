@@ -5,7 +5,7 @@
 int main() {
     Database database;
     string source = "OPO";
-    string destination = "LIS";
+    string destination = "SDU";
     database.printPath(source, destination);
     return 0;
 }

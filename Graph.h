@@ -41,7 +41,7 @@ public:
     // Searchers
     Node* getNode(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
-    vector<stack<pair<Node*,Node*>>> bfsWithDest(string &srcAirport, string &destAirport);
+    vector<stack<Node*>> bfsWithDest(string &srcAirport, string &destAirport);
 };
 
 

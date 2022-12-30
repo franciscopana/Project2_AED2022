@@ -202,13 +202,15 @@ void Database::printPath(string &source, string &destination){
     auto paths = flights.bfsWithDest(source, destination);
     if(paths.empty()){
         cout << ">> No path found between " << source << " and " << destination << endl;
-    } else {
-        cout << ">> Path from " << source << " to " << destination << ":" << endl;
-        for(auto& path : paths){
-            while(!path.empty()){
-                cout << "     " << path.top().first->airport->getCode() << " - " << path.top().second->airport->getName() << endl;
-                path.pop();
-            }
+        return;
+    }
+    cout << ">> Path from " << source << " to " << destination << ":" << endl;
+    for(auto& path : paths){
+        cout << "     ";
+        while(!path.empty()){
+            cout << path.top()->airport->getName() << "  =>  ";
+            path.pop();
         }
+        cout << endl;
     }
 }
