@@ -35,11 +35,40 @@ void Menu::showInitialMenu() {
 }
 
 void Menu::showSearchFlightsMenu() {
-    cout << "Outbound Airport:" << endl;
+    cout << "From:" << endl;
     string origin = getAirportCode();
-    cout << "Inbound Airport:" << endl;
+    cout << "To:" << endl;
     string destination = getAirportCode();
-    database.printPath(origin, destination);
+
+    cout << "Please select an option:" << endl;
+    cout << "1 - Shortest path" << endl;
+    cout << "2 - All paths" << endl;
+    cout << "3 - Go back" << endl;
+
+    int option;
+    cin >> option;
+    if (cin.fail()) {
+        cout << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        showSearchFlightsMenu();
+    }
+    else {
+        switch (option) {
+            case 1:
+                database.printShortestPath(origin, destination);
+                break;
+            case 2:
+                database.printPath(origin, destination);
+                break;
+            case 3:
+                showInitialMenu();
+                break;
+            default:
+                cout << "Invalid option" << endl;
+                showSearchFlightsMenu();
+        }
+    }
 
     cout << "Do you want to search for another flight? (y/n)" << endl;
     if (getYesOrNo()) {
