@@ -44,7 +44,12 @@ list<Edge> Graph::getEdges(string& airportCode) {
 }
 
 bool includes(set<string> &set1, set<string> &set2){
-    return includes(set1.begin(), set1.end(), set2.begin(), set2.end());
+    for(auto &element : set1){
+        if(set2.find(element) != set2.end()){
+            return true;
+        }
+    }
+    return false;
 }
 
 vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string>& airlines){
@@ -113,19 +118,17 @@ vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport,
         for(auto& pair : adjacent[i]){
             loop = true;
             for(auto& edge : pair.second->edges){
-                if(!airlines.empty() && !includes(airlines, edge.airlines)){
-                    continue;
-                }
-
-                auto nextNodeIt = nodes.find(edge.destAirport);
-                Node* nextNode = &nextNodeIt->second;
-                if(!nextNode->visited){
-                    nextNode->visited = true;
-                    adjacent[distance].emplace_back(pair.second, nextNode);
-                    if(nextNode == destNode){
-                        found = true;
-                        solutions.emplace(pair.second, nextNode);
-                        nextNode->visited = false;
+                if(airlines.empty() || includes(airlines, edge.airlines)){
+                    auto nextNodeIt = nodes.find(edge.destAirport);
+                    Node* nextNode = &nextNodeIt->second;
+                    if(!nextNode->visited){
+                        nextNode->visited = true;
+                        adjacent[distance].emplace_back(pair.second, nextNode);
+                        if(nextNode == destNode){
+                            found = true;
+                            solutions.emplace(pair.second, nextNode);
+                            nextNode->visited = false;
+                        }
                     }
                 }
             }
@@ -176,7 +179,7 @@ struct vertexDistance{
 
 vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport, set<string> &airlines){
     unordered_map<string, double> distances;
-    vector<Node*> visitedNodes;
+    list<Node*> visitedNodes;
     for(auto& node : nodes){
         distances[node.first] = INFINITY;
     }

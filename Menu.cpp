@@ -142,14 +142,14 @@ string Menu::getAirportCode() {
     }
     else {
         if (code.length() != 3 || !all_of(code.begin(), code.end(), ::isalpha)) {
-            cout << "Invalid airport code" << endl;
+            cout << "Invalid airport code. Try again: ";
             code = getAirportCode();
         }
         else if (database.hasAirport(code)) {
             return code;
         }
         else {
-            cout << "Airport not found. Try again." << endl;
+            cout << "Airport not found. Try again: ";
             code = getAirportCode();
         }
     }
@@ -175,15 +175,17 @@ set<string> Menu::getAirlines() {
     cout << "Do you want to filter by airline? (y/n): ";
     if(getYesOrNo()){
         string airline;
-        cout << "Please enter the airlines you want to use (enter 0 to exit): ";
+        cout << "Please enter the airlines you want to use (enter 0 to exit): " << endl;
+        cout << ">> ";
         cin >> airline;
         while (airline != "0") {
             if (database.hasAirline(airline)) {
                 airlines.insert(airline);
             }
             else {
-                cout << "Airline not found. Try again." << endl;
+                cout << "Airline not found. Try again: ";
             }
+            cout << ">> ";
             cin >> airline;
         }
     }
