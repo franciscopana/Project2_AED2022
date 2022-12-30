@@ -8,6 +8,7 @@ void Menu::showInitialMenu() {
     cout << "1 - Search for flights" << endl;
     cout << "2 - Search for airports" << endl;
     cout << "3 - Exit" << endl;
+    cout << ">> ";
 
     int option;
     cin >> option;
@@ -35,15 +36,16 @@ void Menu::showInitialMenu() {
 }
 
 void Menu::showSearchFlightsMenu() {
-    cout << "From:";
+    cout << "From: ";
     string origin = getAirportCode();
-    cout << "To:";
+    cout << "To: ";
     string destination = getAirportCode();
 
-    cout << "Please select an option:" << endl;
+    cout << "Please select an option: " << endl;
     cout << "1 - Shortest path" << endl;
     cout << "2 - All paths" << endl;
     cout << "3 - Go back" << endl;
+    cout << ">> ";
 
     int option;
     cin >> option;
@@ -70,7 +72,7 @@ void Menu::showSearchFlightsMenu() {
         }
     }
 
-    cout << "Do you want to search for another flight? (y/n)" << endl;
+    cout << "Do you want to search for another flight? (y/n) ";
     if (getYesOrNo()) {
         showSearchFlightsMenu();
     }
@@ -80,7 +82,7 @@ void Menu::showSearchFlightsMenu() {
 }
 
 void Menu::showSearchAirportsMenu() {
-    cout << "Please enter the airport code:" << endl;
+    cout << "Please enter the airport code: ";
     string code = getAirportCode();
 
     cout << "Please select an option:" << endl;
@@ -88,7 +90,8 @@ void Menu::showSearchAirportsMenu() {
     cout << "2 - How many different cities can be reached from " << code << "?\n";
     cout << "3 - How many different countries can be reached from " << code << "?\n";
     cout << "4 - How many different airlines depart from " << code << "?\n";
-    cout << "5 - How many flights depart from" << code << "?\n";
+    cout << "5 - How many flights depart from " << code << "?\n";
+    cout << ">> ";
 
     int option;
     cin >> option;
@@ -181,7 +184,7 @@ int Menu::getNumberOfFlights(){
 }
 
 void Menu::listReachableAirports(string code){
-    cout << "How many flights are you willing to take? (1 for direct flights)" << endl;
+    cout << "How many flights are you willing to take? (1 for direct flights) ";
     int nFlights = getNumberOfFlights();
     database.printAirportsReachableFrom(code, nFlights);
 
@@ -190,6 +193,7 @@ void Menu::listReachableAirports(string code){
     cout << "1 - Change the number of flights" << endl;
     cout << "2 - Search for another airport" << endl;
     cout << "3 - Go back to the main menu" << endl;
+    cout << ">> ";
 
     cin >> option;
     if (cin.fail()) {
@@ -217,7 +221,7 @@ void Menu::listReachableAirports(string code){
 }
 
 void Menu::listReachableCities(std::string code) {
-    cout << "How many flights are you willing to take? (1 for direct flights)" << endl;
+    cout << "How many flights are you willing to take? (1 for direct flights) ";
     int nFlights = getNumberOfFlights();
     database.printCitiesReachableFrom(code, nFlights);
 
@@ -226,6 +230,7 @@ void Menu::listReachableCities(std::string code) {
     cout << "1 - Change the number of flights" << endl;
     cout << "2 - Search for another airport" << endl;
     cout << "3 - Go back to the main menu" << endl;
+    cout << ">> ";
 
     cin >> option;
     if (cin.fail()) {
@@ -253,7 +258,7 @@ void Menu::listReachableCities(std::string code) {
 }
 
 void Menu::listReachableCountries(std::string code) {
-    cout << "How many flights are you willing to take? (1 for direct flights)" << endl;
+    cout << "How many flights are you willing to take? (1 for direct flights) ";
     int nFlights = getNumberOfFlights();
     database.printCountriesReachableFrom(code, nFlights);
 
@@ -262,6 +267,7 @@ void Menu::listReachableCountries(std::string code) {
     cout << "1 - Change the number of flights" << endl;
     cout << "2 - Search for another airport" << endl;
     cout << "3 - Go back to the main menu" << endl;
+    cout << ">> ";
 
     cin >> option;
     if (cin.fail()) {
@@ -294,6 +300,7 @@ void Menu::listDepartingAirlines(std::string code) {
     cout << "Please select an option:" << endl;
     cout << "1 - Search for another airport" << endl;
     cout << "2 - Go back to the main menu" << endl;
+    cout << ">> ";
 
     int option;
     cin >> option;

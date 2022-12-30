@@ -184,7 +184,7 @@ void Database::printAirportsReachableFrom(string &airportCode, int nFlights) {
             cout << " " << setw(20) << left << node->airport->getCode() << setw(40) << left << node->airport->getName() << setw(20) << left << node->airport->getCountry() << endl;
         }
     }
-    cout << ">> Total of " << totalFlights << " airports reachable after " << nFlights << " flights." << endl;
+    cout << ">> Total of " << totalFlights << " airports reachable after " << nFlights << " flight(s)." << endl;
 }
 
 void Database::printCitiesReachableFrom(string &airportCode, int nFlights) {
@@ -198,7 +198,7 @@ void Database::printCitiesReachableFrom(string &airportCode, int nFlights) {
         }
         totalCities += citiesByLevel[i].size();
     }
-    cout << ">> Total of " << totalCities << " cities reachable after " << nFlights << " flights." << endl;
+    cout << ">> Total of " << totalCities << " cities reachable after " << nFlights << " flight(s)." << endl;
 }
 
 void Database::printCountriesReachableFrom(string &airportCode, int nFlights) {
@@ -212,7 +212,7 @@ void Database::printCountriesReachableFrom(string &airportCode, int nFlights) {
         }
         totalCountries += countriesByLevel[i].size();
     }
-    cout << ">> Total of " << totalCountries << " countries reachable after " << nFlights << " flights." << endl;
+    cout << ">> Total of " << totalCountries << " countries reachable after " << nFlights << " flight(s)." << endl;
 }
 
 void Database::printPath(string &source, string &destination) {
@@ -248,9 +248,10 @@ void Database::printShortestPath(string &source, string &destination) {
     cout << ">> Shortest route from " << source << " to " << destination << ":" << endl;
     cout << "     ";
 
-    for(Node* node : path){
-        node->airport->printHeader();
+    for(int i = 0; i < path.size() - 1; i++){
+        path[i]->airport->printHeader();
         cout << "\t=>\t";
     }
+    path.back()->airport->printHeader();
     cout << endl;
 }
