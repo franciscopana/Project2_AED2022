@@ -39,9 +39,10 @@ public:
 
     // Searchers
     Node* getNode(string& airportCode);
-    vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
-    vector<stack<Node*>> bfsWithDest(string &srcAirport, string &destAirport);
-    vector<Node*> dijkstra(string &srcAirport, string &destAirport);
+    list<Edge> getEdges(string& airportCode);
+    vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n, set<string>& airlines);
+    vector<stack<Node*>> bfsWithDest(string &srcAirport, string &destAirport, set<string> &airlines);
+    vector<Node*> dijkstra(string &srcAirport, string &destAirport, set<string> &airlines);
     bool hasAirport(const string& airportCode) const;
 };
 

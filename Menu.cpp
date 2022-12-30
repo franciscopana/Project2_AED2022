@@ -41,7 +41,10 @@ void Menu::showSearchFlightsMenu() {
     cout << "To: ";
     string destination = getAirportCode();
 
-    cout << "Please select an option: " << endl;
+
+    set<string> airlines = getAirlines();
+    cout << "Please select an option:" << endl;
+
     cout << "1 - Shortest path" << endl;
     cout << "2 - All paths" << endl;
     cout << "3 - Go back" << endl;
@@ -58,10 +61,10 @@ void Menu::showSearchFlightsMenu() {
     else {
         switch (option) {
             case 1:
-                database.printShortestPath(origin, destination);
+                database.printShortestPath(origin, destination, airlines);
                 break;
             case 2:
-                database.printPath(origin, destination);
+                database.printPath(origin, destination, airlines);
                 break;
             case 3:
                 showInitialMenu();
@@ -72,7 +75,7 @@ void Menu::showSearchFlightsMenu() {
         }
     }
 
-    cout << "Do you want to search for another flight? (y/n) ";
+    cout << "Do you want to search for another flight? (y/n): ";
     if (getYesOrNo()) {
         showSearchFlightsMenu();
     }
@@ -93,6 +96,8 @@ void Menu::showSearchAirportsMenu() {
     cout << "5 - How many flights depart from " << code << "?\n";
     cout << ">> ";
 
+    set<string> airlines = {};
+
     int option;
     cin >> option;
     if (cin.fail()) {
@@ -104,12 +109,16 @@ void Menu::showSearchAirportsMenu() {
     else {
         switch (option) {
             case 1:
-                listReachableAirports(code);
+                airlines = getAirlines();
+                listReachableAirports(code, airlines);
+                break;
             case 2:
-                listReachableCities(code);
+                airlines = getAirlines();
+                listReachableCities(code, airlines);
                 break;
             case 3:
-                listReachableCountries(code);
+                airlines = getAirlines();
+                listReachableCountries(code, airlines);
                 break;
             case 4:
                 listDepartingAirlines(code);
@@ -140,7 +149,7 @@ string Menu::getAirportCode() {
             return code;
         }
         else {
-            cout << "Airport not found" << endl;
+            cout << "Airport not found. Try again." << endl;
             code = getAirportCode();
         }
     }
@@ -161,8 +170,31 @@ bool Menu::getYesOrNo(){
     }
 }
 
+set<string> Menu::getAirlines() {
+    set<string> airlines;
+    cout << "Do you want to filter by airline? (y/n): ";
+    if(getYesOrNo()){
+        string airline;
+        cout << "Please enter the airlines you want to use (enter 0 to exit): ";
+        cin >> airline;
+        while (airline != "0") {
+            if (database.hasAirline(airline)) {
+                airlines.insert(airline);
+            }
+            else {
+                cout << "Airline not found. Try again." << endl;
+            }
+            cin >> airline;
+        }
+    }
+    else airlines = {};
+
+    return airlines;
+}
+
 
 int Menu::getNumberOfFlights(){
+    cout << "How many flights are you willing to take? (1 for direct flights): ";
     int flights;
     cin >> flights;
     if (cin.fail()) {
@@ -183,10 +215,9 @@ int Menu::getNumberOfFlights(){
     return flights;
 }
 
-void Menu::listReachableAirports(string code){
-    cout << "How many flights are you willing to take? (1 for direct flights) ";
+void Menu::listReachableAirports(string code, set<string>& airlines) {
     int nFlights = getNumberOfFlights();
-    database.printAirportsReachableFrom(code, nFlights);
+    database.printAirportsReachableFrom(code, nFlights, airlines);
 
     int option;
     cout << "Please select an option:" << endl;
@@ -205,7 +236,7 @@ void Menu::listReachableAirports(string code){
     else {
         switch (option) {
             case 1:
-                listReachableAirports(code);
+                listReachableAirports(code, airlines);
                 break;
             case 2:
                 showSearchAirportsMenu();
@@ -215,15 +246,15 @@ void Menu::listReachableAirports(string code){
                 break;
             default:
                 cout << "Invalid option" << endl;
-                listReachableAirports(code);
+                listReachableAirports(code, airlines);
         }
     }
 }
 
-void Menu::listReachableCities(std::string code) {
-    cout << "How many flights are you willing to take? (1 for direct flights) ";
+
+void Menu::listReachableCities(string code, set<string>& airlines) {
     int nFlights = getNumberOfFlights();
-    database.printCitiesReachableFrom(code, nFlights);
+    database.printCitiesReachableFrom(code, nFlights, airlines);
 
     int option;
     cout << "Please select an option:" << endl;
@@ -242,7 +273,7 @@ void Menu::listReachableCities(std::string code) {
     else {
         switch (option) {
             case 1:
-                listReachableCities(code);
+                listReachableCities(code, airlines);
                 break;
             case 2:
                 showSearchAirportsMenu();
@@ -252,15 +283,15 @@ void Menu::listReachableCities(std::string code) {
                 break;
             default:
                 cout << "Invalid option" << endl;
-                listReachableCities(code);
+                listReachableCities(code, airlines);
         }
     }
 }
 
-void Menu::listReachableCountries(std::string code) {
-    cout << "How many flights are you willing to take? (1 for direct flights) ";
+
+void Menu::listReachableCountries(string code, set<string>& airlines) {
     int nFlights = getNumberOfFlights();
-    database.printCountriesReachableFrom(code, nFlights);
+    database.printCountriesReachableFrom(code, nFlights, airlines);
 
     int option;
     cout << "Please select an option:" << endl;
@@ -279,7 +310,7 @@ void Menu::listReachableCountries(std::string code) {
     else {
         switch (option) {
             case 1:
-                listReachableCountries(code);
+                listReachableCountries(code, airlines);
                 break;
             case 2:
                 showSearchAirportsMenu();
@@ -289,7 +320,7 @@ void Menu::listReachableCountries(std::string code) {
                 break;
             default:
                 cout << "Invalid option" << endl;
-                listReachableCountries(code);
+                listReachableCountries(code, airlines);
         }
     }
 }
