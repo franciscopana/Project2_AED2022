@@ -44,6 +44,9 @@ public:
     vector<stack<Node*>> bfsWithDest(string &srcAirport, string &destAirport, set<string> &airlines);
     vector<Node*> dijkstra(string &srcAirport, string &destAirport, set<string> &airlines);
     bool hasAirport(const string& airportCode) const;
+
+    // Getters
+    Airport* getAirport(const string& airportCode) const;
 };
 
 

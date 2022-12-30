@@ -19,6 +19,7 @@ class Database {
 private:
     unordered_map<string, Airline*> airlines;
     unordered_map<string, set<Airport*>> cities;
+
     Graph flights;
 
     // Loaders
@@ -36,6 +37,7 @@ public:
     // Getters
     vector<set<string>> getCitiesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
+    Airport* getAirport(const string& code) const;
 
     // Printers
     void printAirlinesFromAirport(string& airportCode);

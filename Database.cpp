@@ -23,7 +23,7 @@ void Database::loadAirports() {
         }
         string code = fields[0];
         string city = fields[2];
-        auto* airportPtr = new Airport(code, fields[1], city, fields[3], stof(fields[4]), stof(fields[5]));
+        Airport* airportPtr = new Airport(code, fields[1], city, fields[3], stof(fields[4]), stof(fields[5]));
         flights.addNode(code, airportPtr);
 
         auto cityIt = cities.find(city);
@@ -139,6 +139,10 @@ vector<set<string>> Database::getCountriesReachableFrom(string &airportCode, int
         }
     }
     return countriesByLevel;
+}
+
+Airport* Database::getAirport(const std::string &code) const {
+    return flights.getAirport(code);
 }
 
 void Database::printAirlinesFromAirport(string &airportCode) {

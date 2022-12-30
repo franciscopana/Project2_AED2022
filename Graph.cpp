@@ -228,5 +228,14 @@ vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport, set<strin
 }
 
 bool Graph::hasAirport(const string& airportCode) const{
-    return nodes.find(airportCode) != nodes.end();
+    return getAirport(airportCode) != nullptr;
+}
+
+Airport* Graph::getAirport(const string& airportCode) const{
+    auto it = nodes.find(airportCode);
+    if(it != nodes.end()){
+        Airport* airport = it->second.airport;
+        return airport;
+    }
+    return nullptr;
 }

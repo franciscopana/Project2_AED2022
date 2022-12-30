@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <iomanip>
 #include "Menu.h"
 
 
@@ -87,6 +88,9 @@ void Menu::showSearchFlightsMenu() {
 void Menu::showSearchAirportsMenu() {
     cout << "Please enter the airport code: ";
     string code = getAirportCode();
+
+    Airport *airport = database.getAirport(code);
+    cout  << airport->getName() << setw(20) << airport->getCity() << setw(20) << airport->getCountry() << endl << endl;
 
     cout << "Please select an option:" << endl;
     cout << "1 - How many different airports can be reached from " << code << "?\n";
