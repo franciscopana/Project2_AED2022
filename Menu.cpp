@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "Menu.h"
 
 
@@ -99,7 +100,11 @@ string Menu::getAirportCode() {
         showInitialMenu();
     }
     else {
-        if (database.hasAirport(code)) {
+        if (code.length() != 3 || !all_of(code.begin(), code.end(), ::isalpha)) {
+            cout << "Invalid airport code" << endl;
+            code = getAirportCode();
+        }
+        else if (database.hasAirport(code)) {
             return code;
         }
         else {
@@ -109,19 +114,21 @@ string Menu::getAirportCode() {
     }
     return code;
 }
-
 bool Menu::getYesOrNo(){
     string answer;
-    cin>>answer;
-    if(answer=="y" || answer=="Y"){
+    cin >> answer;
+    while (answer != "y" && answer != "Y" && answer != "n" && answer != "N") {
+        cout << "Invalid input. Please enter y or n." << endl;
+        cin >> answer;
+    }
+    if (answer == "y" || answer == "Y") {
         return true;
     }
-    if(answer=="n" || answer=="N"){
+    else {
         return false;
     }
-    cout<<"Invalid input. Please enter y or n."<<endl;
-    answer = getYesOrNo();
 }
+
 
 int Menu::getNumberOfFlights(){
     int flights;
