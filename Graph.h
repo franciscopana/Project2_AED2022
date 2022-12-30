@@ -1,14 +1,13 @@
 #ifndef TRABALHO2_GRAPH_H
 #define TRABALHO2_GRAPH_H
 
-#include <iostream>
-#include <queue>
-#include <utility>
 #include <string>
 #include <vector>
 #include <set>
 #include <list>
 #include <unordered_map>
+#include <stack>
+#include "Airline.h"
 #include "Airport.h"
 
 using namespace std;
@@ -37,15 +36,11 @@ public:
     // Adders
     void addNode(string& airportCode,Airport* airport);
     void addEdge(string& source, string& dest, string& airline);
-    bool hasAirport(const string& code) const;
-
-    int getNumberOfEdges(const string& code) const;
-    list<Edge> getEdges(const string& code) const;
-
 
     // Searchers
     Node* getNode(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
+    vector<stack<Node*>> bfsWithDest(string &srcAirport, string &destAirport);
 };
 
 

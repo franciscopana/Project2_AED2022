@@ -210,3 +210,20 @@ void Database::printCountriesReachableFrom(string &airportCode, int nFlights) {
     }
     cout << ">> Total of " << totalCountries << " countries reachable after " << nFlights << " flights." << endl;
 }
+
+void Database::printPath(string &source, string &destination){
+    auto paths = flights.bfsWithDest(source, destination);
+    if(paths.empty()){
+        cout << ">> No path found between " << source << " and " << destination << endl;
+        return;
+    }
+    cout << ">> Path from " << source << " to " << destination << ":" << endl;
+    for(auto& path : paths){
+        cout << "     ";
+        while(!path.empty()){
+            cout << path.top()->airport->getName() << "  =>  ";
+            path.pop();
+        }
+        cout << endl;
+    }
+}
