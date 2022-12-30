@@ -4,7 +4,8 @@
 
 int main() {
     Database database;
-    string search = "OPO";
-    database.printCitiesReachableFrom(search, 2);
+    string source = "OPO";
+    string destination = "LIS";
+    database.printPath(source, destination);
     return 0;
 }

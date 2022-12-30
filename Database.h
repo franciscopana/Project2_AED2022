@@ -26,6 +26,8 @@ public:
     // Getters
     vector<set<string>> getCitiesReachableFrom(string& airportCode, int nFlights);
     vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights);
+    set<string> getPath(string &source, string &destination);
+
 
     // Printers
     void printAirlines() const;
@@ -33,6 +35,8 @@ public:
     void printAirportsReachableFrom(string& airportCode, int flights);
     void printCitiesReachableFrom(string& airportCode, int nFlights);
     void printCountriesReachableFrom(string& airportCode, int nFlights);
+    void printPath(string &source, string &destination);
+
 };
 
 #endif //TRABALHO2_DATABASE_H

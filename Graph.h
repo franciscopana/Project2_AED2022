@@ -3,6 +3,7 @@
 #define TRABALHO2_GRAPH_H
 
 #include <string>
+#include <vector>
 #include <set>
 #include <list>
 #include <unordered_map>
@@ -39,6 +40,7 @@ public:
     // Searchers
     Node* getNode(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n);
+    vector<Node *> findPath(string &srcAirport, string &destAirport);
 };
 
 

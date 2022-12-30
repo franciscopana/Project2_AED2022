@@ -1,6 +1,7 @@
 #include <iostream>
 #include <queue>
 #include <utility>
+#include <algorithm>
 #include "Graph.h"
 
 
@@ -73,4 +74,44 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
 
     return airports;
 }
+
+vector<Node*> Graph::findPath(string &srcAirport, string &destAirport) {
+    vector<Node*> path;
+    unordered_map<string, vector<Node*>> paths;
+
+    int distance = 0;
+    auto srcNodeIt = nodes.find(srcAirport);
+    queue<pair<Node*, int>> q;
+    q.emplace(&srcNodeIt->second, distance);
+    srcNodeIt->second.visited = true;
+    paths[srcNodeIt->second.airport->getCode()] = {&srcNodeIt->second};
+
+    while (!q.empty()) {
+        Node* u = q.front().first;
+        distance = q.front().second;
+        q.pop();
+        if (u->airport->getCode() == destAirport) {
+            path = paths[u->airport->getName()];
+            break;
+        }
+        for (auto& edge : u->edges) {
+            auto destNodeIt = nodes.find(edge.destAirport);
+            if (!destNodeIt->second.visited) {
+                q.emplace(&destNodeIt->second, distance + 1);
+                destNodeIt->second.visited = true;
+                paths[destNodeIt->second.airport->getCode()] = paths[u->airport->getCode()];
+                paths[destNodeIt->second.airport->getCode()].push_back(&destNodeIt->second);
+            }
+        }
+    }
+
+    // Reset visited flag on all nodes
+    for (auto& node : nodes) {
+        node.second.visited = false;
+    }
+
+    return path;
+}
+
+
 

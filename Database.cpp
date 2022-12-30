@@ -137,6 +137,15 @@ vector<set<string>> Database::getCountriesReachableFrom(string &airportCode, int
     return countriesByLevel;
 }
 
+set<string> Database::getPath(string &source, string &destination) {
+    auto path = flights.findPath(source, destination);
+    set<string> pathCodes;
+    for(auto& node : path){
+        pathCodes.insert(node->airport->getCode());
+    }
+    return pathCodes;
+}
+
 
 /*    Printers    */
 void Database::printAirlines() const {
@@ -197,4 +206,12 @@ void Database::printCountriesReachableFrom(string &airportCode, int nFlights) {
         totalCountries += countriesByLevel[i].size();
     }
     cout << ">> Total of " << totalCountries << " countries reachable after " << nFlights << " flights." << endl;
+}
+
+void Database::printPath(string &source, string &destination){
+    auto path = flights.findPath(source, destination);
+    cout << ">> Path from " << source << " to " << destination << ":" << endl;
+    for(auto& node : path){
+        cout << "     "; node->airport->printHeader(); cout << endl;
+    }
 }
