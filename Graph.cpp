@@ -36,8 +36,6 @@ Node* Graph::getNode(string& airportCode) {
 }
 
 vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
-    for(auto& node : nodes) {node.second.visited = false;}
-
     vector<vector<Node*>> airports;
 
     int numSteps = 0;
@@ -78,8 +76,6 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string &srcAirport, int n) {
 }
 
 vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport) {
-    for(auto& node : nodes) {node.second.visited = false;}
-
     vector<vector<pair<Node *, Node *>>> adjacent;
 
     auto srcNodeIt = nodes.find(srcAirport);
@@ -158,11 +154,8 @@ struct vertexDistance{
 };
 
 vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport){
-    for(auto& node : nodes){
-        node.second.visited = false;
-    }
-
     unordered_map<string, double> distances;
+    vector<Node*> visitedNodes;
     for(auto& node : nodes){
         distances[node.first] = INFINITY;
     }
@@ -180,6 +173,7 @@ vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport){
         if(current.node->visited)
             continue;
         current.node->visited = true;
+        visitedNodes.push_back(current.node);
 
         for(Edge& edge : current.node->edges){
             double distance = current.distance + edge.distance;
@@ -199,6 +193,8 @@ vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport){
         current = previous[current->airport->getCode()];
     }
     reverse(path.begin(), path.end());
+
+    for(auto& node : visitedNodes){node->visited = false;}
     return path;
 }
 
