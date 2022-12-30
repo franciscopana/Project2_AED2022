@@ -204,13 +204,20 @@ void Database::printPath(string &source, string &destination){
         cout << ">> No path found between " << source << " and " << destination << endl;
         return;
     }
-    cout << ">> Path from " << source << " to " << destination << ":" << endl;
+    cout << ">> " << paths.size() << " routes from " << source << " to " << destination << ":" << endl;
+
+    unsigned nMinFlights = paths[0].size() - 1;
+
     for(auto& path : paths){
         cout << "     ";
-        while(!path.empty()){
-            cout << path.top()->airport->getName() << "  =>  ";
+        while(path.size() > 1){
+            path.top()->airport->printHeader();
+            cout << "\t=>\t";
             path.pop();
         }
+        path.top()->airport->printHeader();
         cout << endl;
     }
+
+    cout << ">> Minimum number of flights: " << nMinFlights << endl;
 }

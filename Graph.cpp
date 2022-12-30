@@ -83,60 +83,57 @@ vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport)
     auto destNodeIt = nodes.find(destAirport);
     Node *destNode = &destNodeIt->second;
 
-    long distance = 0;
-    int numberPaths = 0;
+    unsigned distance = 1;
     bool found = false;
+    queue<pair<Node*, Node*>> solutions;
 
     pair<Node *, Node *> srcPair = {nullptr, srcNode};
     adjacent.push_back({srcPair});
     srcNode->visited = true;
-    queue<pair<Node *, int>> q;
-    q.emplace(srcNode, distance);
 
-    while (!q.empty() && !found) {
-        Node* u = q.front().first;
-        distance = q.front().second;
-        q.pop();
-        distance++;
-        for (auto &edge: u->edges) {
-            auto nextNodeIt = nodes.find(edge.destAirport);
-            Node* nextNode = &nextNodeIt->second;
-            if (!nextNode->visited) {
-                pair<Node*, Node*> nextPair = {u, nextNode};
-                q.emplace(nextNode, distance);
-                nextNode->visited = true;
-                if (adjacent.size() > distance) {
-                    adjacent[distance].push_back(nextPair);
-                }else{
-                    adjacent.push_back({nextPair});
-                }
-            }
-            if (nextNode == destNode) {
-                found = true;
-                numberPaths++;
-                nextNode->visited = false;
-            }
-        }
-    }
-
-    vector<stack<Node*>> paths;
-    if(found) {
-        for (int i = 0; i < numberPaths; i++) {
-            stack<Node*> path;
-            path.push(destNode);
-            while(path.top() != srcNode) {
-                vector<pair<Node*, Node*>> &adjacentNodes = adjacent[distance];
-                for(auto& pair : adjacentNodes) {
-                    if(pair.second == path.top()) {
-                        path.push(pair.first);
-                        distance--;
-                        adjacentNodes.erase(remove(adjacentNodes.begin(), adjacentNodes.end(), pair), adjacentNodes.end());
-                        break;
+    for(int i = 0; i < distance; i++){
+        adjacent.emplace_back();
+        for(auto& pair : adjacent[i]){
+            for(auto& edge : pair.second->edges){
+                auto nextNodeIt = nodes.find(edge.destAirport);
+                Node* nextNode = &nextNodeIt->second;
+                if(!nextNode->visited){
+                    nextNode->visited = true;
+                    adjacent[distance].emplace_back(pair.second, nextNode);
+                    if(nextNode == destNode){
+                        found = true;
+                        solutions.emplace(pair.second, nextNode);
+                        nextNode->visited = false;
                     }
                 }
             }
-            paths.push_back(path);
         }
+        if(!found)
+            distance++;
+    }
+
+    vector<stack<Node*>> paths;
+
+    while(!solutions.empty()){
+        int i = distance - 1;
+        stack<Node*> path;
+        pair<Node*, Node*> solPair = solutions.front();
+        Node* current = solPair.second;
+        Node* previous = solPair.first;
+        path.push(current);
+        while(previous != nullptr){
+            for(auto& pair : adjacent[i]){
+                if(pair.second == previous){
+                    current = pair.second;
+                    previous = pair.first;
+                    path.push(current);
+                    break;
+                }
+            }
+            i--;
+        }
+        paths.push_back(path);
+        solutions.pop();
     }
     return paths;
 }
