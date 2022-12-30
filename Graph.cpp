@@ -44,7 +44,12 @@ list<Edge> Graph::getEdges(string& airportCode) {
 }
 
 bool includes(set<string> &set1, set<string> &set2){
-    return includes(set1.begin(), set1.end(), set2.begin(), set2.end());
+    for(auto &element : set1){
+        if(set2.find(element) != set2.end()){
+            return true;
+        }
+    }
+    return false;
 }
 
 vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string>& airlines){
