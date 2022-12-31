@@ -113,6 +113,9 @@ vector<stack<Node*>> Graph::bfsWithDest(vector<std::string> &srcAirports, vector
 
     for(auto srcNode: srcNodes){
         for(auto destNode: destNodes){
+            for (auto &node: nodes) {
+                node.second.visited = false;
+            }
             vector<vector<pair<Node *, Node *>>> adjacent;
             unsigned distance = 1;
             bool found = false;
