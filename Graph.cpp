@@ -168,14 +168,6 @@ vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport,
     return paths;
 }
 
-struct vertexDistance{
-    Node* node;
-    double distance;
-
-    bool operator<(const vertexDistance& other) const{
-        return distance > other.distance;
-    }
-};
 
 vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport, set<string> &airlines){
     unordered_map<string, double> distances;

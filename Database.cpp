@@ -101,8 +101,8 @@ bool Database::hasAirline(const std::string &code) const {
 }
 
 /*    Getters    */
-vector<set<string>> Database::getCitiesReachableFrom(string &airportCode, int nFlights, set<string> &airlines) {
-    auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlines);
+vector<set<string>> Database::getCitiesReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
+    auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlinesToSearch);
 
     unordered_set<string> cities_;
     vector<set<string>> citiesByLevel;
@@ -121,8 +121,8 @@ vector<set<string>> Database::getCitiesReachableFrom(string &airportCode, int nF
     return citiesByLevel;
 }
 
-vector<set<string>> Database::getCountriesReachableFrom(string &airportCode, int nFlights, set<string> &airlines) {
-    auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlines);
+vector<set<string>> Database::getCountriesReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
+    auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlinesToSearch);
 
     unordered_set<string> countries;
     vector<set<string>> countriesByLevel;
@@ -175,8 +175,8 @@ void Database::printAirportsFromCity(string &city) const {
     }
 }
 
-void Database::printAirportsReachableFrom(string &airportCode, int nFlights, set<string> &airlines) {
-    auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlines);
+void Database::printAirportsReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
+    auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlinesToSearch);
     cout << ">> Source Airport: "; airports[0][0]->airport->printHeader(); cout << endl;    unsigned totalFlights = 0;
 
     for (int i = 1; i < airports.size(); i++) {
@@ -190,8 +190,8 @@ void Database::printAirportsReachableFrom(string &airportCode, int nFlights, set
     cout << ">> Total of " << totalFlights << " airports reachable after " << nFlights << " flight(s)." << endl;
 }
 
-void Database::printCitiesReachableFrom(string &airportCode, int nFlights, set<string> &airlines) {
-    auto citiesByLevel = getCitiesReachableFrom(airportCode, nFlights, airlines);
+void Database::printCitiesReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
+    auto citiesByLevel = getCitiesReachableFrom(airportCode, nFlights, airlinesToSearch);
     unsigned totalCities = 0;
     cout << ">> Source Airport: "; flights.getNode(airportCode)->airport->printHeader() ; cout << endl;
     for(int i = 0; i < citiesByLevel.size(); i++){
@@ -204,8 +204,8 @@ void Database::printCitiesReachableFrom(string &airportCode, int nFlights, set<s
     cout << ">> Total of " << totalCities << " cities reachable after " << nFlights << " flight(s)." << endl;
 }
 
-void Database::printCountriesReachableFrom(string &airportCode, int nFlights, set<string> &airlines) {
-    auto countriesByLevel = getCountriesReachableFrom(airportCode, nFlights, airlines);
+void Database::printCountriesReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
+    auto countriesByLevel = getCountriesReachableFrom(airportCode, nFlights, airlinesToSearch);
     unsigned totalCountries = 0;
     cout << ">> Source Airport: "; flights.getNode(airportCode)->airport->printHeader() ; cout << endl;
     for(int i = 0; i < countriesByLevel.size(); i++){
@@ -218,11 +218,16 @@ void Database::printCountriesReachableFrom(string &airportCode, int nFlights, se
     cout << ">> Total of " << totalCountries << " countries reachable after " << nFlights << " flight(s)." << endl;
 }
 
-void Database::printPath(string &source, string &destination, set<string> &airlines) {
-    auto paths = flights.bfsWithDest(source, destination, airlines);
+void Database::printPath(string &source, string &destination, set<string> &airlinesToSearch) {
+    auto paths = flights.bfsWithDest(source, destination, airlinesToSearch);
     if (paths.empty()) {
         cout << ">> No path found between " << source << " and " << destination << endl;
-        if(!airlines.empty()) {cout << ">> Using airlines: "; for(auto& airline : airlines) cout << airline << " "; cout << endl;}
+        if(!airlinesToSearch.empty()){
+            cout << ">> Using airlines: ";
+            for(auto& airline : airlinesToSearch)
+                cout << airline << " ";
+            cout << endl;
+        }
         return;
     }
     cout << ">> " << paths.size() << " routes from " << source << " to " << destination << ":" << endl;
@@ -243,12 +248,15 @@ void Database::printPath(string &source, string &destination, set<string> &airli
     cout << ">> Minimum number of flights: " << nMinFlights << endl;
 }
 
-void Database::printShortestPath(string &source, string &destination, set<string> &airlines) {
-    vector<Node*> path = flights.dijkstra(source, destination, airlines);
+void Database::printShortestPath(string &source, string &destination, set<string> &airlinesToSearch) {
+    vector<Node*> path = flights.dijkstra(source, destination, airlinesToSearch);
     if (path.empty()) {
         cout << ">> No path found between " << source << " and " << destination << endl;
-        if(airlines.size() > 0){
-            cout << ">> Using airlines: "; for(auto& airline : airlines) cout << airline << " "; cout << endl;
+        if(!airlinesToSearch.empty()){
+            cout << ">> Using airlines: ";
+            for(auto& airline : airlinesToSearch)
+                cout << airline << " ";
+            cout << endl;
         }
         return;
     }

@@ -12,7 +12,6 @@
 
 using namespace std;
 
-
 struct Edge {
     string destAirport;
     set<string> airlines;
@@ -25,6 +24,14 @@ struct Node {
     bool visited;
 };
 
+struct vertexDistance{
+    Node* node;
+    double distance;
+
+    bool operator<(const vertexDistance& other) const{
+        return distance > other.distance;
+    }
+};
 
 class Graph {
 private:

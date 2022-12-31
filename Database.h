@@ -14,12 +14,10 @@
 
 using namespace std;
 
-
 class Database {
 private:
     unordered_map<string, Airline*> airlines;
     unordered_map<string, set<Airport*>> cities;
-
     Graph flights;
 
     // Loaders
