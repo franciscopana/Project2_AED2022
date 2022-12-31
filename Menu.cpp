@@ -136,39 +136,37 @@ void Menu::showSearchAirportsMenu() {
 }
 
 vector<string> Menu::getAirportsCode() {
-    string input;
-    cin >> input;
+    while (true) {
+        string input;
+        getline(cin, input);
 
-    vector<string> result;
+        vector<string> result;
 
-    if(input.length() == 3 && all_of(input.begin(), input.end(), ::isalpha)) {
-        if (database.hasAirport(input)) {
-            result.push_back(input);
+        if (input.length() == 3 && all_of(input.begin(), input.end(), ::isalpha)) {
+            if (database.hasAirport(input)) {
+                result.push_back(input);
+                return result;
+            }
+        }
+
+        if (database.hasCity(input)) {
+            result = database.getAirportsCodeFromCity(input);
             return result;
         }
+
+        regex coordinateRegex("^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$");
+        smatch coordinateMatch;
+
+        if (regex_search(input, coordinateMatch, coordinateRegex)) {
+            result = database.getAirportsCodeFromCoordinates(coordinateMatch[1], coordinateMatch[2]);
+            return result;
+        }
+
+        if(input != ""){
+            cout << "It must either be a city, an airport code or a pair of coordinates. Try again: ";
+        }
     }
-
-    if(database.hasCity(input)) {
-        result = database.getAirportsCodeFromCity(input);
-        return result;
-    }
-
-    regex coordinateRegex("^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$");
-    smatch coordinateMatch;
-
-    if(regex_search(input, coordinateMatch, coordinateRegex)) {
-        result = database.getAirportsCodeFromCoordinates(coordinateMatch[1], coordinateMatch[2]);
-        return result;
-    }
-
-    else {
-        cout << "It must either be a city, an airport code or a pair of coordinates. Try again: ";
-        result = getAirportsCode();
-    }
-
-    return result;
 }
-
 string Menu::getAirportCode() {
     string code;
     cin >> code;
