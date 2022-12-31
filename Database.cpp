@@ -100,7 +100,27 @@ bool Database::hasAirline(const std::string &code) const {
     return airlines.find(code) != airlines.end();
 }
 
+bool Database::hasCity(const std::string &city) const {
+    return cities.find(city) != cities.end();
+}
+
 /*    Getters    */
+
+vector<string> Database::getAirportsCodeFromCity(const string& city) const {
+    vector<string> airports;
+    auto cityIt = cities.find(city);
+    if (cityIt != cities.end()) {
+        for (auto airport : cityIt->second) {
+            airports.push_back(airport->getCode());
+        }
+    }
+    return airports;
+}
+
+vector<string> Database::getAirportsCodeFromCoordinates(const std::string &latitude,const std::string &longitude) const {
+    //We still need to implement this
+}
+
 vector<set<string>> Database::getCitiesReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
     auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlinesToSearch);
 
@@ -248,6 +268,49 @@ void Database::printPath(string &source, string &destination, set<string> &airli
     cout << ">> Minimum number of flights: " << nMinFlights << endl;
 }
 
+void Database::printPaths(vector<string>& source, vector<string>& destination, set<string> &airlinesToSearch) {
+    auto paths = flights.bfsWithDest2(source, destination, airlinesToSearch);
+    if (paths.empty()) {
+        cout << ">> No path found between ";
+        for(auto& s : source)
+            cout << s << " ";
+        cout << " and ";
+        for(auto& d : destination)
+            cout << d << " ";
+        cout << endl;
+
+        if(!airlinesToSearch.empty()){
+            cout << ">> Using airlines: ";
+            for(auto& airline : airlinesToSearch)
+                cout << airline << " ";
+            cout << endl;
+        }
+        return;
+    }
+    cout << ">> " << paths.size() << " routes from ";
+    for(auto& s : source)
+        cout << s << " ";
+    cout << " to ";
+    for(auto& d : destination)
+        cout << d << " ";
+    cout <<":" << endl;
+
+    unsigned nMinFlights = paths[0].size() - 1;
+
+    for (auto &path: paths) {
+        cout << "     ";
+        while (path.size() > 1) {
+            path.top()->airport->printHeader();
+            cout << "\t=>\t";
+            path.pop();
+        }
+        path.top()->airport->printHeader();
+        cout << endl;
+    }
+
+    cout << ">> Minimum number of flights: " << nMinFlights << endl;
+}
+
 void Database::printShortestPath(string &source, string &destination, set<string> &airlinesToSearch) {
     vector<Node*> path = flights.dijkstra(source, destination, airlinesToSearch);
     if (path.empty()) {
@@ -269,4 +332,12 @@ void Database::printShortestPath(string &source, string &destination, set<string
     }
     path.back()->airport->printHeader();
     cout << endl;
+}
+
+void Database::printShortestPaths(vector<string>& source, vector<string>& destination, set<string>& airlines){
+    for(string sourceCode: source){
+        for(string destCode: destination){
+            printShortestPath(sourceCode, destCode, airlines);
+        }
+    }
 }

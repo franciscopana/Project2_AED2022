@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <iomanip>
+#include <regex>
 #include "Menu.h"
 
 
@@ -38,9 +39,9 @@ void Menu::showInitialMenu() {
 
 void Menu::showSearchFlightsMenu() {
     cout << "From: ";
-    string origin = getAirportCode();
+    vector<string> origin = getAirportsCode();
     cout << "To: ";
-    string destination = getAirportCode();
+    vector<string> destination = getAirportsCode();
 
 
     set<string> airlines = getAirlines();
@@ -62,10 +63,10 @@ void Menu::showSearchFlightsMenu() {
     else {
         switch (option) {
             case 1:
-                database.printShortestPath(origin, destination, airlines);
+                database.printShortestPaths(origin, destination, airlines);
                 break;
             case 2:
-                database.printPath(origin, destination, airlines);
+                database.printPaths(origin, destination, airlines);
                 break;
             case 3:
                 showInitialMenu();
@@ -134,6 +135,40 @@ void Menu::showSearchAirportsMenu() {
     }
 }
 
+vector<string> Menu::getAirportsCode() {
+    string input;
+    cin >> input;
+
+    vector<string> result;
+
+    if(input.length() == 3 && all_of(input.begin(), input.end(), ::isalpha)) {
+        if (database.hasAirport(input)) {
+            result.push_back(input);
+            return result;
+        }
+    }
+
+    if(database.hasCity(input)) {
+        result = database.getAirportsCodeFromCity(input);
+        return result;
+    }
+
+    regex coordinateRegex("^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$");
+    smatch coordinateMatch;
+
+    if(regex_search(input, coordinateMatch, coordinateRegex)) {
+        result = database.getAirportsCodeFromCoordinates(coordinateMatch[1], coordinateMatch[2]);
+        return result;
+    }
+
+    else {
+        cout << "It must either be a city, an airport code or a pair of coordinates. Try again: ";
+        result = getAirportsCode();
+    }
+
+    return result;
+}
+
 string Menu::getAirportCode() {
     string code;
     cin >> code;
@@ -159,6 +194,7 @@ string Menu::getAirportCode() {
     }
     return code;
 }
+
 bool Menu::getYesOrNo(){
     string answer;
     cin >> answer;

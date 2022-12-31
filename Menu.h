@@ -24,6 +24,7 @@ public:
 
     bool getYesOrNo();
     set<string> getAirlines();
+    vector<string> getAirportsCode();
     string getAirportCode();
     int getNumberOfFlights();
 };

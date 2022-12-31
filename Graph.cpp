@@ -168,6 +168,83 @@ vector<stack<Node*>> Graph::bfsWithDest(string &srcAirport, string &destAirport,
     return paths;
 }
 
+vector<stack<Node*>> Graph::bfsWithDest2(vector<std::string> &srcAirports, vector<std::string> &destAirport,set<std::string> &airlines) {
+    vector<stack<Node*>> allPaths;
+
+    vector<Node*> srcNodes;
+    for(auto& srcAirport : srcAirports){
+        auto srcNodeIt = nodes.find(srcAirport);
+        srcNodes.push_back(&srcNodeIt->second);
+    }
+
+    vector<Node*> destNodes;
+    for(auto& destAirport : destAirport){
+        auto destNodeIt = nodes.find(destAirport);
+        destNodes.push_back(&destNodeIt->second);
+    }
+
+    for(auto srcNode: srcNodes){
+        for(auto destNode: destNodes){
+            vector<vector<pair<Node *, Node *>>> adjacent;
+            unsigned distance = 1;
+            bool found = false;
+            queue<pair<Node*, Node*>> solutions;
+
+            pair<Node *, Node *> srcPair = {nullptr, srcNode};
+            adjacent.push_back({srcPair});
+            srcNode->visited = true;
+
+            for(int i = 0; i < distance; i++){
+                adjacent.emplace_back();
+                bool loop = false;
+                for(auto& pair : adjacent[i]){
+                    loop = true;
+                    for(auto& edge : pair.second->edges){
+                        if(airlines.empty() || includes(airlines, edge.airlines)){
+                            auto nextNodeIt = nodes.find(edge.destAirport);
+                            Node* nextNode = &nextNodeIt->second;
+                            if(!nextNode->visited){
+                                nextNode->visited = true;
+                                adjacent[distance].emplace_back(pair.second, nextNode);
+                                if(nextNode == destNode){
+                                    found = true;
+                                    solutions.emplace(pair.second, nextNode);
+                                    nextNode->visited = false;
+                                }
+                            }
+                        }
+                    }
+                }
+                if(!found && loop) distance++;
+            }
+
+            while (!solutions.empty()) {
+                int i = distance - 1;
+                stack<Node *> path;
+                pair<Node *, Node *> solPair = solutions.front();
+                Node *current = solPair.second;
+                Node *previous = solPair.first;
+                path.push(current);
+                while (previous != nullptr) {
+                    for (auto &pair: adjacent[i]) {
+                        if (pair.second == previous) {
+                            current = pair.second;
+                            previous = pair.first;
+                            path.push(current);
+                            break;
+                        }
+                    }
+                    i--;
+                }
+                allPaths.push_back(path);
+                solutions.pop();
+            }
+            }
+        }
+
+    return allPaths;
+}
+
 
 vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport, set<string> &airlines){
     unordered_map<string, double> distances;

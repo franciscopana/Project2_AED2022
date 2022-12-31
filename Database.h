@@ -31,8 +31,11 @@ public:
     // Booleans
     bool hasAirport(const string& code) const;
     bool hasAirline(const string& code) const;
+    bool hasCity(const string& city) const;
 
     // Getters
+    vector<string> getAirportsCodeFromCity(const string& city) const;
+    vector<string> getAirportsCodeFromCoordinates(const string& latitude, const string& longitude) const;
     vector<set<string>> getCitiesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     Airport* getAirport(const string& code) const;
@@ -44,7 +47,9 @@ public:
     void printCitiesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     void printCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     void printPath(string &source, string &destination, set<string>& airlines);
+    void printPaths(vector <string> &source, vector <string> &destination, set<string>& airlines);
     void printShortestPath(string &source, string &destination, set<string>& airlines);
+    void printShortestPaths(vector<string>& source, vector<string>& destination, set<string>& airlines);
 
 };
 
