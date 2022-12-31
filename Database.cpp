@@ -238,38 +238,8 @@ void Database::printCountriesReachableFrom(string &airportCode, int nFlights, se
     cout << ">> Total of " << totalCountries << " countries reachable after " << nFlights << " flight(s)." << endl;
 }
 
-void Database::printPath(string &source, string &destination, set<string> &airlinesToSearch) {
-    auto paths = flights.bfsWithDest(source, destination, airlinesToSearch);
-    if (paths.empty()) {
-        cout << ">> No path found between " << source << " and " << destination << endl;
-        if(!airlinesToSearch.empty()){
-            cout << ">> Using airlines: ";
-            for(auto& airline : airlinesToSearch)
-                cout << airline << " ";
-            cout << endl;
-        }
-        return;
-    }
-    cout << ">> " << paths.size() << " routes from " << source << " to " << destination << ":" << endl;
-
-    unsigned nMinFlights = paths[0].size() - 1;
-
-    for (auto &path: paths) {
-        cout << "     ";
-        while (path.size() > 1) {
-            path.top()->airport->printHeader();
-            cout << "\t=>\t";
-            path.pop();
-        }
-        path.top()->airport->printHeader();
-        cout << endl;
-    }
-
-    cout << ">> Minimum number of flights: " << nMinFlights << endl;
-}
-
 void Database::printPaths(vector<string>& source, vector<string>& destination, set<string> &airlinesToSearch) {
-    auto paths = flights.bfsWithDest2(source, destination, airlinesToSearch);
+    auto paths = flights.bfsWithDest(source, destination, airlinesToSearch);
     if (paths.empty()) {
         cout << ">> No path found between ";
         for(auto& s : source)
