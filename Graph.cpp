@@ -104,8 +104,8 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string
     return airports;
 }
 
-vector<stack<Node*>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
-    vector<stack<Node*>> allPaths;
+vector<pair<int,stack<Node*>>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
+    vector<pair<int,stack<Node*>>> allPaths;
 
     vector<Node*> srcNodes;
     for(auto& srcAirport : srcAirports){
@@ -125,7 +125,7 @@ vector<stack<Node*>> Graph::bfsWithDest(vector<string> &srcAirports, vector<stri
                 node.second.visited = false;
             }
             vector<vector<pair<Node *, Node *>>> adjacent;
-            unsigned distance = 1;
+            unsigned steps = 1;
             bool found = false;
             queue<pair<Node*, Node*>> solutions;
 
@@ -133,7 +133,7 @@ vector<stack<Node*>> Graph::bfsWithDest(vector<string> &srcAirports, vector<stri
             adjacent.push_back({srcPair});
             srcNode->visited = true;
 
-            for(int i = 0; i < distance; i++){
+            for(int i = 0; i < steps; i++){
                 adjacent.emplace_back();
                 bool loop = false;
                 for(auto& pair : adjacent[i]){
@@ -144,7 +144,7 @@ vector<stack<Node*>> Graph::bfsWithDest(vector<string> &srcAirports, vector<stri
                             Node* nextNode = &nextNodeIt->second;
                             if(!nextNode->visited){
                                 nextNode->visited = true;
-                                adjacent[distance].emplace_back(pair.second, nextNode);
+                                adjacent[steps].emplace_back(pair.second, nextNode);
                                 if(nextNode == destNode){
                                     found = true;
                                     solutions.emplace(pair.second, nextNode);
@@ -154,17 +154,19 @@ vector<stack<Node*>> Graph::bfsWithDest(vector<string> &srcAirports, vector<stri
                         }
                     }
                 }
-                if(!found && loop) distance++;
+                if(!found && loop) steps++;
             }
 
             while (!solutions.empty()) {
-                int i = distance - 1;
-                stack<Node *> path;
-                pair<Node *, Node *> solPair = solutions.front();
+                int i = steps - 1;
+                int distance = 0;
+                stack<Node*> path;
+                pair<Node*, Node*> solPair = solutions.front();
                 Node *current = solPair.second;
                 Node *previous = solPair.first;
                 path.push(current);
                 while (previous != nullptr) {
+                    distance += current->airport->getDistance(previous->airport);
                     for (auto &pair: adjacent[i]) {
                         if (pair.second == previous) {
                             current = pair.second;
@@ -175,12 +177,18 @@ vector<stack<Node*>> Graph::bfsWithDest(vector<string> &srcAirports, vector<stri
                     }
                     i--;
                 }
-                allPaths.push_back(path);
+                allPaths.emplace_back(distance, path);
                 solutions.pop();
             }
-            }
         }
-
+    }
+    sort(allPaths.begin(), allPaths.end(),
+         [](pair<int,stack<Node*>> &a, pair<int,stack<Node*>> &b){
+             if(a.second.size() == b.second.size()){
+                 return a.first < b.first;
+             }
+             return a.second.size() < b.second.size();
+         });
     return allPaths;
 }
 

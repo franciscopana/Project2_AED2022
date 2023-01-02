@@ -263,17 +263,25 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
         }
         return;
     }
-    cout << ">> " << paths.size() << " routes from ";
+    cout << ">> Total of " << paths.size() << " routes from ";
     for(auto& s : source)
         cout << s << " ";
     cout << " to ";
     for(auto& d : destination)
         cout << d << " ";
-    cout <<":" << endl;
+    cout << endl;
 
-    unsigned nMinFlights = paths[0].size() - 1;
+    unsigned numberToShow = paths.size();
 
-    for (auto &path: paths) {
+    if(numberToShow > 3){
+        cout << ">> How many routes do you want to see? ";
+        cin >> numberToShow;
+    }
+
+
+    for (int i = 0; i < numberToShow; i++) {
+        auto p = paths[i];
+        auto path = p.second;
         cout << "     ";
         while (path.size() > 1) {
             path.top()->airport->printHeader();
@@ -281,9 +289,10 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
             path.pop();
         }
         path.top()->airport->printHeader();
-        cout << endl;
+        cout << "\t|\t" << p.first << " km" << endl;
     }
 
+    unsigned nMinFlights = paths[0].second.size() - 1;
     cout << ">> Minimum number of flights: " << nMinFlights << endl;
 }
 
