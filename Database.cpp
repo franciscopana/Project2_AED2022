@@ -1,16 +1,15 @@
 #include <iomanip>
 #include "Database.h"
 
-
 /*    Loaders    */
 void Database::loadAirports() {
     ifstream file("../dataset/airports.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
-        cerr << "Error opening file" << std::endl;
+        cerr << "Error opening file" << endl;
     }
     string line;
-    while (std::getline(file, line)) {
+    while (getline(file, line)) {
         vector<string> fields;
         istringstream stream(line);
         string field;
@@ -18,7 +17,7 @@ void Database::loadAirports() {
             fields.push_back(field);
         }
         if (fields.size() != 6) {
-            std::cerr << "Invalid line on: " << line << std::endl;
+            cerr << "Invalid line on: " << line << endl;
             continue;
         }
         string code = fields[0];
@@ -40,11 +39,11 @@ void Database::loadAirlines(){
     ifstream file("../dataset/airlines.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
-        cerr << "Error opening file" << std::endl;
+        cerr << "Error opening file" << endl;
         return;
     }
     string line;
-    while (std::getline(file, line)) {
+    while (getline(file, line)) {
         vector<string> fields;
         istringstream stream(line);
         string field;
@@ -52,7 +51,7 @@ void Database::loadAirlines(){
             fields.push_back(field);
         }
         if (fields.size() != 4) {
-            cerr << "Invalid line on: " << line << std::endl;
+            cerr << "Invalid line on: " << line << endl;
             continue;
         }
         auto* airline = new Airline(fields[0], fields[1], fields[2], fields[3]);
@@ -65,11 +64,11 @@ void Database::loadFlights(){
     ifstream file("../dataset/flights.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
-        cerr << "Error opening file" << std::endl;
+        cerr << "Error opening file" << endl;
         return;
     }
     string line;
-    while (std::getline(file, line)) {
+    while (getline(file, line)) {
         vector<string> fields;
         istringstream stream(line);
         string field;
@@ -77,7 +76,7 @@ void Database::loadFlights(){
             fields.push_back(field);
         }
         if (fields.size() != 3) {
-            cerr << "Invalid line on: " << line << std::endl;
+            cerr << "Invalid line on: " << line << endl;
             continue;
         }
         flights.addEdge(fields[0], fields[1], fields[2]);
@@ -92,15 +91,15 @@ Database::Database() {
 
 
 /*   Booleans   */
-bool Database::hasAirport(const std::string &code) const {
+bool Database::hasAirport(const string &code) const {
     return flights.hasAirport(code);
 }
 
-bool Database::hasAirline(const std::string &code) const {
+bool Database::hasAirline(const string &code) const {
     return airlines.find(code) != airlines.end();
 }
 
-bool Database::hasCity(const std::string &city) const {
+bool Database::hasCity(const string &city) const {
     return cities.find(city) != cities.end();
 }
 
@@ -168,7 +167,7 @@ vector<set<string>> Database::getCountriesReachableFrom(string &airportCode, int
     return countriesByLevel;
 }
 
-Airport* Database::getAirport(const std::string &code) const {
+Airport* Database::getAirport(const string &code) const {
     return flights.getAirport(code);
 }
 

@@ -142,11 +142,9 @@ vector<string> Menu::getAirportsCode() {
 
         vector<string> result;
 
-        if (input.length() == 3 && all_of(input.begin(), input.end(), ::isalpha)) {
-            if (database.hasAirport(input)) {
-                result.push_back(input);
-                return result;
-            }
+        if (database.hasAirport(input)) {
+            result.push_back(input);
+            return result;
         }
 
         if (database.hasCity(input)) {
@@ -158,8 +156,12 @@ vector<string> Menu::getAirportsCode() {
         smatch coordinateMatch;
 
         if (regex_search(input, coordinateMatch, coordinateRegex)) {
-            result = database.getAirportsCodeFromCoordinates(stod(coordinateMatch[1]), stod(coordinateMatch[2]), 100);
-            return result;
+            double radius = 100;
+            result = database.getAirportsCodeFromCoordinates(stod(coordinateMatch[1]), stod(coordinateMatch[2]), radius);
+            if(result.size() > 0) {
+                return result;
+            }
+            cout << "No airports found in a "<< radius << " radius of the coordinates (" << coordinateMatch[1] << "," << coordinateMatch[2] << ")\n";
         }
 
         if(input != ""){
@@ -365,7 +367,7 @@ void Menu::listReachableCountries(string code, set<string>& airlines) {
     }
 }
 
-void Menu::listDepartingAirlines(std::string code) {
+void Menu::listDepartingAirlines(string code) {
     database.printAirlinesFromAirport(code);
 
     cout << "Please select an option:" << endl;

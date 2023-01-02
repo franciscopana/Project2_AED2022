@@ -104,7 +104,7 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string
     return airports;
 }
 
-vector<stack<Node*>> Graph::bfsWithDest(vector<std::string> &srcAirports, vector<std::string> &destAirport,set<std::string> &airlines) {
+vector<stack<Node*>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
     vector<stack<Node*>> allPaths;
 
     vector<Node*> srcNodes;
@@ -114,8 +114,8 @@ vector<stack<Node*>> Graph::bfsWithDest(vector<std::string> &srcAirports, vector
     }
 
     vector<Node*> destNodes;
-    for(auto& destAirport : destAirport){
-        auto destNodeIt = nodes.find(destAirport);
+    for(auto& dAirport : destAirport){
+        auto destNodeIt = nodes.find(dAirport);
         destNodes.push_back(&destNodeIt->second);
     }
 
