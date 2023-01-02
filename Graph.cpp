@@ -35,6 +35,14 @@ Node* Graph::getNode(string& airportCode) {
     return nullptr;
 }
 
+const list<Node*> Graph::getNodes() {
+    list<Node*> nodesList;
+    for (auto& node : nodes) {
+        nodesList.push_back(&node.second);
+    }
+    return nodesList;
+}
+
 list<Edge> Graph::getEdges(string& airportCode) {
     auto it = nodes.find(airportCode);
     if (it != nodes.end()) {

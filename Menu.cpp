@@ -158,7 +158,7 @@ vector<string> Menu::getAirportsCode() {
         smatch coordinateMatch;
 
         if (regex_search(input, coordinateMatch, coordinateRegex)) {
-            result = database.getAirportsCodeFromCoordinates(coordinateMatch[1], coordinateMatch[2]);
+            result = database.getAirportsCodeFromCoordinates(stod(coordinateMatch[1]), stod(coordinateMatch[2]), 100);
             return result;
         }
 

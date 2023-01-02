@@ -21,9 +21,10 @@ public:
     string getCode();
     string getCity();
     string getCountry();
-    float getLatitude();
-    float getLongitude();
-    float getDistance(Airport* other);
+    double getLatitude();
+    double getLongitude();
+    double getDistance(Airport* other);
+    double getDistance(double latitude, double longitude);
 
     bool operator<(const Airport& other);
 

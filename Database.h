@@ -35,7 +35,7 @@ public:
 
     // Getters
     vector<string> getAirportsCodeFromCity(const string& city) const;
-    vector<string> getAirportsCodeFromCoordinates(const string& latitude, const string& longitude) const;
+    vector<string> getAirportsCodeFromCoordinates(const double latitude, const double longitude, int radius);
     vector<set<string>> getCitiesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     Airport* getAirport(const string& code) const;

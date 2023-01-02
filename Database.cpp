@@ -117,8 +117,15 @@ vector<string> Database::getAirportsCodeFromCity(const string& city) const {
     return airports;
 }
 
-vector<string> Database::getAirportsCodeFromCoordinates(const std::string &latitude,const std::string &longitude) const {
-    //We still need to implement this
+vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,const double longitude, int radius) {
+    vector<string> airports;
+
+    for(auto node: flights.getNodes()){
+        if(node->airport->getDistance(latitude, longitude) <= radius){
+            airports.push_back(node->airport->getCode());
+        }
+    }
+    return airports;
 }
 
 vector<set<string>> Database::getCitiesReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
