@@ -92,6 +92,8 @@ void Database::loadCities() {
     }
     string line;
     while (getline(file, line)) {
+        if(line[line.size()-1] == '\r')
+            line.resize(line.size()-1);
         vector<string> fields;
         istringstream stream(line);
         string field;
