@@ -92,34 +92,22 @@ void Database::loadCities() {
     }
     string line;
     while (getline(file, line)) {
-
+        vector<string> fields;
         istringstream stream(line);
         string field;
-        regex r1("[^a-zA-Z0-9,. .-\"]");
-
-        regex r2(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); // regex to match commas outside quotes
-        sregex_token_iterator iter(line.begin(), line.end(), r2, -1);
-        sregex_token_iterator end;
-        vector<std::string> fields;
-        while (iter != end) {
-            fields.push_back(*iter);
-            ++iter;
+        while (getline(stream, field, ',')) {
+            fields.push_back(field);
         }
-
-        for(auto& f : fields) {
-            regex r3("[^a-zA-Z0-9,. .-]");
-            f = regex_replace(f, r3, "");
-        }
-
-        if (fields.size() != 11) {
+        if (fields.size() != 4) {
             cerr << "Invalid line on: " << line << endl;
             continue;
         }
-        string city = fields[1];
-        string country = fields[4];
-        double latitude = stod(fields[2]);
-        double longitude = stod(fields[3]);
-        string admin = fields[7];
+
+        string city = fields[0];
+        string country = fields[3];
+        double latitude = stod(fields[1]);
+        double longitude = stod(fields[2]);
+
         auto cityPtr = new City(city, country, latitude, longitude);
         if(citiesCoordinates.find(city) != citiesCoordinates.end()){
             citiesCoordinates[city].push_back(cityPtr);
