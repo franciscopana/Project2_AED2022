@@ -5,7 +5,7 @@
 
 
 void Menu::showInitialMenu() {
-    cout << "Welcome to the Flight Search Engine!" << endl;
+    cout << endl <<  "WELCOME TO THE FLIGHT SEARCH ENGINE" << endl;
     cout << "Please select an option:" << endl;
     cout << "1 - Search for flights" << endl;
     cout << "2 - Search for airports" << endl;
@@ -42,7 +42,6 @@ void Menu::showSearchFlightsMenu() {
     vector<string> origin = getAirportsCode();
     cout << "To: ";
     vector<string> destination = getAirportsCode();
-
 
     set<string> airlines = getAirlines();
     cout << "Please select an option:" << endl;
@@ -147,28 +146,30 @@ vector<string> Menu::getAirportsCode() {
             return result;
         }
 
-        if (database.hasCity(input)) {
-            result = database.getAirportsCodeFromCity(input);
+        double radius = 120;
+
+        result = database.getAirportsCodeFromCity(input, radius);
+        if (!result.empty()) {
             return result;
         }
 
-        regex coordinateRegex("^(-?\\d+(?:\\.\\d+)?),(-?\\d+(?:\\.\\d+)?)$");
+        regex coordinateRegex(R"(^(-?\d+(?:.\d+)?),(-?\d+(?:.\d+)?)$)");
         smatch coordinateMatch;
 
         if (regex_search(input, coordinateMatch, coordinateRegex)) {
-            double radius = 100;
             result = database.getAirportsCodeFromCoordinates(stod(coordinateMatch[1]), stod(coordinateMatch[2]), radius);
-            if(result.size() > 0) {
+            if(!result.empty()) {
                 return result;
             }
-            cout << "No airports found in a "<< radius << " radius of the coordinates (" << coordinateMatch[1] << "," << coordinateMatch[2] << ")\n";
+            cout << "No airports found in a "<< radius << " km radius of the coordinates " << coordinateMatch[1] << ", " << coordinateMatch[2] << endl;
         }
 
-        if(input != ""){
-            cout << "It must either be a city, an airport code or a pair of coordinates. Try again: ";
+        if(!input.empty()) {
+            cout << "It must either be the name of a city, teh code of an airport code or a pair of coordinates. Try again: ";
         }
     }
 }
+
 string Menu::getAirportCode() {
     string code;
     cin >> code;
@@ -199,15 +200,10 @@ bool Menu::getYesOrNo(){
     string answer;
     cin >> answer;
     while (answer != "y" && answer != "Y" && answer != "n" && answer != "N") {
-        cout << "Invalid input. Please enter y or n." << endl;
+        cout << "Invalid input. Please enter y or n: ";
         cin >> answer;
     }
-    if (answer == "y" || answer == "Y") {
-        return true;
-    }
-    else {
-        return false;
-    }
+    return (answer == "y" || answer == "Y");
 }
 
 set<string> Menu::getAirlines() {

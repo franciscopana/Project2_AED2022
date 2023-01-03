@@ -22,14 +22,14 @@ void Database::loadAirports() {
         }
         string code = fields[0];
         string city = fields[2];
-        Airport* airportPtr = new Airport(code, fields[1], city, fields[3], stof(fields[4]), stof(fields[5]));
+        auto airportPtr = new Airport(code, fields[1], city, fields[3], stof(fields[4]), stof(fields[5]));
         flights.addNode(code, airportPtr);
 
-        auto cityIt = cities.find(city);
-        if (cityIt != cities.end()) {
+        auto cityIt = citiesAirports.find(city);
+        if (cityIt != citiesAirports.end()) {
             cityIt->second.insert(airportPtr);
         } else {
-            cities.insert({city, {airportPtr}});
+            citiesAirports.insert({city, {airportPtr}});
         }
     }
     file.close();
@@ -83,10 +83,59 @@ void Database::loadFlights(){
     }
 }
 
+void Database::loadCities() {
+    ifstream file("../dataset/worldcities.csv");
+    file.ignore(1000, '\n');
+    if (!file.is_open()) {
+        cerr << "Error opening file" << endl;
+        return;
+    }
+    string line;
+    while (getline(file, line)) {
+
+        istringstream stream(line);
+        string field;
+        regex r1("[^a-zA-Z0-9,. .-\"]");
+
+        regex r2(",(?=([^\"]*\"[^\"]*\")*[^\"]*$)"); // regex to match commas outside quotes
+        sregex_token_iterator iter(line.begin(), line.end(), r2, -1);
+        sregex_token_iterator end;
+        vector<std::string> fields;
+        while (iter != end) {
+            fields.push_back(*iter);
+            ++iter;
+        }
+
+        for(auto& f : fields) {
+            regex r3("[^a-zA-Z0-9,. .-]");
+            f = regex_replace(f, r3, "");
+        }
+
+        if (fields.size() != 11) {
+            cerr << "Invalid line on: " << line << endl;
+            continue;
+        }
+        string city = fields[1];
+        string country = fields[4];
+        double latitude = stod(fields[2]);
+        double longitude = stod(fields[3]);
+        string admin = fields[7];
+        auto cityPtr = new City(city, country, latitude, longitude);
+        if(citiesCoordinates.find(city) != citiesCoordinates.end()){
+            citiesCoordinates[city].push_back(cityPtr);
+        } else {
+            citiesCoordinates.insert({city, {cityPtr}});
+        }
+    }
+    file.close();
+}
+
 Database::Database() {
+    cout << "Loading data ..." << endl;
     loadAirports();
     loadAirlines();
     loadFlights();
+    loadCities();
 }
 
 
@@ -100,15 +149,14 @@ bool Database::hasAirline(const string &code) const {
 }
 
 bool Database::hasCity(const string &city) const {
-    return cities.find(city) != cities.end();
+    return citiesAirports.find(city) != citiesAirports.end();
 }
 
 /*    Getters    */
-
 vector<string> Database::getAirportsCodeFromCity(const string& city) const {
     vector<string> airports;
-    auto cityIt = cities.find(city);
-    if (cityIt != cities.end()) {
+    auto cityIt = citiesAirports.find(city);
+    if (cityIt != citiesAirports.end()) {
         for (auto airport : cityIt->second) {
             airports.push_back(airport->getCode());
         }
@@ -116,7 +164,7 @@ vector<string> Database::getAirportsCodeFromCity(const string& city) const {
     return airports;
 }
 
-vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,const double longitude, int radius) {
+vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,const double longitude, double radius) {
     vector<string> airports;
 
     for(auto node: flights.getNodes()){
@@ -171,6 +219,34 @@ Airport* Database::getAirport(const string &code) const {
     return flights.getAirport(code);
 }
 
+vector<string> Database::getAirportsCodeFromCity(const string& city, double radius){
+    auto cityIt = citiesCoordinates.find(city);
+    if (cityIt == citiesCoordinates.end()) return {};
+
+    auto cities = cityIt->second;
+    City* c = cities[0];
+    if(cities.size() > 1){
+        cout << "Found " << cities.size() << " cities with the name " << city << endl;
+        cout << "Please select one of the following cities:" << endl;
+        for(int i = 0; i < cities.size(); i++){
+            cout << i+1 << " - ";
+            cities[i]->print();
+        }
+        int option;
+        cout << ">> ";
+        cin >> option;
+        while(option < 1 || option > cities.size()){
+            cout << "Invalid option. Please try again: ";
+            cin >> option;
+        }
+        c = cities[option-1];
+    }
+    vector<string> airports = getAirportsCodeFromCoordinates(c->getLatitude(), c->getLongitude(), radius);
+    return airports;
+}
+
+
+/*    Printers    */
 void Database::printAirlinesFromAirport(string &airportCode) {
     list<Edge> edges = flights.getEdges(airportCode);
     set <string> airlines_ = {};
@@ -188,10 +264,9 @@ void Database::printAirlinesFromAirport(string &airportCode) {
     }
 }
 
-
 void Database::printAirportsFromCity(string &city) const {
-    auto cityIt = cities.find(city);
-    if (cityIt != cities.end()) {
+    auto cityIt = citiesAirports.find(city);
+    if (cityIt != citiesAirports.end()) {
         cout << ">> "<< cityIt->second.size() << " airport(s) from " << city << ":" << endl;
         for (auto airport : cityIt->second) {
             cout << "     " << airport->getName() << " (" << airport->getCode() << ")\t|\tCoordinates: " << airport->getLatitude() << ", " << airport->getLongitude() << endl;
@@ -276,12 +351,16 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
     if(numberToShow > 3){
         cout << ">> How many routes do you want to see? ";
         cin >> numberToShow;
+        while(numberToShow > paths.size() || numberToShow < 1){
+            cout << ">> Invalid number. Please enter a number between 1 and " << paths.size() << ": ";
+            cin >> numberToShow;
+        }
     }
 
 
     for (int i = 0; i < numberToShow; i++) {
         auto p = paths[i];
-        auto path = p.second;
+        auto path = p.first;
         cout << "     ";
         while (path.size() > 1) {
             path.top()->airport->printHeader();
@@ -289,10 +368,10 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
             path.pop();
         }
         path.top()->airport->printHeader();
-        cout << "\t|\t" << p.first << " km" << endl;
+        cout << "\t|\t" << p.second << " km" << endl;
     }
 
-    unsigned nMinFlights = paths[0].second.size() - 1;
+    unsigned nMinFlights = paths[0].first.size() - 1;
     cout << ">> Minimum number of flights: " << nMinFlights << endl;
 }
 
@@ -319,10 +398,10 @@ void Database::printShortestPath(string &source, string &destination, set<string
     cout << endl;
 }
 
-void Database::printShortestPaths(vector<string>& source, vector<string>& destination, set<string>& airlines){
+void Database::printShortestPaths(vector<string>& source, vector<string>& destination, set<string>& airlinesToSearch){
     for(string sourceCode: source){
         for(string destCode: destination){
-            printShortestPath(sourceCode, destCode, airlines);
+            printShortestPath(sourceCode, destCode, airlinesToSearch);
         }
     }
 }

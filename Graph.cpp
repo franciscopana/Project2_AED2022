@@ -104,8 +104,8 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string
     return airports;
 }
 
-vector<pair<int,stack<Node*>>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
-    vector<pair<int,stack<Node*>>> allPaths;
+vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
+    vector<pair<stack<Node*>, int>> allPaths;
 
     vector<Node*> srcNodes;
     for(auto& srcAirport : srcAirports){
@@ -177,17 +177,17 @@ vector<pair<int,stack<Node*>>> Graph::bfsWithDest(vector<string> &srcAirports, v
                     }
                     i--;
                 }
-                allPaths.emplace_back(distance, path);
+                allPaths.emplace_back(path, distance);
                 solutions.pop();
             }
         }
     }
     sort(allPaths.begin(), allPaths.end(),
-         [](pair<int,stack<Node*>> &a, pair<int,stack<Node*>> &b){
-             if(a.second.size() == b.second.size()){
-                 return a.first < b.first;
+         [](pair<stack<Node*>, int> &a, pair<stack<Node*>, int> &b){
+             if(a.first.size() == b.first.size()){
+                 return a.second < b.second;
              }
-             return a.second.size() < b.second.size();
+             return a.first.size() < b.first.size();
          });
     return allPaths;
 }
