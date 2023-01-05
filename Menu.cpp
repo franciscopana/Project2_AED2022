@@ -3,9 +3,16 @@
 #include <regex>
 #include "Menu.h"
 
+#ifdef _WIN32
+#define CLEAR_SCREEN "CLS"
+#else
+#define CLEAR_SCREEN "clear"
+#endif
+
 
 void Menu::showInitialMenu() {
-    cout << endl <<  "WELCOME TO THE FLIGHT SEARCH ENGINE" << endl;
+    clearScreen();
+    cout <<  "WELCOME TO THE FLIGHT SEARCH ENGINE" << endl;
     cout << "Please select an option:" << endl;
     cout << "1 - Search for flights" << endl;
     cout << "2 - Search for airports" << endl;
@@ -43,6 +50,7 @@ void Menu::showSearchFlightsMenu() {
     cout << "To: ";
     vector<string> destination = getAirportsCode();
 
+    clearScreen();
     set<string> airlines = getAirlines();
     cout << "Please select an option:" << endl;
 
@@ -86,6 +94,7 @@ void Menu::showSearchFlightsMenu() {
 }
 
 void Menu::showSearchAirportsMenu() {
+    clearScreen();
     cout << "Please enter the airport code: ";
     string code = getAirportCode();
 
@@ -114,17 +123,21 @@ void Menu::showSearchAirportsMenu() {
         switch (option) {
             case 1:
                 airlines = getAirlines();
+                clearScreen();
                 listReachableAirports(code, airlines);
                 break;
             case 2:
                 airlines = getAirlines();
+                clearScreen();
                 listReachableCities(code, airlines);
                 break;
             case 3:
                 airlines = getAirlines();
+                clearScreen();
                 listReachableCountries(code, airlines);
                 break;
             case 4:
+                clearScreen();
                 listDepartingAirlines(code);
                 break;
             default:
@@ -139,6 +152,7 @@ bool Menu::getYesOrNo(){
     cin >> answer;
     while (answer != "y" && answer != "Y" && answer != "n" && answer != "N") {
         cout << "Invalid input. Please enter y or n: ";
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> answer;
     }
     return (answer == "y" || answer == "Y");
@@ -158,6 +172,7 @@ set<string> Menu::getAirlines() {
             }
             else {
                 cout << "Airline not found. Try again: ";
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
             cout << ">> ";
             cin >> airline;
@@ -192,6 +207,7 @@ int Menu::getNumberOfFlights(){
 }
 
 void Menu::listReachableAirports(string code, set<string>& airlines) {
+    clearScreen();
     int nFlights = getNumberOfFlights();
     database.printAirportsReachableFrom(code, nFlights, airlines);
 
@@ -215,6 +231,7 @@ void Menu::listReachableAirports(string code, set<string>& airlines) {
                 listReachableAirports(code, airlines);
                 break;
             case 2:
+
                 showSearchAirportsMenu();
                 break;
             case 3:
@@ -229,6 +246,7 @@ void Menu::listReachableAirports(string code, set<string>& airlines) {
 
 
 void Menu::listReachableCities(string code, set<string>& airlines) {
+    clearScreen();
     int nFlights = getNumberOfFlights();
     database.printCitiesReachableFrom(code, nFlights, airlines);
 
@@ -266,6 +284,7 @@ void Menu::listReachableCities(string code, set<string>& airlines) {
 
 
 void Menu::listReachableCountries(string code, set<string>& airlines) {
+    clearScreen();
     int nFlights = getNumberOfFlights();
     database.printCountriesReachableFrom(code, nFlights, airlines);
 
@@ -302,6 +321,7 @@ void Menu::listReachableCountries(string code, set<string>& airlines) {
 }
 
 void Menu::listDepartingAirlines(string code) {
+    clearScreen();
     database.printAirlinesFromAirport(code);
 
     cout << "Please select an option:" << endl;
@@ -385,4 +405,9 @@ vector<string> Menu::getAirportsCode() {
             cout << "It must either be the name of a city, a set of airports code or a pair of coordinates. Try again: ";
         }
     }
+}
+
+void Menu::clearScreen() {
+    fflush(stdout);
+    system("cls");
 }

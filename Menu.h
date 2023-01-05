@@ -27,6 +27,8 @@ public:
     int getNumberOfFlights();
     vector<string> getAirportsCode();
     string getAirportCode();
+
+    void clearScreen();
 };
 
 

@@ -234,7 +234,7 @@ vector<string> Database::getAirportsCodeFromCity(const string& city, double radi
     return airports;
 }
 
-vector<string> Database::getAiportsCodeFromString(const std::string &codes) const {
+vector<string> Database::getAiportsCodeFromString(const string &codes) const {
     vector<string> airports;
     istringstream stream(codes);
     string code;
@@ -359,18 +359,17 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
         }
     }
 
-
-    for (int i = 0; i < numberToShow; i++) {
+     for (int i = 0; i < numberToShow; i++) {
         auto p = paths[i];
         auto path = p.first;
         cout << "     ";
         while (path.size() > 1) {
             path.top()->airport->printHeader();
-            cout << "\t=>\t";
+            cout << "  =>  ";
             path.pop();
         }
         path.top()->airport->printHeader();
-        cout << "\t|\t" << p.second << " km" << endl;
+        cout << "  |  " << p.second << " km" << endl;
     }
 
     unsigned nMinFlights = paths[0].first.size() - 1;
