@@ -121,7 +121,6 @@ void Database::loadCities() {
 }
 
 Database::Database() {
-    cout << "Loading data ..." << endl;
     loadAirports();
     loadAirlines();
     loadFlights();
@@ -232,6 +231,19 @@ vector<string> Database::getAirportsCodeFromCity(const string& city, double radi
         c = cities[option-1];
     }
     vector<string> airports = getAirportsCodeFromCoordinates(c->getLatitude(), c->getLongitude(), radius);
+    return airports;
+}
+
+vector<string> Database::getAiportsCodeFromString(const std::string &codes) const {
+    vector<string> airports;
+    istringstream stream(codes);
+    string code;
+    while (getline(stream, code, ' ')) {
+        if(!hasAirport(code)){
+            return {};
+        }
+        airports.push_back(code);
+    }
     return airports;
 }
 

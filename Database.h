@@ -44,6 +44,7 @@ public:
     vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     Airport* getAirport(const string& code) const;
     vector<string> getAirportsCodeFromCity(const string& city, double radius);
+    vector<string> getAiportsCodeFromString(const string& codes) const;
 
     // Printers
     void printAirlinesFromAirport(string& airportCode);

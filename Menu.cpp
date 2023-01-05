@@ -134,68 +134,6 @@ void Menu::showSearchAirportsMenu() {
     }
 }
 
-vector<string> Menu::getAirportsCode() {
-    while (true) {
-        string input;
-        getline(cin, input);
-
-        vector<string> result;
-
-        if (database.hasAirport(input)) {
-            result.push_back(input);
-            return result;
-        }
-
-        double radius = 120;
-
-        result = database.getAirportsCodeFromCity(input, radius);
-        if (!result.empty()) {
-            return result;
-        }
-
-        regex coordinateRegex(R"(^(-?\d+(?:.\d+)?),(-?\d+(?:.\d+)?)$)");
-        smatch coordinateMatch;
-
-        if (regex_search(input, coordinateMatch, coordinateRegex)) {
-            result = database.getAirportsCodeFromCoordinates(stod(coordinateMatch[1]), stod(coordinateMatch[2]), radius);
-            if(!result.empty()) {
-                return result;
-            }
-            cout << "No airports found in a "<< radius << " km radius of the coordinates " << coordinateMatch[1] << ", " << coordinateMatch[2] << endl;
-        }
-
-        if(!input.empty()) {
-            cout << "It must either be the name of a city, teh code of an airport code or a pair of coordinates. Try again: ";
-        }
-    }
-}
-
-string Menu::getAirportCode() {
-    string code;
-    cin >> code;
-
-    if (cin.fail()) {
-        cout << "Invalid input" << endl;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        showInitialMenu();
-    }
-    else {
-        if (code.length() != 3 || !all_of(code.begin(), code.end(), ::isalpha)) {
-            cout << "Invalid airport code. Try again: ";
-            code = getAirportCode();
-        }
-        else if (database.hasAirport(code)) {
-            return code;
-        }
-        else {
-            cout << "Airport not found. Try again: ";
-            code = getAirportCode();
-        }
-    }
-    return code;
-}
-
 bool Menu::getYesOrNo(){
     string answer;
     cin >> answer;
@@ -390,6 +328,61 @@ void Menu::listDepartingAirlines(string code) {
             default:
                 cout << "Invalid option" << endl;
                 listDepartingAirlines(code);
+        }
+    }
+}
+
+string Menu::getAirportCode() {
+    string code;
+    cin >> code;
+
+    if (cin.fail()) {
+        cout << "Invalid input" << endl;
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        showInitialMenu();
+    }
+    else {
+        if (code.length() != 3 || !all_of(code.begin(), code.end(), ::isalpha)) {
+            cout << "Invalid airport code. Try again: ";
+            code = getAirportCode();
+        }
+        else if (database.hasAirport(code)) {
+            return code;
+        }
+        else {
+            cout << "Airport not found. Try again: ";
+            code = getAirportCode();
+        }
+    }
+    return code;
+}
+
+vector<string> Menu::getAirportsCode() {
+    while (true) {
+        string input;
+        getline(cin, input);
+
+        vector<string> result;
+        result = database.getAiportsCodeFromString(input);
+        if(!result.empty()) return result;
+
+        double radius = 120;
+        result = database.getAirportsCodeFromCity(input, radius);
+        if (!result.empty()) return result;
+
+        regex coordinateRegex(R"(^(-?\d+(?:.\d+)?),(-?\d+(?:.\d+)?)$)");
+        smatch coordinateMatch;
+        if (regex_search(input, coordinateMatch, coordinateRegex)) {
+            result = database.getAirportsCodeFromCoordinates(stod(coordinateMatch[1]), stod(coordinateMatch[2]), radius);
+            if(!result.empty()) {
+                return result;
+            }
+            cout << "No airports found in a "<< radius << " km radius of the coordinates " << coordinateMatch[1] << ", " << coordinateMatch[2] << endl;
+        }
+
+        if(!input.empty()) {
+            cout << "It must either be the name of a city, a set of airports code or a pair of coordinates. Try again: ";
         }
     }
 }
