@@ -95,6 +95,7 @@ void Airport::print() const {
 
 /*
  * @brief Prints a brief summary of the airport's information (name, code, city and country)
+ * @details Time complexity: O(1)
  * */
 void Airport::printHeader() const{
     cout << name << " (" << code << "), " << city  << ", " << country;

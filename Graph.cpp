@@ -2,15 +2,20 @@
 #include <queue>
 #include <utility>
 #include <algorithm>
-#include <cmath>
 #include "Graph.h"
 
-
-/*    Adders    */
+/*
+ * @brief Adds a node to the graph
+ * @details Time complexity: O(1)
+ * */
 void Graph::addNode(string& airportCode, Airport* airport) {
     nodes.insert({airportCode, {airport, {}, false}});
 }
 
+/*
+ * @brief Adds an edge from the source airport to the destination airport
+ * @details Time complexity: O(E), where E is the number of edges in the graph(flights)
+ * */
 void Graph::addEdge(string& source, string& dest, string& airline) {
     auto sourceIt = nodes.find(source);
     auto destIt = nodes.find(dest);
@@ -26,7 +31,10 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
     }
 }
 
-/*    Searchers    */
+/*
+ * @brief Returns the node with the given airport code
+ * @details Time complexity: O(1)
+ * */
 Node* Graph::getNode(string& airportCode) {
     auto it = nodes.find(airportCode);
     if (it != nodes.end()) {
@@ -35,6 +43,10 @@ Node* Graph::getNode(string& airportCode) {
     return nullptr;
 }
 
+/*
+ * @brief Returns a list with all the nodes in the graph
+ * @details Time complexity: O(V), where V is the number of nodes in the graph(airports)
+ * */
 const list<Node*> Graph::getNodes() {
     list<Node*> nodesList;
     for (auto& node : nodes) {
@@ -43,6 +55,10 @@ const list<Node*> Graph::getNodes() {
     return nodesList;
 }
 
+/*
+ * @brief Returns a list with all the edges of the node with the given airport code
+ * @details Time complexity: O(1)
+ * */
 list<Edge> Graph::getEdges(string& airportCode) {
     auto it = nodes.find(airportCode);
     if (it != nodes.end()) {
@@ -51,6 +67,10 @@ list<Edge> Graph::getEdges(string& airportCode) {
     return {};
 }
 
+/*
+ * @brief Returns true if there's an element in the set1 that is also in the set2
+ * @details Time complexity: O(N log(M)), where N is the number of elements in the set1 and M is the number of elements in the set2
+ * */
 bool includes(set<string> &set1, set<string> &set2){
     for(auto &element : set1){
         if(set2.find(element) != set2.end()){
@@ -60,6 +80,10 @@ bool includes(set<string> &set1, set<string> &set2){
     return false;
 }
 
+/*
+ * @brief
+ * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
+ * */
 vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string>& airlines){
     vector<vector<Node*>> airports;
 
@@ -104,6 +128,10 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string
     return airports;
 }
 
+/*
+ * @brief
+ * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
+ * */
 vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
     vector<pair<stack<Node*>, int>> allPaths;
 
@@ -192,10 +220,18 @@ vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, 
     return allPaths;
 }
 
+/*
+ * @brief
+ * @details Time complexity: O(1)
+ * */
 bool Graph::hasAirport(const string& airportCode) const{
     return getAirport(airportCode) != nullptr;
 }
 
+/*
+ * @brief
+ * @details Time complexity: O(1)
+*/
 Airport* Graph::getAirport(const string& airportCode) const{
     auto it = nodes.find(airportCode);
     if(it != nodes.end()){
