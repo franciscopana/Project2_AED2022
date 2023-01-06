@@ -6,6 +6,11 @@
 
 using namespace std;
 
+/**
+ * @class Airline
+ * @brief Class that represents an airline
+ */
+
 class Airline {
 private:
     string code;
