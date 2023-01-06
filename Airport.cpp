@@ -76,6 +76,17 @@ double Airport::getDistance(Airport *other) {
     return 6371 * c;
 }
 
+double Airport::getDistance(double latitude, double longitude) {
+    double dLat = (latitude - this->latitude) * M_PI / 180.0;
+    double dLon = (longitude - this->longitude) * M_PI / 180.0;
+    double lat1 = this->latitude * M_PI / 180.0;
+    double lat2 = latitude * M_PI / 180.0;
+
+    double a = pow(sin(dLat / 2), 2) + pow(sin(dLon / 2), 2) * cos(lat1) * cos(lat2);
+    double c = 2 * atan2(sqrt(a), sqrt(1 - a));
+    return 6371 * c;
+}
+
 /*
  * @brief Overloads the `<` operator for `Airport` objects.
  * @details Returns true if `this` airport's code is less than `other` airport's code, and false otherwise.
