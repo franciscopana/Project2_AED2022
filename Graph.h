@@ -22,6 +22,15 @@ struct Node {
     Airport* airport;
     list<Edge> edges;
     bool visited;
+
+    set<string> getAirlinesTo(string destAirport){
+        for(Edge& edge : edges){
+            if(edge.destAirport == destAirport){
+                return edge.airlines;
+            }
+        }
+        return set<string>();
+    }
 };
 
 struct vertexDistance{

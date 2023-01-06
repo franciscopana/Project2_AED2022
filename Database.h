@@ -52,6 +52,7 @@ public:
     void printAirportsReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     void printCitiesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     void printCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
+    void printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy);
     void printPaths(vector <string> &source, vector <string> &destination, set<string>& airlines);
     void printShortestPath(string &source, string &destination, set<string>& airlines);
     void printShortestPaths(vector<string>& source, vector<string>& destination, set<string>& airlines);

@@ -321,6 +321,50 @@ void Database::printCountriesReachableFrom(string &airportCode, int nFlights, se
     cout << ">> Total of " << totalCountries << " countries reachable after " << nFlights << " flight(s)." << endl;
 }
 
+void Database::printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy){
+    auto path = p.first;
+    unsigned nFlights = p.first.size() - 1;
+    bool first = true;
+    cout << "   >> ";
+    while (path.size() > 1) {
+        if(!first) cout << "      ";
+        Node* current = path.top();
+        path.pop();
+        Node* next = path.top();
+        current->airport->printHeader();
+        cout << "\t->\t";
+        next->airport->printHeader();
+        cout << "\t|\t";
+        set<string> allAirlines = current->getAirlinesTo(next->airport->getCode());
+        if(!airlinesToFLy.empty()){
+            set<string> intersection;
+            set_intersection(allAirlines.begin(), allAirlines.end(), airlinesToFLy.begin(), airlinesToFLy.end(), inserter(intersection, intersection.begin()));
+            allAirlines = intersection;
+        }
+        for(auto& airline : allAirlines){
+            cout << airlines[airline]->getName() << ",  ";
+        }
+        cout << endl;
+        first = false;
+    }
+    cout << "      " << nFlights << " flight(s). Total distance: " << p.second << " km." << endl << endl;
+}
+
+unsigned askNumberToShow(unsigned max){
+    if(max <= 3) return max;
+
+    unsigned numberToShow;
+
+    cout << ">> How many routes do you want to see? ";
+    cin >> numberToShow;
+    while(numberToShow < 1){
+        cout << ">> Invalid number. Please enter a number greater than 1";
+        cin >> numberToShow;
+    }
+
+    return (numberToShow > max) ? max : numberToShow;
+}
+
 void Database::printPaths(vector<string>& source, vector<string>& destination, set<string> &airlinesToSearch) {
     auto paths = flights.bfsWithDest(source, destination, airlinesToSearch);
     if (paths.empty()) {
@@ -340,7 +384,8 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
         }
         return;
     }
-    cout << ">> Total of " << paths.size() << " routes from ";
+
+    cout << ">> Total of " << paths.size() << " route(s) from ";
     for(auto& s : source)
         cout << s << " ";
     cout << " to ";
@@ -348,33 +393,11 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
         cout << d << " ";
     cout << endl;
 
-    unsigned numberToShow = paths.size();
-
-    if(numberToShow > 3){
-        cout << ">> How many routes do you want to see? ";
-        cin >> numberToShow;
-        while(numberToShow > paths.size() || numberToShow < 1){
-            cout << ">> Invalid number. Please enter a number between 1 and " << paths.size() << ": ";
-            cin >> numberToShow;
-        }
-    }
-
+    unsigned numberToShow = askNumberToShow(paths.size());
 
     for (int i = 0; i < numberToShow; i++) {
-        auto p = paths[i];
-        auto path = p.first;
-        cout << "     ";
-        while (path.size() > 1) {
-            path.top()->airport->printHeader();
-            cout << "\t=>\t";
-            path.pop();
-        }
-        path.top()->airport->printHeader();
-        cout << "\t|\t" << p.second << " km" << endl;
+        printRoute(paths[i], airlinesToSearch);
     }
-
-    unsigned nMinFlights = paths[0].first.size() - 1;
-    cout << ">> Minimum number of flights: " << nMinFlights << endl;
 }
 
 void Database::printShortestPath(string &source, string &destination, set<string> &airlinesToSearch) {
@@ -382,7 +405,7 @@ void Database::printShortestPath(string &source, string &destination, set<string
     if (path.empty()) {
         cout << ">> No path found between " << source << " and " << destination << endl;
         if(!airlinesToSearch.empty()){
-            cout << ">> Using airlines: ";
+            cout << ">> Using airline(s): ";
             for(auto& airline : airlinesToSearch)
                 cout << airline << " ";
             cout << endl;
