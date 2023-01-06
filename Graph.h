@@ -33,15 +33,6 @@ struct Node {
     }
 };
 
-struct vertexDistance{
-    Node* node;
-    double distance;
-
-    bool operator<(const vertexDistance& other) const{
-        return distance > other.distance;
-    }
-};
-
 class Graph {
 private:
     unordered_map<string, Node> nodes;
