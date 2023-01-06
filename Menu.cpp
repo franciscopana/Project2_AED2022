@@ -124,7 +124,8 @@ set<string> Menu::getAirlines() {
         cin >> airline;
         while (airline != "0") {
             if (database.hasAirline(airline)) {
-                airlines.insert(airline);
+                if(airline.size()==3) airlines.insert(airline);
+                else airlines.insert(database.getAirlineCode(airline));
             }
             else {
                 cout << "Airline not found. Try again: ";
@@ -169,7 +170,8 @@ void Menu::listReachableAirports(string code, set<string>& airlines) {
     cout << "Please select an option:" << endl;
     cout << "1 - Change the number of flights" << endl;
     cout << "2 - Search for another airport" << endl;
-    cout << "3 - Go back to the main menu" << endl;
+    cout << "3 - Change the airlines" << endl;
+    cout << "4 - Go back to the main menu" << endl;
     cout << ">> ";
 
     cin >> option;
@@ -188,6 +190,10 @@ void Menu::listReachableAirports(string code, set<string>& airlines) {
                 showSearchAirportsMenu();
                 break;
             case 3:
+                airlines = getAirlines();
+                listReachableAirports(code, airlines);
+                break;
+            case 4:
                 showInitialMenu();
                 break;
             default:

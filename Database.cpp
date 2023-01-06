@@ -56,7 +56,8 @@ void Database::loadAirlines(){
             continue;
         }
         auto* airline = new Airline(fields[0], fields[1], fields[2], fields[3]);
-        airlines.insert(pair<string, Airline*>(fields[0], airline));
+        codeAirlines.insert(pair<string, Airline*>(fields[0], airline));
+        nameAirlines.insert(pair<string, Airline*>(fields[1], airline));
     }
     file.close();
 }
@@ -135,7 +136,7 @@ bool Database::hasAirport(const string &code) const {
 }
 
 bool Database::hasAirline(const string &code) const {
-    return airlines.find(code) != airlines.end();
+    return codeAirlines.find(code) != codeAirlines.end() || nameAirlines.find(code) != nameAirlines.end();
 }
 
 bool Database::hasCity(const string &city) const {
@@ -235,19 +236,30 @@ vector<string> Database::getAirportsCodeFromCity(const string& city, double radi
     return airports;
 }
 
-vector<string> Database::getAiportsCodeFromString(const std::string &codes) const {
+vector<string> Database::getAiportsCodeFromString(const string &input) const {
     vector<string> airports;
-    istringstream stream(codes);
-    string code;
-    while (getline(stream, code, ' ')) {
-        if(!hasAirport(code)){
+    istringstream stream(input);
+    string word;
+    while (getline(stream, word, ' ')) {
+        if(!hasAirport(word)){
             return {};
         }
-        airports.push_back(code);
+        if(word.length()==3){airports.push_back(word);}
+        else{
+            airports.push_back(getAirlineCode(word));
+        }
+
     }
     return airports;
 }
 
+string Database::getAirlineCode(const std::string &name) const {
+    auto it = nameAirlines.find(name);
+    if(it != nameAirlines.end()){
+        return it->second->getCode();
+    }
+    return "";
+}
 
 /*    Printers    */
 void Database::printAirlinesFromAirport(string &airportCode) {
@@ -263,7 +275,7 @@ void Database::printAirlinesFromAirport(string &airportCode) {
 
     cout << "There are a total of " << airlines_.size() << " airlines that fly from " << airportCode << endl;
     for(auto& airline : airlines_){
-        cout << setw(5) << left << airline << setw(40) << left << airlines.at(airline)->getName() << setw(20) << left << airlines.at(airline)->getCountry() << endl;
+        cout << setw(5) << left << airline << setw(40) << left << codeAirlines.at(airline)->getName() << setw(20) << left << codeAirlines.at(airline)->getCountry() << endl;
     }
 }
 
@@ -331,7 +343,7 @@ void Database::printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy
             allAirlines = intersection;
         }
         for(auto& airline : allAirlines){
-            cout << airlines[airline]->getCode() << " ";
+            cout << airline << " ";
         }
         cout << endl;
         first = false;
