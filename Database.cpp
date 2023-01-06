@@ -266,18 +266,6 @@ void Database::printAirlinesFromAirport(string &airportCode) {
     }
 }
 
-void Database::printAirportsFromCity(string &city) const {
-    auto cityIt = citiesAirports.find(city);
-    if (cityIt != citiesAirports.end()) {
-        cout << ">> "<< cityIt->second.size() << " airport(s) from " << city << ":" << endl;
-        for (auto airport : cityIt->second) {
-            cout << "     " << airport->getName() << " (" << airport->getCode() << ")\t|\tCoordinates: " << airport->getLatitude() << ", " << airport->getLongitude() << endl;
-        }
-    } else {
-        cout << ">> No airports found in city " << city << endl;
-    }
-}
-
 void Database::printAirportsReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
     auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlinesToSearch);
     cout << ">> Source Airport: "; airports[0][0]->airport->printHeader(); cout << endl;    unsigned totalFlights = 0;
@@ -397,36 +385,5 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
 
     for (int i = 0; i < numberToShow; i++) {
         printRoute(paths[i], airlinesToSearch);
-    }
-}
-
-void Database::printShortestPath(string &source, string &destination, set<string> &airlinesToSearch) {
-    vector<Node*> path = flights.dijkstra(source, destination, airlinesToSearch);
-    if (path.empty()) {
-        cout << ">> No path found between " << source << " and " << destination << endl;
-        if(!airlinesToSearch.empty()){
-            cout << ">> Using airline(s): ";
-            for(auto& airline : airlinesToSearch)
-                cout << airline << " ";
-            cout << endl;
-        }
-        return;
-    }
-    cout << ">> Shortest route from " << source << " to " << destination << ":" << endl;
-    cout << "     ";
-
-    for(int i = 0; i < path.size() - 1; i++){
-        path[i]->airport->printHeader();
-        cout << "\t=>\t";
-    }
-    path.back()->airport->printHeader();
-    cout << endl;
-}
-
-void Database::printShortestPaths(vector<string>& source, vector<string>& destination, set<string>& airlinesToSearch){
-    for(string sourceCode: source){
-        for(string destCode: destination){
-            printShortestPath(sourceCode, destCode, airlinesToSearch);
-        }
     }
 }

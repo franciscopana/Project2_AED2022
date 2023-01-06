@@ -59,7 +59,6 @@ public:
     list<Edge> getEdges(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n, set<string>& airlines);
     vector<pair<stack<Node*>, int>> bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport, set<string> &airlines);
-    vector<Node*> dijkstra(string &srcAirport, string &destAirport, set<string> &airlines);
     bool hasAirport(const string& airportCode) const;
 
     // Getters
