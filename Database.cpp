@@ -1,4 +1,5 @@
 #include <iomanip>
+#include <limits>
 #include "Database.h"
 
 /*    Loaders    */
@@ -320,9 +321,9 @@ void Database::printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy
         path.pop();
         Node* next = path.top();
         current->airport->printHeader();
-        cout << "\t->\t";
+        cout << "  ->  ";
         next->airport->printHeader();
-        cout << "\t|\t";
+        cout << "  |  ";
         set<string> allAirlines = current->getAirlinesTo(next->airport->getCode());
         if(!airlinesToFLy.empty()){
             set<string> intersection;
@@ -330,7 +331,7 @@ void Database::printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy
             allAirlines = intersection;
         }
         for(auto& airline : allAirlines){
-            cout << airlines[airline]->getName() << ",  ";
+            cout << airlines[airline]->getCode() << " ";
         }
         cout << endl;
         first = false;
@@ -342,14 +343,18 @@ unsigned askNumberToShow(unsigned max){
     if(max <= 3) return max;
 
     unsigned numberToShow;
-
     cout << ">> How many routes do you want to see? ";
-    cin >> numberToShow;
-    while(numberToShow < 1){
-        cout << ">> Invalid number. Please enter a number greater than 1";
-        cin >> numberToShow;
+    while (true){
+        string line;
+        getline(cin, line);
+        stringstream ss(line);
+        if (all_of(line.begin(), line.end(), ::isdigit) && ss >> numberToShow && numberToShow >= 1 && numberToShow <= max) {
+            break;
+        }
+        if(!line.empty()){
+            cout << ">> Invalid input. Please enter a number between 1 and " << max << ":  ";
+        }
     }
-
     return (numberToShow > max) ? max : numberToShow;
 }
 

@@ -5,7 +5,7 @@
 
 
 void Menu::showInitialMenu() {
-    cout << endl <<  "WELCOME TO THE FLIGHT SEARCH ENGINE" << endl;
+    cout <<  "WELCOME TO THE FLIGHT SEARCH ENGINE" << endl;
     cout << "Please select an option:" << endl;
     cout << "1 - Search for flights" << endl;
     cout << "2 - Search for airports" << endl;
