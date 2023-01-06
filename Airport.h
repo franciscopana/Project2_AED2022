@@ -6,6 +6,11 @@
 
 using namespace std;
 
+/**
+ * @class Airport
+ * @brief Class that represents an airport
+ */
+
 class Airport {
 private:
     string name;
