@@ -42,6 +42,12 @@ struct vertexDistance{
     }
 };
 
+/**
+ * @class Graph
+ * @brief Graph class, where the airports are the nodes and the edges are the flights between them.
+ * @details The graph is implemented using an adjacency list. The nodes are stored in a hash table, where the key is the airport code and the value is a Node struct.
+ */
+
 class Graph {
 private:
     unordered_map<string, Node> nodes;

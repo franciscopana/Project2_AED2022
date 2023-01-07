@@ -14,7 +14,7 @@ void Graph::addNode(string& airportCode, Airport* airport) {
 
 /*
  * @brief Adds an edge from the source airport to the destination airport
- * @details Time complexity: O(E), where E is the number of edges in the graph(flights)
+ * @details Time complexity: O(E), where E is the number of edges in the adjency list of the source airport
  * */
 void Graph::addEdge(string& source, string& dest, string& airline) {
     auto sourceIt = nodes.find(source);
@@ -45,7 +45,7 @@ Node* Graph::getNode(string& airportCode) {
 
 /*
  * @brief Returns a list with all the references for the nodes in the graph
- * @details Time complexity: O(V), where V is the number of nodes in the graph(airports)
+ * @details Time complexity: O(1)
  * */
 const unordered_map<string, Node>& Graph::getNodes() {
     return nodes;
@@ -77,7 +77,7 @@ bool includes(set<string> &set1, set<string> &set2){
 }
 
 /*
- * @brief
+ * @brief Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable in n steps (the index of the vector represents the number of steps)
  * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
  * */
 vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string>& airlines){
@@ -125,7 +125,7 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string
 }
 
 /*
- * @brief
+ * @brief Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable with (index number) of steps
  * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
  * */
 vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
@@ -217,7 +217,7 @@ vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, 
 }
 
 /*
- * @brief
+ * @brief Checks if the airport is in the graph
  * @details Time complexity: O(1)
  * */
 bool Graph::hasAirport(const string& airportCode) const{
@@ -225,7 +225,7 @@ bool Graph::hasAirport(const string& airportCode) const{
 }
 
 /*
- * @brief
+ * @brief Given an airport code, returns a pointer to the airport, or nullptr if it doesn't exist
  * @details Time complexity: O(1)
 */
 Airport* Graph::getAirport(const string& airportCode) const{

@@ -263,13 +263,13 @@ Airport* Database::getAirport(const string &code) const {
 
 /*
  * @brief Returns a vector of airport codes for all airports within a certain radius of the given city
- * @details Time complexity:
+ * @details Time complexity: O(C) + O(Q), where C is the number of cities with the name city and Q is the number of airports in the database
  * */
 vector<string> Database::getAirportsCodeFromCity(const string& city, double radius){
-    auto cityIt = citiesCoordinates.find(city);
+    auto cityIt = citiesCoordinates.find(city); // O(1)
     if (cityIt == citiesCoordinates.end()) return {};
 
-    auto cities = cityIt->second;
+    auto cities = cityIt->second; // O(1)
     City* c = cities[0];
     if(cities.size() > 1){
         cout << "Found " << cities.size() << " cities with the name " << city << endl;
@@ -287,14 +287,14 @@ vector<string> Database::getAirportsCodeFromCity(const string& city, double radi
         }
         c = cities[option-1];
     }
-    vector<string> airports = getAirportsCodeFromCoordinates(c->getLatitude(), c->getLongitude(), radius); //
+    vector<string> airports = getAirportsCodeFromCoordinates(c->getLatitude(), c->getLongitude(), radius); //O(Q)
     return airports;
 }
 
 
 /*
  * @brief Returns a vector of airport codes for all airports with codes in the given string
- * @details Time complexity:
+ * @details Time complexity: O(M)
  * */
 vector<string> Database::getAiportsCodeFromString(const string &input) const {
     vector<string> airports;
@@ -315,7 +315,7 @@ vector<string> Database::getAiportsCodeFromString(const string &input) const {
 
 /*
  * @brief Prints a list of all airlines that fly to the given airport
- * @details Time complexity:
+ * @details Time complexity: O(1)
  * */
 string Database::getAirlineCode(const std::string &name) const {
     auto it = nameAirlines.find(name);
@@ -325,7 +325,10 @@ string Database::getAirlineCode(const std::string &name) const {
     return "";
 }
 
-/*    Printers    */
+/*
+ * @brief Prints the different airlines that fly from the given airport
+ * @details Time complexity: O(E + A), where E is the number of edges in the adjacency list of the given airport and A is the number of airlines that fly from the given airport
+ * */
 void Database::printAirlinesFromAirport(string &airportCode) {
     list<Edge> edges = flights.getEdges(airportCode);
     set <string> airlines_ = {};
@@ -345,7 +348,7 @@ void Database::printAirlinesFromAirport(string &airportCode) {
 
 /*
  * @brief Prints a list of all airports that can be reached from the given airport within a certain number of flights and using only the given airlines
- * @details Time complexity:
+ * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
  * */
 void Database::printAirportsReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
     auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlinesToSearch);
@@ -364,6 +367,7 @@ void Database::printAirportsReachableFrom(string &airportCode, int nFlights, set
 
 /*
  * @brief Prints a list of cities that are reachable from the airport within the given number of flights, using only the specified airlines
+ * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
  * */
 void Database::printCitiesReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
     auto citiesByLevel = getCitiesReachableFrom(airportCode, nFlights, airlinesToSearch);
@@ -381,7 +385,7 @@ void Database::printCitiesReachableFrom(string &airportCode, int nFlights, set<s
 
 /*
  * @brief Prints a list of countries that are reachable from the airport within the given number of flights, using only the specified airlines.
- * @details Time complexity:
+ * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
  * */
 void Database::printCountriesReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
     auto countriesByLevel = getCountriesReachableFrom(airportCode, nFlights, airlinesToSearch);
@@ -399,7 +403,7 @@ void Database::printCountriesReachableFrom(string &airportCode, int nFlights, se
 
 /*
  * @brief Given a pair of a stack of nodes and a distance, this method prints the route taken and the total distance of the route
- * @details Time complexity:
+ * @details Time complexity: O(N) where N is the number of nodes in the stack p
  * */
 void Database::printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy){
     auto path = p.first;
@@ -454,7 +458,7 @@ unsigned askNumberToShow(unsigned max){
 
 /*
  * @brief This method takes in two vectors of strings representing the source and destination airports, and a set of airlines. It then prints all the paths from the source airports to the destination airports that can be taken by using any of the specified airlines.
- * @details Time complexity:
+ * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
  * */
 void Database::printPaths(vector<string>& source, vector<string>& destination, set<string> &airlinesToSearch) {
     auto paths = flights.bfsWithDest(source, destination, airlinesToSearch);

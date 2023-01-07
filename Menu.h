@@ -7,6 +7,10 @@
 
 using namespace std;
 
+/**
+ * @class Menu
+ * @brief Menu class, where the user can interact with the program.
+ */
 class Menu {
 private:
     Database database;
