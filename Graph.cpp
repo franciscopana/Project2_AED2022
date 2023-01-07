@@ -44,15 +44,11 @@ Node* Graph::getNode(string& airportCode) {
 }
 
 /*
- * @brief Returns a list with all the nodes in the graph
+ * @brief Returns a list with all the references for the nodes in the graph
  * @details Time complexity: O(V), where V is the number of nodes in the graph(airports)
  * */
-const list<Node*> Graph::getNodes() {
-    list<Node*> nodesList;
-    for (auto& node : nodes) {
-        nodesList.push_back(&node.second);
-    }
-    return nodesList;
+const unordered_map<string, Node>& Graph::getNodes() {
+    return nodes;
 }
 
 /*

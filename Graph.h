@@ -55,7 +55,7 @@ public:
 
     // Searchers
     Node* getNode(string& airportCode);
-    const list<Node*> getNodes();
+    const unordered_map<string, Node>& getNodes();
     list<Edge> getEdges(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n, set<string>& airlines);
     vector<pair<stack<Node*>, int>> bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport, set<string> &airlines);

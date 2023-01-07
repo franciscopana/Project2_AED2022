@@ -343,7 +343,7 @@ vector<string> Menu::getAirportsCode() {
         result = database.getAiportsCodeFromString(input);
         if(!result.empty()) return result;
 
-        double radius = 120;
+        double radius = 100;
         result = database.getAirportsCodeFromCity(input, radius);
         if (!result.empty()) return result;
 

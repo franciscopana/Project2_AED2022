@@ -196,10 +196,9 @@ vector<string> Database::getAirportsCodeFromCity(const string& city) const {
  * */
 vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,const double longitude, double radius) {
     vector<string> airports;
-
-    for(auto node: flights.getNodes()){
-        if(node->airport->getDistance(latitude, longitude) <= radius){
-            airports.push_back(node->airport->getCode());
+    for(auto& node: flights.getNodes()){
+        if(node.second.airport->getDistance(latitude, longitude) <= radius){
+            airports.push_back(node.second.airport->getCode());
         }
     }
     return airports;

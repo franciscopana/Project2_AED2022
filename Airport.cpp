@@ -62,7 +62,7 @@ double Airport::getLongitude() {
 }
 
 /*
- * @brief Using the haversine formula returns the distance (in kilometers) between this airport and the given airport.
+ * @brief Using the haversine formula returns the distance (in kilometers) between two airports.
  * @details Time complexity: O(1)
  * */
 double Airport::getDistance(Airport *other) {
@@ -76,6 +76,10 @@ double Airport::getDistance(Airport *other) {
     return 6371 * c;
 }
 
+/*
+ * @brief Using the haversine formula returns the distance (in kilometers) between an airport and a given the latitude and longitude.
+ * @details Time complexity: O(1)
+ * */
 double Airport::getDistance(double latitude, double longitude) {
     double dLat = (latitude - this->latitude) * M_PI / 180.0;
     double dLon = (longitude - this->longitude) * M_PI / 180.0;
