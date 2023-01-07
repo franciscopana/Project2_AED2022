@@ -1,4 +1,5 @@
 #include <iomanip>
+#include <limits>
 #include "Database.h"
 
 /*
@@ -64,7 +65,8 @@ void Database::loadAirlines(){
             continue;
         }
         auto* airline = new Airline(fields[0], fields[1], fields[2], fields[3]);
-        airlines.insert(pair<string, Airline*>(fields[0], airline));
+        codeAirlines.insert(pair<string, Airline*>(fields[0], airline));
+        nameAirlines.insert(pair<string, Airline*>(fields[1], airline));
     }
     file.close();
 }
@@ -162,7 +164,7 @@ bool Database::hasAirport(const string &code) const {
  * @details Time complexity: O(1)
  * */
 bool Database::hasAirline(const string &code) const {
-    return airlines.find(code) != airlines.end();
+    return codeAirlines.find(code) != codeAirlines.end() || nameAirlines.find(code) != nameAirlines.end();
 }
 
 /*
@@ -290,19 +292,24 @@ vector<string> Database::getAirportsCodeFromCity(const string& city, double radi
     return airports;
 }
 
+
 /*
  * @brief Returns a vector of airport codes for all airports with codes in the given string
  * @details Time complexity:
  * */
-vector<string> Database::getAiportsCodeFromString(const std::string &codes) const {
+vector<string> Database::getAiportsCodeFromString(const string &input) const {
     vector<string> airports;
-    istringstream stream(codes);
-    string code;
-    while (getline(stream, code, ' ')) {
-        if(!hasAirport(code)){
+    istringstream stream(input);
+    string word;
+    while (getline(stream, word, ' ')) {
+        if(!hasAirport(word)){
             return {};
         }
-        airports.push_back(code);
+        if(word.length()==3){airports.push_back(word);}
+        else{
+            airports.push_back(getAirlineCode(word));
+        }
+
     }
     return airports;
 }
@@ -311,6 +318,15 @@ vector<string> Database::getAiportsCodeFromString(const std::string &codes) cons
  * @brief Prints a list of all airlines that fly to the given airport
  * @details Time complexity:
  * */
+string Database::getAirlineCode(const std::string &name) const {
+    auto it = nameAirlines.find(name);
+    if(it != nameAirlines.end()){
+        return it->second->getCode();
+    }
+    return "";
+}
+
+/*    Printers    */
 void Database::printAirlinesFromAirport(string &airportCode) {
     list<Edge> edges = flights.getEdges(airportCode);
     set <string> airlines_ = {};
@@ -324,7 +340,7 @@ void Database::printAirlinesFromAirport(string &airportCode) {
 
     cout << "There are a total of " << airlines_.size() << " airlines that fly from " << airportCode << endl;
     for(auto& airline : airlines_){
-        cout << setw(5) << left << airline << setw(40) << left << airlines.at(airline)->getName() << setw(20) << left << airlines.at(airline)->getCountry() << endl;
+        cout << setw(5) << left << airline << setw(40) << left << codeAirlines.at(airline)->getName() << setw(20) << left << codeAirlines.at(airline)->getCountry() << endl;
     }
 }
 
@@ -397,9 +413,9 @@ void Database::printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy
         path.pop();
         Node* next = path.top();
         current->airport->printHeader();
-        cout << "\t->\t";
+        cout << "  ->  ";
         next->airport->printHeader();
-        cout << "\t|\t";
+        cout << "  |  ";
         set<string> allAirlines = current->getAirlinesTo(next->airport->getCode());
         if(!airlinesToFLy.empty()){
             set<string> intersection;
@@ -407,7 +423,7 @@ void Database::printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy
             allAirlines = intersection;
         }
         for(auto& airline : allAirlines){
-            cout << airlines[airline]->getName() << ",  ";
+            cout << airline << " ";
         }
         cout << endl;
         first = false;
@@ -422,14 +438,18 @@ unsigned askNumberToShow(unsigned max){
     if(max <= 3) return max;
 
     unsigned numberToShow;
-
     cout << ">> How many routes do you want to see? ";
-    cin >> numberToShow;
-    while(numberToShow < 1){
-        cout << ">> Invalid number. Please enter a number greater than 1";
-        cin >> numberToShow;
+    while (true){
+        string line;
+        getline(cin, line);
+        stringstream ss(line);
+        if (all_of(line.begin(), line.end(), ::isdigit) && ss >> numberToShow && numberToShow >= 1 && numberToShow <= max) {
+            break;
+        }
+        if(!line.empty()){
+            cout << ">> Invalid input. Please enter a number between 1 and " << max << ":  ";
+        }
     }
-
     return (numberToShow > max) ? max : numberToShow;
 }
 
