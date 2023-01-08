@@ -35,12 +35,8 @@ Node* Graph::getNode(string& airportCode) {
     return nullptr;
 }
 
-const list<Node*> Graph::getNodes() {
-    list<Node*> nodesList;
-    for (auto& node : nodes) {
-        nodesList.push_back(&node.second);
-    }
-    return nodesList;
+const unordered_map<string, Node>& Graph::getNodes() {
+    return nodes;
 }
 
 list<Edge> Graph::getEdges(string& airportCode) {

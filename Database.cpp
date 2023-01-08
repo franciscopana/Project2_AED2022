@@ -159,8 +159,8 @@ vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,co
     vector<string> airports;
 
     for(auto node: flights.getNodes()){
-        if(node->airport->getDistance(latitude, longitude) <= radius){
-            airports.push_back(node->airport->getCode());
+        if(node.second.airport->getDistance(latitude, longitude) <= radius){
+            airports.push_back(node.second.airport->getCode());
         }
     }
     return airports;
