@@ -86,12 +86,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af441bddf0f68bcf4a2a9abee130f7916"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#af441bddf0f68bcf4a2a9abee130f7916">hasAirline</a> (const string &amp;code) const</td></tr>
 <tr class="memdesc:af441bddf0f68bcf4a2a9abee130f7916"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the airline with the given code is in the database.  <a href="classDatabase.html#af441bddf0f68bcf4a2a9abee130f7916">More...</a><br /></td></tr>
 <tr class="separator:af441bddf0f68bcf4a2a9abee130f7916"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afccd747f544f62f66b7d529229218a2f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#afccd747f544f62f66b7d529229218a2f">hasCity</a> (const string &amp;city) const</td></tr>
-<tr class="memdesc:afccd747f544f62f66b7d529229218a2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the city with the given name is in the database.  <a href="classDatabase.html#afccd747f544f62f66b7d529229218a2f">More...</a><br /></td></tr>
-<tr class="separator:afccd747f544f62f66b7d529229218a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad23949b3bde8862b2b3e03dc33caf32f"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#ad23949b3bde8862b2b3e03dc33caf32f">getAirportsCodeFromCity</a> (const string &amp;city) const</td></tr>
-<tr class="memdesc:ad23949b3bde8862b2b3e03dc33caf32f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of airport codes for all airports in the given city.  <a href="classDatabase.html#ad23949b3bde8862b2b3e03dc33caf32f">More...</a><br /></td></tr>
-<tr class="separator:ad23949b3bde8862b2b3e03dc33caf32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5fcc976c49c48bf1f9dcf897a9acfae"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#ab5fcc976c49c48bf1f9dcf897a9acfae">getAirportsCodeFromCoordinates</a> (double latitude, double longitude, double radius)</td></tr>
 <tr class="memdesc:ab5fcc976c49c48bf1f9dcf897a9acfae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of airport codes for all airports within a certain radius of the given coordinates.  <a href="classDatabase.html#ab5fcc976c49c48bf1f9dcf897a9acfae">More...</a><br /></td></tr>
 <tr class="separator:ab5fcc976c49c48bf1f9dcf897a9acfae"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -219,29 +213,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="ad23949b3bde8862b2b3e03dc33caf32f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad23949b3bde8862b2b3e03dc33caf32f">&#9670;&nbsp;</a></span>getAirportsCodeFromCity() <span class="overload">[1/2]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">vector&lt; string &gt; Database::getAirportsCodeFromCity </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>city</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns a vector of airport codes for all airports in the given city. </p>
-<p>Time complexity: O(H), where H is the number of airports in the given city </p>
-
-</div>
-</div>
 <a id="a2b210decbe77fa9161bcd77812e1d1a6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2b210decbe77fa9161bcd77812e1d1a6">&#9670;&nbsp;</a></span>getAirportsCodeFromCity() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b210decbe77fa9161bcd77812e1d1a6">&#9670;&nbsp;</a></span>getAirportsCodeFromCity()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -420,27 +393,6 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Returns whether the airport with the given code is in the database. </p>
-<p>Time complexity: O(1) </p>
-
-</div>
-</div>
-<a id="afccd747f544f62f66b7d529229218a2f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afccd747f544f62f66b7d529229218a2f">&#9670;&nbsp;</a></span>hasCity()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool Database::hasCity </td>
-          <td>(</td>
-          <td class="paramtype">const string &amp;&#160;</td>
-          <td class="paramname"><em>city</em></td><td>)</td>
-          <td> const</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Returns whether the city with the given name is in the database. </p>
 <p>Time complexity: O(1) </p>
 
 </div>

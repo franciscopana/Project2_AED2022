@@ -83,15 +83,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad5f010cab84bc36a2bbc749b069271b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#ad5f010cab84bc36a2bbc749b069271b6">addEdge</a> (string &amp;source, string &amp;dest, string &amp;airline)</td></tr>
 <tr class="memdesc:ad5f010cab84bc36a2bbc749b069271b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an edge from the source airport to the destination airport.  <a href="classGraph.html#ad5f010cab84bc36a2bbc749b069271b6">More...</a><br /></td></tr>
 <tr class="separator:ad5f010cab84bc36a2bbc749b069271b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11b04557fb14020399c910263b5cf53b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNode.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a11b04557fb14020399c910263b5cf53b">getNode</a> (string &amp;airportCode)</td></tr>
-<tr class="memdesc:a11b04557fb14020399c910263b5cf53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the node with the given airport code.  <a href="classGraph.html#a11b04557fb14020399c910263b5cf53b">More...</a><br /></td></tr>
-<tr class="separator:a11b04557fb14020399c910263b5cf53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="memItemLeft" align="right" valign="top">const unordered_map&lt; string, <a class="el" href="structNode.html">Node</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a57300eccb49e95ab1dbcd0bb5b42f82d">getNodes</a> ()</td></tr>
-<tr class="memdesc:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list with all the references for the nodes in the graph.  <a href="classGraph.html#a57300eccb49e95ab1dbcd0bb5b42f82d">More...</a><br /></td></tr>
-<tr class="separator:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcac8822067ff76ff571cc08b022d8d3"><td class="memItemLeft" align="right" valign="top">list&lt; <a class="el" href="structEdge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#afcac8822067ff76ff571cc08b022d8d3">getEdges</a> (string &amp;airportCode)</td></tr>
-<tr class="memdesc:afcac8822067ff76ff571cc08b022d8d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list with all the edges of the node with the given airport code.  <a href="classGraph.html#afcac8822067ff76ff571cc08b022d8d3">More...</a><br /></td></tr>
-<tr class="separator:afcac8822067ff76ff571cc08b022d8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd2b85aaadfb1f83eb6a035c8fc8a335"><td class="memItemLeft" align="right" valign="top">vector&lt; vector&lt; <a class="el" href="structNode.html">Node</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#acd2b85aaadfb1f83eb6a035c8fc8a335">bfsWithNSteps</a> (string &amp;srcAirport, int n, set&lt; string &gt; &amp;airlines)</td></tr>
 <tr class="memdesc:acd2b85aaadfb1f83eb6a035c8fc8a335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable in n steps (the index of the vector represents the number of steps)  <a href="classGraph.html#acd2b85aaadfb1f83eb6a035c8fc8a335">More...</a><br /></td></tr>
 <tr class="separator:acd2b85aaadfb1f83eb6a035c8fc8a335"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -101,6 +92,15 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ae7a601a64fc3fbabed81dab1343b187d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#ae7a601a64fc3fbabed81dab1343b187d">hasAirport</a> (const string &amp;airportCode) const</td></tr>
 <tr class="memdesc:ae7a601a64fc3fbabed81dab1343b187d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the airport is in the graph.  <a href="classGraph.html#ae7a601a64fc3fbabed81dab1343b187d">More...</a><br /></td></tr>
 <tr class="separator:ae7a601a64fc3fbabed81dab1343b187d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a11b04557fb14020399c910263b5cf53b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNode.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a11b04557fb14020399c910263b5cf53b">getNode</a> (string &amp;airportCode)</td></tr>
+<tr class="memdesc:a11b04557fb14020399c910263b5cf53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the node with the given airport code.  <a href="classGraph.html#a11b04557fb14020399c910263b5cf53b">More...</a><br /></td></tr>
+<tr class="separator:a11b04557fb14020399c910263b5cf53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="memItemLeft" align="right" valign="top">const unordered_map&lt; string, <a class="el" href="structNode.html">Node</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a57300eccb49e95ab1dbcd0bb5b42f82d">getNodes</a> ()</td></tr>
+<tr class="memdesc:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the unordered map of nodes.  <a href="classGraph.html#a57300eccb49e95ab1dbcd0bb5b42f82d">More...</a><br /></td></tr>
+<tr class="separator:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afcac8822067ff76ff571cc08b022d8d3"><td class="memItemLeft" align="right" valign="top">list&lt; <a class="el" href="structEdge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#afcac8822067ff76ff571cc08b022d8d3">getEdges</a> (string &amp;airportCode)</td></tr>
+<tr class="memdesc:afcac8822067ff76ff571cc08b022d8d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list with all the edges of the node with the given airport code.  <a href="classGraph.html#afcac8822067ff76ff571cc08b022d8d3">More...</a><br /></td></tr>
+<tr class="separator:afcac8822067ff76ff571cc08b022d8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8cb292d8536c7af11d809b46243de99b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAirport.html">Airport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a8cb292d8536c7af11d809b46243de99b">getAirport</a> (const string &amp;airportCode) const</td></tr>
 <tr class="memdesc:a8cb292d8536c7af11d809b46243de99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an airport code, returns a pointer to the airport, or nullptr if it doesn't exist.  <a href="classGraph.html#a8cb292d8536c7af11d809b46243de99b">More...</a><br /></td></tr>
 <tr class="separator:a8cb292d8536c7af11d809b46243de99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -329,7 +329,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns a list with all the references for the nodes in the graph. </p>
+<p>Returns the unordered map of nodes. </p>
 <p>Time complexity: O(1) </p>
 
 </div>

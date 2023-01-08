@@ -18,10 +18,6 @@ bool \mbox{\hyperlink{classDatabase_a6970d65ede623624339d8c8c084215b9}{has\+Airp
 \begin{DoxyCompactList}\small\item\em Returns whether the airport with the given code is in the database. \end{DoxyCompactList}\item 
 bool \mbox{\hyperlink{classDatabase_af441bddf0f68bcf4a2a9abee130f7916}{has\+Airline}} (const string \&code) const
 \begin{DoxyCompactList}\small\item\em Returns whether the airline with the given code is in the database. \end{DoxyCompactList}\item 
-bool \mbox{\hyperlink{classDatabase_afccd747f544f62f66b7d529229218a2f}{has\+City}} (const string \&city) const
-\begin{DoxyCompactList}\small\item\em Returns whether the city with the given name is in the database. \end{DoxyCompactList}\item 
-vector$<$ string $>$ \mbox{\hyperlink{classDatabase_ad23949b3bde8862b2b3e03dc33caf32f}{get\+Airports\+Code\+From\+City}} (const string \&city) const
-\begin{DoxyCompactList}\small\item\em Returns a vector of airport codes for all airports in the given city. \end{DoxyCompactList}\item 
 vector$<$ string $>$ \mbox{\hyperlink{classDatabase_ab5fcc976c49c48bf1f9dcf897a9acfae}{get\+Airports\+Code\+From\+Coordinates}} (double latitude, double longitude, double radius)
 \begin{DoxyCompactList}\small\item\em Returns a vector of airport codes for all airports within a certain radius of the given coordinates. \end{DoxyCompactList}\item 
 vector$<$ set$<$ string $>$ $>$ \mbox{\hyperlink{classDatabase_a31995eb0b62df5a43185dfa04412172e}{get\+Cities\+Reachable\+From}} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
@@ -97,20 +93,10 @@ Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_a000864aaa2edcda626f60b
 
 Returns a pointer to the airport with the given code. 
 
-Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_ad23949b3bde8862b2b3e03dc33caf32f}\label{classDatabase_ad23949b3bde8862b2b3e03dc33caf32f}} 
+Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_a2b210decbe77fa9161bcd77812e1d1a6}\label{classDatabase_a2b210decbe77fa9161bcd77812e1d1a6}} 
 \index{Database@{Database}!getAirportsCodeFromCity@{getAirportsCodeFromCity}}
 \index{getAirportsCodeFromCity@{getAirportsCodeFromCity}!Database@{Database}}
-\doxysubsubsection{\texorpdfstring{getAirportsCodeFromCity()}{getAirportsCodeFromCity()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily vector$<$ string $>$ Database\+::get\+Airports\+Code\+From\+City (\begin{DoxyParamCaption}\item[{const string \&}]{city }\end{DoxyParamCaption}) const}
-
-
-
-Returns a vector of airport codes for all airports in the given city. 
-
-Time complexity\+: O(\+H), where H is the number of airports in the given city \mbox{\Hypertarget{classDatabase_a2b210decbe77fa9161bcd77812e1d1a6}\label{classDatabase_a2b210decbe77fa9161bcd77812e1d1a6}} 
-\index{Database@{Database}!getAirportsCodeFromCity@{getAirportsCodeFromCity}}
-\index{getAirportsCodeFromCity@{getAirportsCodeFromCity}!Database@{Database}}
-\doxysubsubsection{\texorpdfstring{getAirportsCodeFromCity()}{getAirportsCodeFromCity()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+\doxysubsubsection{\texorpdfstring{getAirportsCodeFromCity()}{getAirportsCodeFromCity()}}
 {\footnotesize\ttfamily vector$<$ string $>$ Database\+::get\+Airports\+Code\+From\+City (\begin{DoxyParamCaption}\item[{const string \&}]{city,  }\item[{double}]{radius }\end{DoxyParamCaption})}
 
 
@@ -166,16 +152,6 @@ Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_a6970d65ede623624339d8c
 
 
 Returns whether the airport with the given code is in the database. 
-
-Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_afccd747f544f62f66b7d529229218a2f}\label{classDatabase_afccd747f544f62f66b7d529229218a2f}} 
-\index{Database@{Database}!hasCity@{hasCity}}
-\index{hasCity@{hasCity}!Database@{Database}}
-\doxysubsubsection{\texorpdfstring{hasCity()}{hasCity()}}
-{\footnotesize\ttfamily bool Database\+::has\+City (\begin{DoxyParamCaption}\item[{const string \&}]{city }\end{DoxyParamCaption}) const}
-
-
-
-Returns whether the city with the given name is in the database. 
 
 Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_a05f79e269875588b2bc61b645ce95fd9}\label{classDatabase_a05f79e269875588b2bc61b645ce95fd9}} 
 \index{Database@{Database}!printAirlinesFromAirport@{printAirlinesFromAirport}}
