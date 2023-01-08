@@ -126,7 +126,7 @@ bool Menu::getYesOrNo(){
 }
 
 /**
- * @briefs Asks the user to input the desired airlines (either by name or code)
+ * @brief Asks the user to input the desired airlines (either by name or code)
 */
 set<string> Menu::getAirlines() {
     set<string> airlines;

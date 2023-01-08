@@ -15,7 +15,10 @@
 #include "City.h"
 
 using namespace std;
-
+/**
+ * @class Database
+ * @brief Class that contains the data management methods and useful data structures
+ */
 class Database {
 private:
     unordered_map<string, Airline*> codeAirlines;

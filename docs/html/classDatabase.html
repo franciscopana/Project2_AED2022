@@ -69,11 +69,16 @@ $(function() {
 <div class="title">Database Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class that contains the data management methods and useful data structures.  
+ <a href="classDatabase.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="Database_8h_source.html">Database.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4703c80e6969d33565ea340f768fdadf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a4703c80e6969d33565ea340f768fdadf">Database</a> ()</td></tr>
-<tr class="memdesc:a4703c80e6969d33565ea340f768fdadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that initializes the <a class="el" href="classDatabase.html">Database</a> by loading all data from the dataset files into memory.  <a href="classDatabase.html#a4703c80e6969d33565ea340f768fdadf">More...</a><br /></td></tr>
+<tr class="memdesc:a4703c80e6969d33565ea340f768fdadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that initializes the <a class="el" href="classDatabase.html" title="Class that contains the data management methods and useful data structures.">Database</a> by loading all data from the dataset files into memory.  <a href="classDatabase.html#a4703c80e6969d33565ea340f768fdadf">More...</a><br /></td></tr>
 <tr class="separator:a4703c80e6969d33565ea340f768fdadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6970d65ede623624339d8c8c084215b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a6970d65ede623624339d8c8c084215b9">hasAirport</a> (const string &amp;code) const</td></tr>
 <tr class="memdesc:a6970d65ede623624339d8c8c084215b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the airport with the given code is in the database.  <a href="classDatabase.html#a6970d65ede623624339d8c8c084215b9">More...</a><br /></td></tr>
@@ -127,7 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a23e3bf0b70a35f9c25625650e464133d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes in two vectors of strings representing the source and destination airports, and a set of airlines. It then prints all the paths from the source airports to the destination airports that can be taken by using any of the specified airlines.  <a href="classDatabase.html#a23e3bf0b70a35f9c25625650e464133d">More...</a><br /></td></tr>
 <tr class="separator:a23e3bf0b70a35f9c25625650e464133d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class that contains the data management methods and useful data structures. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a4703c80e6969d33565ea340f768fdadf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4703c80e6969d33565ea340f768fdadf">&#9670;&nbsp;</a></span>Database()</h2>
 
@@ -143,7 +150,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Constructor that initializes the <a class="el" href="classDatabase.html">Database</a> by loading all data from the dataset files into memory. </p>
+<p>Constructor that initializes the <a class="el" href="classDatabase.html" title="Class that contains the data management methods and useful data structures.">Database</a> by loading all data from the dataset files into memory. </p>
 <p>Time complexity: O(N+M+P+Q), where N is the number of lines in the airports.csv file, M is the number of lines in the airlines.csv file, P is the number of lines in the flights.csv file and Q is the number of lines in the worldcities.csv file </p>
 
 </div>

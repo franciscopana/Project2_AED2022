@@ -1,7 +1,6 @@
 var searchData=
 [
-  ['listdepartingairlines_36',['listDepartingAirlines',['../classMenu.html#a5ef22df953ad63972735dee250e3dc99',1,'Menu']]],
-  ['listreachableairports_37',['listReachableAirports',['../classMenu.html#a41abf30cb8743142d00873f8c3af596c',1,'Menu']]],
-  ['listreachablecities_38',['listReachableCities',['../classMenu.html#ae64d1e6ea9cd3006293e469f6b74fbe5',1,'Menu']]],
-  ['listreachablecountries_39',['listReachableCountries',['../classMenu.html#a6a3369a43712578b3e1865aca76b39d2',1,'Menu']]]
+  ['hasairline_34',['hasAirline',['../classDatabase.html#af441bddf0f68bcf4a2a9abee130f7916',1,'Database']]],
+  ['hasairport_35',['hasAirport',['../classDatabase.html#a6970d65ede623624339d8c8c084215b9',1,'Database::hasAirport()'],['../classGraph.html#ae7a601a64fc3fbabed81dab1343b187d',1,'Graph::hasAirport()']]],
+  ['hascity_36',['hasCity',['../classDatabase.html#afccd747f544f62f66b7d529229218a2f',1,'Database']]]
 ];

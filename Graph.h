@@ -11,13 +11,22 @@
 #include "Airport.h"
 
 using namespace std;
-
+/**
+ * @struct Edge
+ * @brief represents a connection between two nodes of the graph. In this context, it represents the connections betwwen
+ * 2 aiports, containing the airlines that do this flight and the distance between the 2 airports
+ */
 struct Edge {
     string destAirport;
     set<string> airlines;
     double distance;
 };
 
+/**
+ * @struct Node
+ * @brief represents a airport (from Aiport class), containing a list of edges. This list is all the flights that depart from
+ * this airport
+ */
 struct Node {
     Airport* airport;
     list<Edge> edges;
@@ -33,6 +42,9 @@ struct Node {
     }
 };
 
+/**
+ * @struct vertexDistance
+ */
 struct vertexDistance{
     Node* node;
     double distance;

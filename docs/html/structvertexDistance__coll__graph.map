@@ -1,5 +1,5 @@
 <map id="vertexDistance" name="vertexDistance">
 <area shape="rect" id="node1" title=" " alt="" coords="5,184,127,211"/>
-<area shape="rect" id="node2" href="$structNode.html" title=" " alt="" coords="38,95,94,121"/>
+<area shape="rect" id="node2" href="$structNode.html" title="represents a airport (from Aiport class), containing a list of edges. This list is all the flights th..." alt="" coords="38,95,94,121"/>
 <area shape="rect" id="node3" href="$classAirport.html" title="Class that represents an airport." alt="" coords="33,5,99,32"/>
 </map>

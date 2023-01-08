@@ -6,7 +6,7 @@
 
 using namespace std;
 
-/*
+/**
  * @class City
  * @brief Class that represents a city
 */
