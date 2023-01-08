@@ -56,6 +56,7 @@ public:
     void printCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     void printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy);
     void printPaths(vector <string> &source, vector <string> &destination, set<string>& airlines);
+    void printFlightsFrom(string& airportCode);
 };
 
 #endif //TRABALHO2_DATABASE_H

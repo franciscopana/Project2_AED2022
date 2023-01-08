@@ -203,3 +203,22 @@ Airport* Graph::getAirport(const string& airportCode) const{
     }
     return nullptr;
 }
+
+void Graph::printEdges(string &airportCode) {
+    auto it = nodes.find(airportCode);
+    if(it != nodes.end()){
+        for(auto& edge : it->second.edges){
+            Airport* destAirport = getAirport(edge.destAirport);
+            destAirport->printHeader();
+            cout << "\t|  Airlines: ";
+            for(auto& airline : edge.airlines){
+                cout << airline << " ";
+            }
+            cout << endl;
+        }
+        cout << endl;
+    }
+    else{
+        cout << "Airport not found." << endl;
+    }
+}

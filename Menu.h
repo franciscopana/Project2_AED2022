@@ -21,6 +21,7 @@ public:
     void listReachableCities(string code, set<string>& airlines);
     void listReachableCountries(string code, set<string>& airlines);
     void listDepartingAirlines(string code);
+    void listFlightsDepartingFrom(string code);
 
     bool getYesOrNo();
     set<string> getAirlines();

@@ -63,6 +63,8 @@ public:
 
     // Getters
     Airport* getAirport(const string& airportCode) const;
+
+    void printEdges(string& airportCode);
 };
 
 

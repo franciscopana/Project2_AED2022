@@ -1,5 +1,4 @@
 #include <iomanip>
-#include <limits>
 #include "Database.h"
 
 /*    Loaders    */
@@ -406,4 +405,8 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
     for (int i = 0; i < numberToShow; i++) {
         printRoute(paths[i], airlinesToSearch);
     }
+}
+
+void Database::printFlightsFrom(string &airportCode) {
+    flights.printEdges(airportCode);
 }
