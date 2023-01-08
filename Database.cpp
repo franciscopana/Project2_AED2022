@@ -233,6 +233,9 @@ vector<string> Database::getAirportsCodeFromCity(const string& city, double radi
         c = cities[option-1];
     }
     vector<string> airports = getAirportsCodeFromCoordinates(c->getLatitude(), c->getLongitude(), radius);
+    if(airports.empty()){
+        airports.emplace_back("not found");
+    }
     return airports;
 }
 

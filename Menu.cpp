@@ -345,6 +345,10 @@ vector<string> Menu::getAirportsCode() {
 
         double radius = 100;
         result = database.getAirportsCodeFromCity(input, radius);
+        if(!result.empty() && result[0] == "not found") {
+            cout << "No airports found in a radius of " << radius << " km. Try again: ";
+            continue;
+        }
         if (!result.empty()) return result;
 
         regex coordinateRegex(R"(^(-?\d+(?:.\d+)?),(-?\d+(?:.\d+)?)$)");
