@@ -57,6 +57,8 @@ bool includes(set<string> &set1, set<string> &set2){
 }
 
 vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string>& airlines){
+    for(auto &node : nodes){node.second.visited = false;}
+
     vector<vector<Node*>> airports;
 
     int numSteps = 0;
@@ -101,6 +103,7 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string
 }
 
 vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
+    for(auto &node : nodes){node.second.visited = false;}
     vector<pair<stack<Node*>, int>> allPaths;
 
     vector<Node*> srcNodes;
