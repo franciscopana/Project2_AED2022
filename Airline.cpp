@@ -15,18 +15,10 @@ string Airline::getName() {
     return this->name;
 }
 
-string Airline::getCallSign() {
-    return this->callSign;
-}
-
 string Airline::getCountry() {
     return this->country;
 }
 
 bool Airline::operator<(const Airline& other) {
     return this->code < other.code;
-}
-
-void Airline::print() {
-    cout << "Code: " << code << "  |  Name: " << name << "  |  Call Sign: " << callSign << "  |  Country: " << country << endl;
 }

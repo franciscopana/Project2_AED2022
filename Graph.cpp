@@ -27,26 +27,6 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
 }
 
 /*    Searchers    */
-Node* Graph::getNode(string& airportCode) {
-    auto it = nodes.find(airportCode);
-    if (it != nodes.end()) {
-        return &it->second;
-    }
-    return nullptr;
-}
-
-const unordered_map<string, Node>& Graph::getNodes() {
-    return nodes;
-}
-
-list<Edge> Graph::getEdges(string& airportCode) {
-    auto it = nodes.find(airportCode);
-    if (it != nodes.end()) {
-        return it->second.edges;
-    }
-    return {};
-}
-
 bool includes(set<string> &set1, set<string> &set2){
     for(auto &element : set1){
         if(set2.find(element) != set2.end()){
@@ -193,6 +173,26 @@ vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, 
 
 bool Graph::hasAirport(const string& airportCode) const{
     return getAirport(airportCode) != nullptr;
+}
+
+Node* Graph::getNode(string& airportCode) {
+    auto it = nodes.find(airportCode);
+    if (it != nodes.end()) {
+        return &it->second;
+    }
+    return nullptr;
+}
+
+const unordered_map<string, Node>& Graph::getNodes() {
+    return nodes;
+}
+
+list<Edge> Graph::getEdges(string& airportCode) {
+    auto it = nodes.find(airportCode);
+    if (it != nodes.end()) {
+        return it->second.edges;
+    }
+    return {};
 }
 
 Airport* Graph::getAirport(const string& airportCode) const{

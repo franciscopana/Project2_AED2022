@@ -340,17 +340,15 @@ vector<string> Menu::getAirportsCode() {
         getline(cin, input);
 
         vector<string> result;
-        result = database.getAiportsCodeFromString(input);
-        if(!result.empty()) return result;
 
-        double radius = 120;
-        result = database.getAirportsCodeFromCity(input, radius);
-        if(!result.empty() && result[0] == "not found") {
-            cout << "No airports found in a radius of " << radius << " km. Try again: ";
-            continue;
+        //airport code
+        if(input.length()==3 && all_of(input.begin(), input.end(), ::isalpha)){
+            result = database.getAiportsCodeFromString(input);
+            if(!result.empty()) return result;
         }
-        if (!result.empty()) return result;
 
+        //Coordinates
+        double radius = 120;
         regex coordinateRegex(R"(^(-?\d+(?:.\d+)?),(-?\d+(?:.\d+)?)$)");
         smatch coordinateMatch;
         if (regex_search(input, coordinateMatch, coordinateRegex)) {
@@ -360,6 +358,14 @@ vector<string> Menu::getAirportsCode() {
             }
             cout << "No airports found in a "<< radius << " km radius of the coordinates " << coordinateMatch[1] << ", " << coordinateMatch[2] << endl;
         }
+
+        //City
+        result = database.getAirportsCodeFromCity(input, radius);
+        if(!result.empty() && result[0] == "not found") {
+            cout << "No airports found in a radius of " << radius << " km. Try again: ";
+            continue;
+        }
+        if (!result.empty()) return result;
 
         if(!input.empty()) {
             cout << "It must either be the name of a city, a set of airports code or a pair of coordinates. Try again: ";

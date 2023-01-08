@@ -60,10 +60,6 @@ bool Airport::operator<(const Airport& other) {
     return this->code < other.code;
 }
 
-void Airport::print() const {
-    cout << "Code: " << code << "  |  Name: " << name << "  |  City: " << city << "  |  Country: " << country << "  |  Latitude: " << latitude << "  |  Longitude: " << longitude << endl;
-}
-
 void Airport::printHeader() const{
     cout << name << " (" << code << "), " << city  << ", " << country;
 }

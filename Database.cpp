@@ -139,22 +139,6 @@ bool Database::hasAirline(const string &code) const {
     return codeAirlines.find(code) != codeAirlines.end() || nameAirlines.find(code) != nameAirlines.end();
 }
 
-bool Database::hasCity(const string &city) const {
-    return citiesAirports.find(city) != citiesAirports.end();
-}
-
-/*    Getters    */
-vector<string> Database::getAirportsCodeFromCity(const string& city) const {
-    vector<string> airports;
-    auto cityIt = citiesAirports.find(city);
-    if (cityIt != citiesAirports.end()) {
-        for (auto airport : cityIt->second) {
-            airports.push_back(airport->getCode());
-        }
-    }
-    return airports;
-}
-
 vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,const double longitude, double radius) {
     vector<string> airports;
 

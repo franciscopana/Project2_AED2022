@@ -15,10 +15,12 @@ private:
 
 public:
     City(string& name, string& country, double latitude, double longitude) : name(name), country(country), latitude(latitude), longitude(longitude) {};
+
     double getLatitude() const { return latitude; }
     double getLongitude() const { return longitude; }
-    void print() const;
     string getName() const { return name; }
+
+    void print() const;
 };
 
 
