@@ -32,38 +32,6 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
 }
 
 /**
- * @brief Returns the node with the given airport code
- * @details Time complexity: O(1)
-*/
-Node* Graph::getNode(string& airportCode) {
-    auto it = nodes.find(airportCode);
-    if (it != nodes.end()) {
-        return &it->second;
-    }
-    return nullptr;
-}
-
-/**
- * @brief Returns a list with all the references for the nodes in the graph
- * @details Time complexity: O(1)
-*/
-const unordered_map<string, Node>& Graph::getNodes() {
-    return nodes;
-}
-
-/**
- * @brief Returns a list with all the edges of the node with the given airport code
- * @details Time complexity: O(1)
-*/
-list<Edge> Graph::getEdges(string& airportCode) {
-    auto it = nodes.find(airportCode);
-    if (it != nodes.end()) {
-        return it->second.edges;
-    }
-    return {};
-}
-
-/**
  * @brief Returns true if there's an element in the set1 that is also in the set2
  * @details Time complexity: O(N log(M)), where N is the number of elements in the set1 and M is the number of elements in the set2
 */
@@ -81,6 +49,8 @@ bool includes(set<string> &set1, set<string> &set2){
  * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
 */
 vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string>& airlines){
+    for(auto &node : nodes){node.second.visited = false;}
+
     vector<vector<Node*>> airports;
 
     int numSteps = 0;
@@ -129,6 +99,7 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string
  * @details Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights)
 */
 vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
+    for(auto &node : nodes){node.second.visited = false;}
     vector<pair<stack<Node*>, int>> allPaths;
 
     vector<Node*> srcNodes;
@@ -222,6 +193,38 @@ vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, 
 */
 bool Graph::hasAirport(const string& airportCode) const{
     return getAirport(airportCode) != nullptr;
+}
+
+/**
+ * @brief Returns the node with the given airport code
+ * @details Time complexity: O(1)
+*/
+Node* Graph::getNode(string& airportCode) {
+    auto it = nodes.find(airportCode);
+    if (it != nodes.end()) {
+        return &it->second;
+    }
+    return nullptr;
+}
+
+/**
+ * @brief Returns the unordered map of nodes
+ * @details Time complexity: O(1)
+*/
+const unordered_map<string, Node>& Graph::getNodes() {
+    return nodes;
+}
+
+/**
+ * @brief Returns a list with all the edges of the node with the given airport code
+ * @details Time complexity: O(1)
+*/
+list<Edge> Graph::getEdges(string& airportCode) {
+    auto it = nodes.find(airportCode);
+    if (it != nodes.end()) {
+        return it->second.edges;
+    }
+    return {};
 }
 
 /**

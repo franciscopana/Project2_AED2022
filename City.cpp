@@ -10,6 +10,7 @@ City::City(string& name, string& country, double latitude, double longitude){
     this->latitude = latitude;
     this->longitude = longitude;
 }
+
 /**
  * @brief Returns the latitude of the city
  * @details Time complexity: O(1)

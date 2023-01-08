@@ -168,35 +168,13 @@ bool Database::hasAirline(const string &code) const {
 }
 
 /**
- * @brief Returns whether the city with the given name is in the database
- * @details Time complexity: O(1)
-*/
-bool Database::hasCity(const string &city) const {
-    return citiesAirports.find(city) != citiesAirports.end();
-}
-
-/**
- * @brief Returns a vector of airport codes for all airports in the given city
- * @details Time complexity: O(H), where H is the number of airports in the given city
-*/
-vector<string> Database::getAirportsCodeFromCity(const string& city) const {
-    vector<string> airports;
-    auto cityIt = citiesAirports.find(city);
-    if (cityIt != citiesAirports.end()) {
-        for (auto airport : cityIt->second) {
-            airports.push_back(airport->getCode());
-        }
-    }
-    return airports;
-}
-
-/**
  * @brief Returns a vector of airport codes for all airports within a certain radius of the given coordinates
  * @details Time complexity: O(Q), where Q is the number of airports in the database
 */
 vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,const double longitude, double radius) {
     vector<string> airports;
-    for(auto& node: flights.getNodes()){
+
+    for(auto node: flights.getNodes()){
         if(node.second.airport->getDistance(latitude, longitude) <= radius){
             airports.push_back(node.second.airport->getCode());
         }
@@ -266,10 +244,10 @@ Airport* Database::getAirport(const string &code) const {
  * @details Time complexity: O(C) + O(Q), where C is the number of cities with the name city and Q is the number of airports in the database
 */
 vector<string> Database::getAirportsCodeFromCity(const string& city, double radius){
-    auto cityIt = citiesCoordinates.find(city); // O(1)
+    auto cityIt = citiesCoordinates.find(city);
     if (cityIt == citiesCoordinates.end()) return {};
 
-    auto cities = cityIt->second; // O(1)
+    auto cities = cityIt->second;
     City* c = cities[0];
     if(cities.size() > 1){
         cout << "Found " << cities.size() << " cities with the name " << city << endl;
@@ -287,10 +265,12 @@ vector<string> Database::getAirportsCodeFromCity(const string& city, double radi
         }
         c = cities[option-1];
     }
-    vector<string> airports = getAirportsCodeFromCoordinates(c->getLatitude(), c->getLongitude(), radius); //O(Q)
+    vector<string> airports = getAirportsCodeFromCoordinates(c->getLatitude(), c->getLongitude(), radius);
+    if(airports.empty()){
+        airports.emplace_back("not found");
+    }
     return airports;
 }
-
 
 /**
  * @brief Returns a vector of airport codes for all airports with codes in the given string
