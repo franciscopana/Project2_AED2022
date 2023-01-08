@@ -343,7 +343,7 @@ vector<string> Menu::getAirportsCode() {
         result = database.getAiportsCodeFromString(input);
         if(!result.empty()) return result;
 
-        double radius = 100;
+        double radius = 120;
         result = database.getAirportsCodeFromCity(input, radius);
         if(!result.empty() && result[0] == "not found") {
             cout << "No airports found in a radius of " << radius << " km. Try again: ";
