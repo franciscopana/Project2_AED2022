@@ -6,6 +6,11 @@
 
 using namespace std;
 
+/**
+ * @class Airport
+ * @brief Class that represents an airport
+ */
+
 class Airport {
 private:
     string name;
@@ -17,6 +22,7 @@ private:
 
 public:
     Airport(string& code, string& name, string& city , string& country, float latitude, float longitude);
+
     string getName();
     string getCode();
     string getCity();
@@ -28,7 +34,6 @@ public:
 
     bool operator<(const Airport& other);
 
-    void print() const;
     void printHeader() const;
 };
 

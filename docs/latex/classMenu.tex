@@ -1,0 +1,74 @@
+\hypertarget{classMenu}{}\doxysection{Menu Class Reference}
+\label{classMenu}\index{Menu@{Menu}}
+
+
+\mbox{\hyperlink{classMenu}{Menu}} class, where the user can interact with the program.  
+
+
+
+
+{\ttfamily \#include $<$Menu.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classMenu_ad9ce6d538552c465bbc0b419698d54a6}\label{classMenu_ad9ce6d538552c465bbc0b419698d54a6}} 
+{\bfseries Menu} (\mbox{\hyperlink{classDatabase}{Database}} \&database)
+\item 
+\mbox{\Hypertarget{classMenu_ae0847106277525ea47757d56c3c40273}\label{classMenu_ae0847106277525ea47757d56c3c40273}} 
+void \mbox{\hyperlink{classMenu_ae0847106277525ea47757d56c3c40273}{show\+Initial\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Shows the main menu and allows the user to choose between searching for flights or airports. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_ae40ae9c2a8782519c1653ffbfda512e0}\label{classMenu_ae40ae9c2a8782519c1653ffbfda512e0}} 
+void \mbox{\hyperlink{classMenu_ae40ae9c2a8782519c1653ffbfda512e0}{show\+Search\+Flights\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Shows a menu for searching for flights and allows the user to inputthe origin, destination (can be airport codes, cities or coordinates) and if he wants, desired airlines. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_a3c7f47eeb29200a23ecf6d9b880f6d79}\label{classMenu_a3c7f47eeb29200a23ecf6d9b880f6d79}} 
+void \mbox{\hyperlink{classMenu_a3c7f47eeb29200a23ecf6d9b880f6d79}{show\+Search\+Airports\+Menu}} ()
+\begin{DoxyCompactList}\small\item\em Shows a menu for searching for airports and allows the user to choose between different options for querying information about the airport. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_a41abf30cb8743142d00873f8c3af596c}\label{classMenu_a41abf30cb8743142d00873f8c3af596c}} 
+void \mbox{\hyperlink{classMenu_a41abf30cb8743142d00873f8c3af596c}{list\+Reachable\+Airports}} (string code, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Lists the airports that can be reached from the given airport code, with the given airlines. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_ae64d1e6ea9cd3006293e469f6b74fbe5}\label{classMenu_ae64d1e6ea9cd3006293e469f6b74fbe5}} 
+void \mbox{\hyperlink{classMenu_ae64d1e6ea9cd3006293e469f6b74fbe5}{list\+Reachable\+Cities}} (string code, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Lists the cities that can be reached from the given airport code, with the given airlines. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_a6a3369a43712578b3e1865aca76b39d2}\label{classMenu_a6a3369a43712578b3e1865aca76b39d2}} 
+void \mbox{\hyperlink{classMenu_a6a3369a43712578b3e1865aca76b39d2}{list\+Reachable\+Countries}} (string code, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Lists the countries that can be reached from the given airport code, with the given airlines. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_a5ef22df953ad63972735dee250e3dc99}\label{classMenu_a5ef22df953ad63972735dee250e3dc99}} 
+void \mbox{\hyperlink{classMenu_a5ef22df953ad63972735dee250e3dc99}{list\+Departing\+Airlines}} (string code)
+\begin{DoxyCompactList}\small\item\em Lists the number of different airlines that depart from the given airport code. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_a234f6995359de6ec39476a40f87cd83b}\label{classMenu_a234f6995359de6ec39476a40f87cd83b}} 
+bool \mbox{\hyperlink{classMenu_a234f6995359de6ec39476a40f87cd83b}{get\+Yes\+Or\+No}} ()
+\begin{DoxyCompactList}\small\item\em Asks the user to input whether they want to proceed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_a7349939d8780ab398fd3974efd8b42cd}\label{classMenu_a7349939d8780ab398fd3974efd8b42cd}} 
+set$<$ string $>$ \mbox{\hyperlink{classMenu_a7349939d8780ab398fd3974efd8b42cd}{get\+Airlines}} ()
+\begin{DoxyCompactList}\small\item\em Asks the user to input the desired airlines (either by name or code) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_adec955731e9b9f979ee7e4b9c42ad2fe}\label{classMenu_adec955731e9b9f979ee7e4b9c42ad2fe}} 
+int \mbox{\hyperlink{classMenu_adec955731e9b9f979ee7e4b9c42ad2fe}{get\+Number\+Of\+Flights}} ()
+\begin{DoxyCompactList}\small\item\em Asks the user to input the number of flights they are willing to make. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classMenu_aceba5f10de19234bbba2e5caa61fa419}{get\+Airports\+Code}} ()
+\begin{DoxyCompactList}\small\item\em Prompts the user for a name of a city, a set of airports or a pair of coordinates code and returns a vector of airport Codes. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classMenu_ac134c936a9bad80b5f52d58994c01b80}\label{classMenu_ac134c936a9bad80b5f52d58994c01b80}} 
+string \mbox{\hyperlink{classMenu_ac134c936a9bad80b5f52d58994c01b80}{get\+Airport\+Code}} ()
+\begin{DoxyCompactList}\small\item\em Prompts the user for an airport code and returns it (If the user inputs an invalid code, it will ask again) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classMenu}{Menu}} class, where the user can interact with the program. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classMenu_aceba5f10de19234bbba2e5caa61fa419}\label{classMenu_aceba5f10de19234bbba2e5caa61fa419}} 
+\index{Menu@{Menu}!getAirportsCode@{getAirportsCode}}
+\index{getAirportsCode@{getAirportsCode}!Menu@{Menu}}
+\doxysubsubsection{\texorpdfstring{getAirportsCode()}{getAirportsCode()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Menu\+::get\+Airports\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prompts the user for a name of a city, a set of airports or a pair of coordinates code and returns a vector of airport Codes. 
+
+If the user inputs an invalid location, it will ask again 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Menu.\+h\item 
+Menu.\+cpp\end{DoxyCompactItemize}

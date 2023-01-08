@@ -1,0 +1,161 @@
+\hypertarget{classAirport}{}\doxysection{Airport Class Reference}
+\label{classAirport}\index{Airport@{Airport}}
+
+
+Class that represents an airport.  
+
+
+
+
+{\ttfamily \#include $<$Airport.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classAirport_a221e4131d9bb4a9a6f9eaabd22e265f7}{Airport}} (string \&code, string \&name, string \&city, string \&country, float latitude, float longitude)
+\begin{DoxyCompactList}\small\item\em Class constructor that sets code, name, city, country, latitude and longitude. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classAirport_a939b886a8a9675e22418f2c9a490bdcb}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Returns the name of the airport. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classAirport_add9b3ea6f8849f6167f5a70a9280781a}{get\+Code}} ()
+\begin{DoxyCompactList}\small\item\em Returns the code of the airport. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classAirport_a7dc058132336ea1b211323730fc44148}{get\+City}} ()
+\begin{DoxyCompactList}\small\item\em Returns the city of the airport. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classAirport_a82e555b62c9af6c729a6d3c7fb8ae8c4}{get\+Country}} ()
+\begin{DoxyCompactList}\small\item\em Returns the country in which the airport is located. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classAirport_afcff199f6f786aa4ee3c15cb2f195487}{get\+Latitude}} ()
+\begin{DoxyCompactList}\small\item\em Returns the latitude of the airport. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classAirport_a5d31cceec2a7de9fb902afeda997c3ff}{get\+Longitude}} ()
+\begin{DoxyCompactList}\small\item\em Returns the longitude of the airport. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classAirport_a0041c0c430a3e68e4319e53020975ed6}{get\+Distance}} (\mbox{\hyperlink{classAirport}{Airport}} $\ast$other)
+\begin{DoxyCompactList}\small\item\em Using the haversine formula returns the distance (in kilometers) between two airports. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{classAirport_a7c76e57ff6d3f04307ac8a11972b3c13}{get\+Distance}} (double latitude, double longitude)
+\begin{DoxyCompactList}\small\item\em Using the haversine formula returns the distance (in kilometers) between an airport and a given the latitude and longitude. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAirport_abc78cfd275efe2944c021f5f3cf56130}{operator$<$}} (const \mbox{\hyperlink{classAirport}{Airport}} \&other)
+\begin{DoxyCompactList}\small\item\em Overloads the {\ttfamily $<$} operator for {\ttfamily \mbox{\hyperlink{classAirport}{Airport}}} objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAirport_a895022914a9a654bb0c104f9e69c3544}{print\+Header}} () const
+\begin{DoxyCompactList}\small\item\em Prints a brief summary of the airport\textquotesingle{}s information (name, code, city and country) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that represents an airport. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAirport_a221e4131d9bb4a9a6f9eaabd22e265f7}\label{classAirport_a221e4131d9bb4a9a6f9eaabd22e265f7}} 
+\index{Airport@{Airport}!Airport@{Airport}}
+\index{Airport@{Airport}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{Airport()}{Airport()}}
+{\footnotesize\ttfamily Airport\+::\+Airport (\begin{DoxyParamCaption}\item[{string \&}]{code,  }\item[{string \&}]{name,  }\item[{string \&}]{city,  }\item[{string \&}]{country,  }\item[{float}]{latitude,  }\item[{float}]{longitude }\end{DoxyParamCaption})}
+
+
+
+Class constructor that sets code, name, city, country, latitude and longitude. 
+
+Time complexity\+: O(1) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAirport_a7dc058132336ea1b211323730fc44148}\label{classAirport_a7dc058132336ea1b211323730fc44148}} 
+\index{Airport@{Airport}!getCity@{getCity}}
+\index{getCity@{getCity}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{getCity()}{getCity()}}
+{\footnotesize\ttfamily string Airport\+::get\+City (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the city of the airport. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirport_add9b3ea6f8849f6167f5a70a9280781a}\label{classAirport_add9b3ea6f8849f6167f5a70a9280781a}} 
+\index{Airport@{Airport}!getCode@{getCode}}
+\index{getCode@{getCode}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{getCode()}{getCode()}}
+{\footnotesize\ttfamily string Airport\+::get\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the code of the airport. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirport_a82e555b62c9af6c729a6d3c7fb8ae8c4}\label{classAirport_a82e555b62c9af6c729a6d3c7fb8ae8c4}} 
+\index{Airport@{Airport}!getCountry@{getCountry}}
+\index{getCountry@{getCountry}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{getCountry()}{getCountry()}}
+{\footnotesize\ttfamily string Airport\+::get\+Country (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the country in which the airport is located. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirport_a0041c0c430a3e68e4319e53020975ed6}\label{classAirport_a0041c0c430a3e68e4319e53020975ed6}} 
+\index{Airport@{Airport}!getDistance@{getDistance}}
+\index{getDistance@{getDistance}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{getDistance()}{getDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily double Airport\+::get\+Distance (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classAirport}{Airport}} $\ast$}]{other }\end{DoxyParamCaption})}
+
+
+
+Using the haversine formula returns the distance (in kilometers) between two airports. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirport_a7c76e57ff6d3f04307ac8a11972b3c13}\label{classAirport_a7c76e57ff6d3f04307ac8a11972b3c13}} 
+\index{Airport@{Airport}!getDistance@{getDistance}}
+\index{getDistance@{getDistance}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{getDistance()}{getDistance()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily double Airport\+::get\+Distance (\begin{DoxyParamCaption}\item[{double}]{latitude,  }\item[{double}]{longitude }\end{DoxyParamCaption})}
+
+
+
+Using the haversine formula returns the distance (in kilometers) between an airport and a given the latitude and longitude. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirport_afcff199f6f786aa4ee3c15cb2f195487}\label{classAirport_afcff199f6f786aa4ee3c15cb2f195487}} 
+\index{Airport@{Airport}!getLatitude@{getLatitude}}
+\index{getLatitude@{getLatitude}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{getLatitude()}{getLatitude()}}
+{\footnotesize\ttfamily double Airport\+::get\+Latitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the latitude of the airport. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirport_a5d31cceec2a7de9fb902afeda997c3ff}\label{classAirport_a5d31cceec2a7de9fb902afeda997c3ff}} 
+\index{Airport@{Airport}!getLongitude@{getLongitude}}
+\index{getLongitude@{getLongitude}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{getLongitude()}{getLongitude()}}
+{\footnotesize\ttfamily double Airport\+::get\+Longitude (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the longitude of the airport. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirport_a939b886a8a9675e22418f2c9a490bdcb}\label{classAirport_a939b886a8a9675e22418f2c9a490bdcb}} 
+\index{Airport@{Airport}!getName@{getName}}
+\index{getName@{getName}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Airport\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the name of the airport. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirport_abc78cfd275efe2944c021f5f3cf56130}\label{classAirport_abc78cfd275efe2944c021f5f3cf56130}} 
+\index{Airport@{Airport}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Airport\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classAirport}{Airport}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Overloads the {\ttfamily $<$} operator for {\ttfamily \mbox{\hyperlink{classAirport}{Airport}}} objects. 
+
+Returns true if {\ttfamily this} airport\textquotesingle{}s code is less than {\ttfamily other} airport\textquotesingle{}s code, and false otherwise. Time complexity\+: O(1) \mbox{\Hypertarget{classAirport_a895022914a9a654bb0c104f9e69c3544}\label{classAirport_a895022914a9a654bb0c104f9e69c3544}} 
+\index{Airport@{Airport}!printHeader@{printHeader}}
+\index{printHeader@{printHeader}!Airport@{Airport}}
+\doxysubsubsection{\texorpdfstring{printHeader()}{printHeader()}}
+{\footnotesize\ttfamily void Airport\+::print\+Header (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Prints a brief summary of the airport\textquotesingle{}s information (name, code, city and country) 
+
+Time complexity\+: O(1) 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Airport.\+h\item 
+Airport.\+cpp\end{DoxyCompactItemize}

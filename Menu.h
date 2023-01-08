@@ -7,6 +7,10 @@
 
 using namespace std;
 
+/**
+ * @class Menu
+ * @brief Menu class, where the user can interact with the program.
+ */
 class Menu {
 private:
     Database database;
@@ -17,6 +21,7 @@ public:
     void showInitialMenu();
     void showSearchFlightsMenu();
     void showSearchAirportsMenu();
+
     void listReachableAirports(string code, set<string>& airlines);
     void listReachableCities(string code, set<string>& airlines);
     void listReachableCountries(string code, set<string>& airlines);

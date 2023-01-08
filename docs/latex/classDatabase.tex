@@ -1,0 +1,221 @@
+\hypertarget{classDatabase}{}\doxysection{Database Class Reference}
+\label{classDatabase}\index{Database@{Database}}
+
+
+Class that contains the data management methods and useful data structures.  
+
+
+
+
+{\ttfamily \#include $<$Database.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classDatabase_a4703c80e6969d33565ea340f768fdadf}{Database}} ()
+\begin{DoxyCompactList}\small\item\em Constructor that initializes the \mbox{\hyperlink{classDatabase}{Database}} by loading all data from the dataset files into memory. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDatabase_a6970d65ede623624339d8c8c084215b9}{has\+Airport}} (const string \&code) const
+\begin{DoxyCompactList}\small\item\em Returns whether the airport with the given code is in the database. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classDatabase_af441bddf0f68bcf4a2a9abee130f7916}{has\+Airline}} (const string \&code) const
+\begin{DoxyCompactList}\small\item\em Returns whether the airline with the given code is in the database. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classDatabase_ab5fcc976c49c48bf1f9dcf897a9acfae}{get\+Airports\+Code\+From\+Coordinates}} (double latitude, double longitude, double radius)
+\begin{DoxyCompactList}\small\item\em Returns a vector of airport codes for all airports within a certain radius of the given coordinates. \end{DoxyCompactList}\item 
+vector$<$ set$<$ string $>$ $>$ \mbox{\hyperlink{classDatabase_a31995eb0b62df5a43185dfa04412172e}{get\+Cities\+Reachable\+From}} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Returns a vector of sets of cities that can be reached from the given airport within a certain number of flights and using only the given airlines. \end{DoxyCompactList}\item 
+vector$<$ set$<$ string $>$ $>$ \mbox{\hyperlink{classDatabase_a0616efd0bf4cc2decf714984f0aa293a}{get\+Countries\+Reachable\+From}} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Returns a vector of sets of countries that can be reached from the given airport within a certain number of flights and using only the given airlines. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAirport}{Airport}} $\ast$ \mbox{\hyperlink{classDatabase_a000864aaa2edcda626f60b323f872716}{get\+Airport}} (const string \&code) const
+\begin{DoxyCompactList}\small\item\em Returns a pointer to the airport with the given code. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classDatabase_a2b210decbe77fa9161bcd77812e1d1a6}{get\+Airports\+Code\+From\+City}} (const string \&city, double radius)
+\begin{DoxyCompactList}\small\item\em Returns a vector of airport codes for all airports within a certain radius of the given city. \end{DoxyCompactList}\item 
+vector$<$ string $>$ \mbox{\hyperlink{classDatabase_a73ab56e56978207aedb181775263d492}{get\+Aiports\+Code\+From\+String}} (const string \&codes) const
+\begin{DoxyCompactList}\small\item\em Returns a vector of airport codes for all airports with codes in the given string. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classDatabase_a2a72a3f4a08a15b20a2467d4ef448e3a}{get\+Airline\+Code}} (const string \&name) const
+\begin{DoxyCompactList}\small\item\em Prints a list of all airlines that fly to the given airport. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDatabase_a05f79e269875588b2bc61b645ce95fd9}{print\+Airlines\+From\+Airport}} (string \&airport\+Code)
+\begin{DoxyCompactList}\small\item\em Prints the different airlines that fly from the given airport. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDatabase_a14d713eb4899725456c8dd2aa828ad52}{print\+Airports\+Reachable\+From}} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Prints a list of all airports that can be reached from the given airport within a certain number of flights and using only the given airlines. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDatabase_a29c67a04b89e0a853ad2b98cb90d87af}{print\+Cities\+Reachable\+From}} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Prints a list of cities that are reachable from the airport within the given number of flights, using only the specified airlines. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDatabase_a8b0ce11ae5d4c1d53cb5ef6e6f178b36}{print\+Countries\+Reachable\+From}} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Prints a list of countries that are reachable from the airport within the given number of flights, using only the specified airlines. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDatabase_aa0543994406849306b8d211ece7ea70a}{print\+Route}} (pair$<$ stack$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$, int $>$ \&p, set$<$ string $>$ \&airlines\+To\+FLy)
+\begin{DoxyCompactList}\small\item\em Given a pair of a stack of nodes and a distance, this method prints the route taken and the total distance of the route. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classDatabase_a23e3bf0b70a35f9c25625650e464133d}{print\+Paths}} (vector$<$ string $>$ \&source, vector$<$ string $>$ \&destination, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em This method takes in two vectors of strings representing the source and destination airports, and a set of airlines. It then prints all the paths from the source airports to the destination airports that can be taken by using any of the specified airlines. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Class that contains the data management methods and useful data structures. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classDatabase_a4703c80e6969d33565ea340f768fdadf}\label{classDatabase_a4703c80e6969d33565ea340f768fdadf}} 
+\index{Database@{Database}!Database@{Database}}
+\index{Database@{Database}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{Database()}{Database()}}
+{\footnotesize\ttfamily Database\+::\+Database (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructor that initializes the \mbox{\hyperlink{classDatabase}{Database}} by loading all data from the dataset files into memory. 
+
+Time complexity\+: O(N+\+M+\+P+Q), where N is the number of lines in the airports.\+csv file, M is the number of lines in the airlines.\+csv file, P is the number of lines in the flights.\+csv file and Q is the number of lines in the worldcities.\+csv file 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classDatabase_a73ab56e56978207aedb181775263d492}\label{classDatabase_a73ab56e56978207aedb181775263d492}} 
+\index{Database@{Database}!getAiportsCodeFromString@{getAiportsCodeFromString}}
+\index{getAiportsCodeFromString@{getAiportsCodeFromString}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getAiportsCodeFromString()}{getAiportsCodeFromString()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Database\+::get\+Aiports\+Code\+From\+String (\begin{DoxyParamCaption}\item[{const string \&}]{input }\end{DoxyParamCaption}) const}
+
+
+
+Returns a vector of airport codes for all airports with codes in the given string. 
+
+Time complexity\+: O(\+M) \mbox{\Hypertarget{classDatabase_a2a72a3f4a08a15b20a2467d4ef448e3a}\label{classDatabase_a2a72a3f4a08a15b20a2467d4ef448e3a}} 
+\index{Database@{Database}!getAirlineCode@{getAirlineCode}}
+\index{getAirlineCode@{getAirlineCode}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getAirlineCode()}{getAirlineCode()}}
+{\footnotesize\ttfamily string Database\+::get\+Airline\+Code (\begin{DoxyParamCaption}\item[{const string \&}]{name }\end{DoxyParamCaption}) const}
+
+
+
+Prints a list of all airlines that fly to the given airport. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_a000864aaa2edcda626f60b323f872716}\label{classDatabase_a000864aaa2edcda626f60b323f872716}} 
+\index{Database@{Database}!getAirport@{getAirport}}
+\index{getAirport@{getAirport}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getAirport()}{getAirport()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAirport}{Airport}} $\ast$ Database\+::get\+Airport (\begin{DoxyParamCaption}\item[{const string \&}]{code }\end{DoxyParamCaption}) const}
+
+
+
+Returns a pointer to the airport with the given code. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_a2b210decbe77fa9161bcd77812e1d1a6}\label{classDatabase_a2b210decbe77fa9161bcd77812e1d1a6}} 
+\index{Database@{Database}!getAirportsCodeFromCity@{getAirportsCodeFromCity}}
+\index{getAirportsCodeFromCity@{getAirportsCodeFromCity}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getAirportsCodeFromCity()}{getAirportsCodeFromCity()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Database\+::get\+Airports\+Code\+From\+City (\begin{DoxyParamCaption}\item[{const string \&}]{city,  }\item[{double}]{radius }\end{DoxyParamCaption})}
+
+
+
+Returns a vector of airport codes for all airports within a certain radius of the given city. 
+
+Time complexity\+: O(\+C) + O(\+Q), where C is the number of cities with the name city and Q is the number of airports in the database \mbox{\Hypertarget{classDatabase_ab5fcc976c49c48bf1f9dcf897a9acfae}\label{classDatabase_ab5fcc976c49c48bf1f9dcf897a9acfae}} 
+\index{Database@{Database}!getAirportsCodeFromCoordinates@{getAirportsCodeFromCoordinates}}
+\index{getAirportsCodeFromCoordinates@{getAirportsCodeFromCoordinates}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getAirportsCodeFromCoordinates()}{getAirportsCodeFromCoordinates()}}
+{\footnotesize\ttfamily vector$<$ string $>$ Database\+::get\+Airports\+Code\+From\+Coordinates (\begin{DoxyParamCaption}\item[{double}]{latitude,  }\item[{double}]{longitude,  }\item[{double}]{radius }\end{DoxyParamCaption})}
+
+
+
+Returns a vector of airport codes for all airports within a certain radius of the given coordinates. 
+
+Time complexity\+: O(\+Q), where Q is the number of airports in the database \mbox{\Hypertarget{classDatabase_a31995eb0b62df5a43185dfa04412172e}\label{classDatabase_a31995eb0b62df5a43185dfa04412172e}} 
+\index{Database@{Database}!getCitiesReachableFrom@{getCitiesReachableFrom}}
+\index{getCitiesReachableFrom@{getCitiesReachableFrom}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getCitiesReachableFrom()}{getCitiesReachableFrom()}}
+{\footnotesize\ttfamily vector$<$ set$<$ string $>$ $>$ Database\+::get\+Cities\+Reachable\+From (\begin{DoxyParamCaption}\item[{string \&}]{airport\+Code,  }\item[{int}]{n\+Flights,  }\item[{set$<$ string $>$ \&}]{airlines\+To\+Search }\end{DoxyParamCaption})}
+
+
+
+Returns a vector of sets of cities that can be reached from the given airport within a certain number of flights and using only the given airlines. 
+
+Time complexity\+: O(V+E), where V is the number of airports in the database and E is the number of flights in the database \mbox{\Hypertarget{classDatabase_a0616efd0bf4cc2decf714984f0aa293a}\label{classDatabase_a0616efd0bf4cc2decf714984f0aa293a}} 
+\index{Database@{Database}!getCountriesReachableFrom@{getCountriesReachableFrom}}
+\index{getCountriesReachableFrom@{getCountriesReachableFrom}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{getCountriesReachableFrom()}{getCountriesReachableFrom()}}
+{\footnotesize\ttfamily vector$<$ set$<$ string $>$ $>$ Database\+::get\+Countries\+Reachable\+From (\begin{DoxyParamCaption}\item[{string \&}]{airport\+Code,  }\item[{int}]{n\+Flights,  }\item[{set$<$ string $>$ \&}]{airlines\+To\+Search }\end{DoxyParamCaption})}
+
+
+
+Returns a vector of sets of countries that can be reached from the given airport within a certain number of flights and using only the given airlines. 
+
+Time complexity\+: O(V+E), where V is the number of airports in the database and E is the number of flights in the database \mbox{\Hypertarget{classDatabase_af441bddf0f68bcf4a2a9abee130f7916}\label{classDatabase_af441bddf0f68bcf4a2a9abee130f7916}} 
+\index{Database@{Database}!hasAirline@{hasAirline}}
+\index{hasAirline@{hasAirline}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{hasAirline()}{hasAirline()}}
+{\footnotesize\ttfamily bool Database\+::has\+Airline (\begin{DoxyParamCaption}\item[{const string \&}]{code }\end{DoxyParamCaption}) const}
+
+
+
+Returns whether the airline with the given code is in the database. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_a6970d65ede623624339d8c8c084215b9}\label{classDatabase_a6970d65ede623624339d8c8c084215b9}} 
+\index{Database@{Database}!hasAirport@{hasAirport}}
+\index{hasAirport@{hasAirport}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{hasAirport()}{hasAirport()}}
+{\footnotesize\ttfamily bool Database\+::has\+Airport (\begin{DoxyParamCaption}\item[{const string \&}]{code }\end{DoxyParamCaption}) const}
+
+
+
+Returns whether the airport with the given code is in the database. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classDatabase_a05f79e269875588b2bc61b645ce95fd9}\label{classDatabase_a05f79e269875588b2bc61b645ce95fd9}} 
+\index{Database@{Database}!printAirlinesFromAirport@{printAirlinesFromAirport}}
+\index{printAirlinesFromAirport@{printAirlinesFromAirport}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{printAirlinesFromAirport()}{printAirlinesFromAirport()}}
+{\footnotesize\ttfamily void Database\+::print\+Airlines\+From\+Airport (\begin{DoxyParamCaption}\item[{string \&}]{airport\+Code }\end{DoxyParamCaption})}
+
+
+
+Prints the different airlines that fly from the given airport. 
+
+Time complexity\+: O(E + A), where E is the number of edges in the adjacency list of the given airport and A is the number of airlines that fly from the given airport \mbox{\Hypertarget{classDatabase_a14d713eb4899725456c8dd2aa828ad52}\label{classDatabase_a14d713eb4899725456c8dd2aa828ad52}} 
+\index{Database@{Database}!printAirportsReachableFrom@{printAirportsReachableFrom}}
+\index{printAirportsReachableFrom@{printAirportsReachableFrom}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{printAirportsReachableFrom()}{printAirportsReachableFrom()}}
+{\footnotesize\ttfamily void Database\+::print\+Airports\+Reachable\+From (\begin{DoxyParamCaption}\item[{string \&}]{airport\+Code,  }\item[{int}]{n\+Flights,  }\item[{set$<$ string $>$ \&}]{airlines\+To\+Search }\end{DoxyParamCaption})}
+
+
+
+Prints a list of all airports that can be reached from the given airport within a certain number of flights and using only the given airlines. 
+
+Time complexity\+: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) \mbox{\Hypertarget{classDatabase_a29c67a04b89e0a853ad2b98cb90d87af}\label{classDatabase_a29c67a04b89e0a853ad2b98cb90d87af}} 
+\index{Database@{Database}!printCitiesReachableFrom@{printCitiesReachableFrom}}
+\index{printCitiesReachableFrom@{printCitiesReachableFrom}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{printCitiesReachableFrom()}{printCitiesReachableFrom()}}
+{\footnotesize\ttfamily void Database\+::print\+Cities\+Reachable\+From (\begin{DoxyParamCaption}\item[{string \&}]{airport\+Code,  }\item[{int}]{n\+Flights,  }\item[{set$<$ string $>$ \&}]{airlines\+To\+Search }\end{DoxyParamCaption})}
+
+
+
+Prints a list of cities that are reachable from the airport within the given number of flights, using only the specified airlines. 
+
+Time complexity\+: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) \mbox{\Hypertarget{classDatabase_a8b0ce11ae5d4c1d53cb5ef6e6f178b36}\label{classDatabase_a8b0ce11ae5d4c1d53cb5ef6e6f178b36}} 
+\index{Database@{Database}!printCountriesReachableFrom@{printCountriesReachableFrom}}
+\index{printCountriesReachableFrom@{printCountriesReachableFrom}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{printCountriesReachableFrom()}{printCountriesReachableFrom()}}
+{\footnotesize\ttfamily void Database\+::print\+Countries\+Reachable\+From (\begin{DoxyParamCaption}\item[{string \&}]{airport\+Code,  }\item[{int}]{n\+Flights,  }\item[{set$<$ string $>$ \&}]{airlines\+To\+Search }\end{DoxyParamCaption})}
+
+
+
+Prints a list of countries that are reachable from the airport within the given number of flights, using only the specified airlines. 
+
+Time complexity\+: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) \mbox{\Hypertarget{classDatabase_a23e3bf0b70a35f9c25625650e464133d}\label{classDatabase_a23e3bf0b70a35f9c25625650e464133d}} 
+\index{Database@{Database}!printPaths@{printPaths}}
+\index{printPaths@{printPaths}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{printPaths()}{printPaths()}}
+{\footnotesize\ttfamily void Database\+::print\+Paths (\begin{DoxyParamCaption}\item[{vector$<$ string $>$ \&}]{source,  }\item[{vector$<$ string $>$ \&}]{destination,  }\item[{set$<$ string $>$ \&}]{airlines\+To\+Search }\end{DoxyParamCaption})}
+
+
+
+This method takes in two vectors of strings representing the source and destination airports, and a set of airlines. It then prints all the paths from the source airports to the destination airports that can be taken by using any of the specified airlines. 
+
+Time complexity\+: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) \mbox{\Hypertarget{classDatabase_aa0543994406849306b8d211ece7ea70a}\label{classDatabase_aa0543994406849306b8d211ece7ea70a}} 
+\index{Database@{Database}!printRoute@{printRoute}}
+\index{printRoute@{printRoute}!Database@{Database}}
+\doxysubsubsection{\texorpdfstring{printRoute()}{printRoute()}}
+{\footnotesize\ttfamily void Database\+::print\+Route (\begin{DoxyParamCaption}\item[{pair$<$ stack$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$, int $>$ \&}]{p,  }\item[{set$<$ string $>$ \&}]{airlines\+To\+FLy }\end{DoxyParamCaption})}
+
+
+
+Given a pair of a stack of nodes and a distance, this method prints the route taken and the total distance of the route. 
+
+Time complexity\+: O(\+N) where N is the number of nodes in the stack p 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Database.\+h\item 
+Database.\+cpp\end{DoxyCompactItemize}

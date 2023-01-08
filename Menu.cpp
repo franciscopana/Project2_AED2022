@@ -3,7 +3,9 @@
 #include <regex>
 #include "Menu.h"
 
-
+/**
+@brief Shows the main menu and allows the user to choose between searching for flights or airports
+ */
 void Menu::showInitialMenu() {
     cout <<  "WELCOME TO THE FLIGHT SEARCH ENGINE" << endl;
     cout << "Please select an option:" << endl;
@@ -37,6 +39,9 @@ void Menu::showInitialMenu() {
     }
 }
 
+/**
+@brief Shows a menu for searching for flights and allows the user to inputthe origin, destination (can be airport codes, cities or coordinates) and if he wants, desired airlines
+*/
 void Menu::showSearchFlightsMenu() {
     cout << "From: ";
     vector<string> origin = getAirportsCode();
@@ -55,6 +60,9 @@ void Menu::showSearchFlightsMenu() {
     }
 }
 
+/**
+@brief Shows a menu for searching for airports and allows the user to choose between different options for querying information about the airport
+*/
 void Menu::showSearchAirportsMenu() {
     cout << "Please enter the airport code: ";
     string code = getAirportCode();
@@ -67,7 +75,6 @@ void Menu::showSearchAirportsMenu() {
     cout << "2 - How many different cities can be reached from " << code << "?\n";
     cout << "3 - How many different countries can be reached from " << code << "?\n";
     cout << "4 - How many different airlines depart from " << code << "?\n";
-    cout << "5 - How many flights depart from " << code << "?\n";
     cout << ">> ";
 
     set<string> airlines = {};
@@ -107,6 +114,9 @@ void Menu::showSearchAirportsMenu() {
     }
 }
 
+/**
+ * @brief Asks the user to input whether they want to proceed
+*/
 bool Menu::getYesOrNo(){
     string answer;
     cin >> answer;
@@ -117,6 +127,9 @@ bool Menu::getYesOrNo(){
     return (answer == "y" || answer == "Y");
 }
 
+/**
+ * @brief Asks the user to input the desired airlines (either by name or code)
+*/
 set<string> Menu::getAirlines() {
     set<string> airlines;
     cout << "Do you want to filter by airline? (y/n): ";
@@ -142,7 +155,9 @@ set<string> Menu::getAirlines() {
     return airlines;
 }
 
-
+/**
+ * @brief Asks the user to input the number of flights they are willing to make
+*/
 int Menu::getNumberOfFlights(){
     cout << "How many flights are you willing to take? (1 for direct flights): ";
     int flights;
@@ -165,6 +180,9 @@ int Menu::getNumberOfFlights(){
     return flights;
 }
 
+/**
+ * @brief Lists the airports that can be reached from the given airport code, with the given airlines
+*/
 void Menu::listReachableAirports(string code, set<string>& airlines) {
     int nFlights = getNumberOfFlights();
     database.printAirportsReachableFrom(code, nFlights, airlines);
@@ -206,7 +224,9 @@ void Menu::listReachableAirports(string code, set<string>& airlines) {
     }
 }
 
-
+/**
+ * @brief Lists the cities that can be reached from the given airport code, with the given airlines
+*/
 void Menu::listReachableCities(string code, set<string>& airlines) {
     int nFlights = getNumberOfFlights();
     database.printCitiesReachableFrom(code, nFlights, airlines);
@@ -243,7 +263,9 @@ void Menu::listReachableCities(string code, set<string>& airlines) {
     }
 }
 
-
+/**
+ * @brief Lists the countries that can be reached from the given airport code, with the given airlines
+*/
 void Menu::listReachableCountries(string code, set<string>& airlines) {
     int nFlights = getNumberOfFlights();
     database.printCountriesReachableFrom(code, nFlights, airlines);
@@ -280,6 +302,9 @@ void Menu::listReachableCountries(string code, set<string>& airlines) {
     }
 }
 
+/**
+ * @brief Lists the number of different airlines that depart from the given airport code
+*/
 void Menu::listDepartingAirlines(string code) {
     database.printAirlinesFromAirport(code);
 
@@ -311,6 +336,9 @@ void Menu::listDepartingAirlines(string code) {
     }
 }
 
+/**
+ * @brief Lists flights departing from the given airport code.
+*/
 void Menu::listFlightsDepartingFrom(string code) {
     database.printFlightsFrom(code);
 
@@ -342,6 +370,9 @@ void Menu::listFlightsDepartingFrom(string code) {
     }
 }
 
+/**
+ * @brief Prompts the user for an airport code and returns it (If the user inputs an invalid code, it will ask again)
+*/
 string Menu::getAirportCode() {
     string code;
     cin >> code;
@@ -368,23 +399,25 @@ string Menu::getAirportCode() {
     return code;
 }
 
+/**
+ * @brief Prompts the user for a name of a city, a set of airports or a pair of coordinates code and returns a vector of airport Codes
+ * @details If the user inputs an invalid location, it will ask again
+*/
 vector<string> Menu::getAirportsCode() {
     while (true) {
         string input;
         getline(cin, input);
 
         vector<string> result;
-        result = database.getAiportsCodeFromString(input);
-        if(!result.empty()) return result;
 
-        double radius = 100;
-        result = database.getAirportsCodeFromCity(input, radius);
-        if(!result.empty() && result[0] == "not found") {
-            cout << "No airports found in a radius of " << radius << " km. Try again: ";
-            continue;
+        //airport code
+        if(input.length()==3 && all_of(input.begin(), input.end(), ::isalpha)){
+            result = database.getAiportsCodeFromString(input);
+            if(!result.empty()) return result;
         }
-        if (!result.empty()) return result;
 
+        //Coordinates
+        double radius = 120;
         regex coordinateRegex(R"(^(-?\d+(?:.\d+)?),(-?\d+(?:.\d+)?)$)");
         smatch coordinateMatch;
         if (regex_search(input, coordinateMatch, coordinateRegex)) {
@@ -394,6 +427,14 @@ vector<string> Menu::getAirportsCode() {
             }
             cout << "No airports found in a "<< radius << " km radius of the coordinates " << coordinateMatch[1] << ", " << coordinateMatch[2] << endl;
         }
+
+        //City
+        result = database.getAirportsCodeFromCity(input, radius);
+        if(!result.empty() && result[0] == "not found") {
+            cout << "No airports found in a radius of " << radius << " km. Try again: ";
+            continue;
+        }
+        if (!result.empty()) return result;
 
         if(!input.empty()) {
             cout << "It must either be the name of a city, a set of airports code or a pair of coordinates. Try again: ";

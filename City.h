@@ -6,6 +6,10 @@
 
 using namespace std;
 
+/**
+ * @class City
+ * @brief Class that represents a city
+*/
 class City {
 private:
     string name;
@@ -14,11 +18,13 @@ private:
     double longitude;
 
 public:
-    City(string& name, string& country, double latitude, double longitude) : name(name), country(country), latitude(latitude), longitude(longitude) {};
-    double getLatitude() const { return latitude; }
-    double getLongitude() const { return longitude; }
+    City(string& name, string& country, double latitude, double longitude);
+
+    double getLatitude() const;
+    double getLongitude() const;
+    string getName() const;
+
     void print() const;
-    string getName() const { return name; }
 };
 
 
