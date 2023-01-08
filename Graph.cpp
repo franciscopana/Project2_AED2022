@@ -35,12 +35,8 @@ Node* Graph::getNode(string& airportCode) {
     return nullptr;
 }
 
-const list<Node*> Graph::getNodes() {
-    list<Node*> nodesList;
-    for (auto& node : nodes) {
-        nodesList.push_back(&node.second);
-    }
-    return nodesList;
+const unordered_map<string, Node>& Graph::getNodes() {
+    return nodes;
 }
 
 list<Edge> Graph::getEdges(string& airportCode) {
@@ -61,6 +57,8 @@ bool includes(set<string> &set1, set<string> &set2){
 }
 
 vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string>& airlines){
+    for(auto &node : nodes){node.second.visited = false;}
+
     vector<vector<Node*>> airports;
 
     int numSteps = 0;
@@ -105,6 +103,7 @@ vector<vector<Node*>> Graph::bfsWithNSteps(string& srcAirport, int n, set<string
 }
 
 vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport,set<string> &airlines) {
+    for(auto &node : nodes){node.second.visited = false;}
     vector<pair<stack<Node*>, int>> allPaths;
 
     vector<Node*> srcNodes;
@@ -190,57 +189,6 @@ vector<pair<stack<Node*>, int>> Graph::bfsWithDest(vector<string> &srcAirports, 
              return a.first.size() < b.first.size();
          });
     return allPaths;
-}
-
-
-vector<Node*> Graph::dijkstra(string &srcAirport, string &destAirport, set<string> &airlines){
-    unordered_map<string, double> distances;
-    list<Node*> visitedNodes;
-    for(auto& node : nodes){
-        distances[node.first] = INFINITY;
-    }
-    distances[srcAirport] = 0;
-
-    priority_queue<vertexDistance> priorityQueue;
-    priorityQueue.emplace(vertexDistance{&nodes[srcAirport], 0});
-
-    unordered_map<string, Node*> previous;
-
-    while (!priorityQueue.empty()){
-        vertexDistance current = priorityQueue.top();
-        priorityQueue.pop();
-
-        if(current.node->visited)
-            continue;
-        current.node->visited = true;
-        visitedNodes.push_back(current.node);
-
-        for(Edge& edge : current.node->edges){
-            if(!airlines.empty() && !includes(airlines, edge.airlines)){
-                continue;
-            }
-
-            double distance = current.distance + edge.distance;
-            if(distance < distances[edge.destAirport]){
-                distances[edge.destAirport] = distance;
-                previous[edge.destAirport] = current.node;
-                priorityQueue.emplace(vertexDistance{&nodes[edge.destAirport], distance});
-            }
-        }
-        if(current.node->airport->getCode() == destAirport)
-            break;
-    }
-    vector<Node*> path;
-    Node* current = &nodes[destAirport];
-    while(current != nullptr){
-        path.push_back(current);
-        current = previous[current->airport->getCode()];
-    }
-    if(path.size() <2) {path.clear();}
-    reverse(path.begin(), path.end());
-
-    for(auto& node : visitedNodes){node->visited = false;}
-    return path;
 }
 
 bool Graph::hasAirport(const string& airportCode) const{

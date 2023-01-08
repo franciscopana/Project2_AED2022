@@ -22,6 +22,15 @@ struct Node {
     Airport* airport;
     list<Edge> edges;
     bool visited;
+
+    set<string> getAirlinesTo(string destAirport){
+        for(Edge& edge : edges){
+            if(edge.destAirport == destAirport){
+                return edge.airlines;
+            }
+        }
+        return set<string>();
+    }
 };
 
 struct vertexDistance{
@@ -46,11 +55,10 @@ public:
 
     // Searchers
     Node* getNode(string& airportCode);
-    const list<Node*> getNodes();
+    const unordered_map<string, Node>& getNodes();
     list<Edge> getEdges(string& airportCode);
     vector<vector<Node*>> bfsWithNSteps(string& srcAirport, int n, set<string>& airlines);
     vector<pair<stack<Node*>, int>> bfsWithDest(vector<string> &srcAirports, vector<string> &destAirport, set<string> &airlines);
-    vector<Node*> dijkstra(string &srcAirport, string &destAirport, set<string> &airlines);
     bool hasAirport(const string& airportCode) const;
 
     // Getters

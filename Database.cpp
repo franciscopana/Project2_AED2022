@@ -1,4 +1,5 @@
 #include <iomanip>
+#include <limits>
 #include "Database.h"
 
 /*    Loaders    */
@@ -55,7 +56,8 @@ void Database::loadAirlines(){
             continue;
         }
         auto* airline = new Airline(fields[0], fields[1], fields[2], fields[3]);
-        airlines.insert(pair<string, Airline*>(fields[0], airline));
+        codeAirlines.insert(pair<string, Airline*>(fields[0], airline));
+        nameAirlines.insert(pair<string, Airline*>(fields[1], airline));
     }
     file.close();
 }
@@ -134,7 +136,7 @@ bool Database::hasAirport(const string &code) const {
 }
 
 bool Database::hasAirline(const string &code) const {
-    return airlines.find(code) != airlines.end();
+    return codeAirlines.find(code) != codeAirlines.end() || nameAirlines.find(code) != nameAirlines.end();
 }
 
 bool Database::hasCity(const string &city) const {
@@ -157,8 +159,8 @@ vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,co
     vector<string> airports;
 
     for(auto node: flights.getNodes()){
-        if(node->airport->getDistance(latitude, longitude) <= radius){
-            airports.push_back(node->airport->getCode());
+        if(node.second.airport->getDistance(latitude, longitude) <= radius){
+            airports.push_back(node.second.airport->getCode());
         }
     }
     return airports;
@@ -234,19 +236,30 @@ vector<string> Database::getAirportsCodeFromCity(const string& city, double radi
     return airports;
 }
 
-vector<string> Database::getAiportsCodeFromString(const string &codes) const {
+vector<string> Database::getAiportsCodeFromString(const string &input) const {
     vector<string> airports;
-    istringstream stream(codes);
-    string code;
-    while (getline(stream, code, ' ')) {
-        if(!hasAirport(code)){
+    istringstream stream(input);
+    string word;
+    while (getline(stream, word, ' ')) {
+        if(!hasAirport(word)){
             return {};
         }
-        airports.push_back(code);
+        if(word.length()==3){airports.push_back(word);}
+        else{
+            airports.push_back(getAirlineCode(word));
+        }
+
     }
     return airports;
 }
 
+string Database::getAirlineCode(const std::string &name) const {
+    auto it = nameAirlines.find(name);
+    if(it != nameAirlines.end()){
+        return it->second->getCode();
+    }
+    return "";
+}
 
 /*    Printers    */
 void Database::printAirlinesFromAirport(string &airportCode) {
@@ -262,19 +275,7 @@ void Database::printAirlinesFromAirport(string &airportCode) {
 
     cout << "There are a total of " << airlines_.size() << " airlines that fly from " << airportCode << endl;
     for(auto& airline : airlines_){
-        cout << setw(5) << left << airline << setw(40) << left << airlines.at(airline)->getName() << setw(20) << left << airlines.at(airline)->getCountry() << endl;
-    }
-}
-
-void Database::printAirportsFromCity(string &city) const {
-    auto cityIt = citiesAirports.find(city);
-    if (cityIt != citiesAirports.end()) {
-        cout << ">> "<< cityIt->second.size() << " airport(s) from " << city << ":" << endl;
-        for (auto airport : cityIt->second) {
-            cout << "     " << airport->getName() << " (" << airport->getCode() << ")\t|\tCoordinates: " << airport->getLatitude() << ", " << airport->getLongitude() << endl;
-        }
-    } else {
-        cout << ">> No airports found in city " << city << endl;
+        cout << setw(5) << left << airline << setw(40) << left << codeAirlines.at(airline)->getName() << setw(20) << left << codeAirlines.at(airline)->getCountry() << endl;
     }
 }
 
@@ -321,6 +322,54 @@ void Database::printCountriesReachableFrom(string &airportCode, int nFlights, se
     cout << ">> Total of " << totalCountries << " countries reachable after " << nFlights << " flight(s)." << endl;
 }
 
+void Database::printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy){
+    auto path = p.first;
+    unsigned nFlights = p.first.size() - 1;
+    bool first = true;
+    cout << "   >> ";
+    while (path.size() > 1) {
+        if(!first) cout << "      ";
+        Node* current = path.top();
+        path.pop();
+        Node* next = path.top();
+        current->airport->printHeader();
+        cout << "  ->  ";
+        next->airport->printHeader();
+        cout << "  |  ";
+        set<string> allAirlines = current->getAirlinesTo(next->airport->getCode());
+        if(!airlinesToFLy.empty()){
+            set<string> intersection;
+            set_intersection(allAirlines.begin(), allAirlines.end(), airlinesToFLy.begin(), airlinesToFLy.end(), inserter(intersection, intersection.begin()));
+            allAirlines = intersection;
+        }
+        for(auto& airline : allAirlines){
+            cout << airline << " ";
+        }
+        cout << endl;
+        first = false;
+    }
+    cout << "      " << nFlights << " flight(s). Total distance: " << p.second << " km." << endl << endl;
+}
+
+unsigned askNumberToShow(unsigned max){
+    if(max <= 3) return max;
+
+    unsigned numberToShow;
+    cout << ">> How many routes do you want to see? ";
+    while (true){
+        string line;
+        getline(cin, line);
+        stringstream ss(line);
+        if (all_of(line.begin(), line.end(), ::isdigit) && ss >> numberToShow && numberToShow >= 1 && numberToShow <= max) {
+            break;
+        }
+        if(!line.empty()){
+            cout << ">> Invalid input. Please enter a number between 1 and " << max << ":  ";
+        }
+    }
+    return (numberToShow > max) ? max : numberToShow;
+}
+
 void Database::printPaths(vector<string>& source, vector<string>& destination, set<string> &airlinesToSearch) {
     auto paths = flights.bfsWithDest(source, destination, airlinesToSearch);
     if (paths.empty()) {
@@ -340,7 +389,8 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
         }
         return;
     }
-    cout << ">> Total of " << paths.size() << " routes from ";
+
+    cout << ">> Total of " << paths.size() << " route(s) from ";
     for(auto& s : source)
         cout << s << " ";
     cout << " to ";
@@ -348,61 +398,9 @@ void Database::printPaths(vector<string>& source, vector<string>& destination, s
         cout << d << " ";
     cout << endl;
 
-    unsigned numberToShow = paths.size();
+    unsigned numberToShow = askNumberToShow(paths.size());
 
-    if(numberToShow > 3){
-        cout << ">> How many routes do you want to see? ";
-        cin >> numberToShow;
-        while(numberToShow > paths.size() || numberToShow < 1){
-            cout << ">> Invalid number. Please enter a number between 1 and " << paths.size() << ": ";
-            cin >> numberToShow;
-        }
-    }
-
-     for (int i = 0; i < numberToShow; i++) {
-        auto p = paths[i];
-        auto path = p.first;
-        cout << "     ";
-        while (path.size() > 1) {
-            path.top()->airport->printHeader();
-            cout << "  =>  ";
-            path.pop();
-        }
-        path.top()->airport->printHeader();
-        cout << "  |  " << p.second << " km" << endl;
-    }
-
-    unsigned nMinFlights = paths[0].first.size() - 1;
-    cout << ">> Minimum number of flights: " << nMinFlights << endl;
-}
-
-void Database::printShortestPath(string &source, string &destination, set<string> &airlinesToSearch) {
-    vector<Node*> path = flights.dijkstra(source, destination, airlinesToSearch);
-    if (path.empty()) {
-        cout << ">> No path found between " << source << " and " << destination << endl;
-        if(!airlinesToSearch.empty()){
-            cout << ">> Using airlines: ";
-            for(auto& airline : airlinesToSearch)
-                cout << airline << " ";
-            cout << endl;
-        }
-        return;
-    }
-    cout << ">> Shortest route from " << source << " to " << destination << ":" << endl;
-    cout << "     ";
-
-    for(int i = 0; i < path.size() - 1; i++){
-        path[i]->airport->printHeader();
-        cout << "\t=>\t";
-    }
-    path.back()->airport->printHeader();
-    cout << endl;
-}
-
-void Database::printShortestPaths(vector<string>& source, vector<string>& destination, set<string>& airlinesToSearch){
-    for(string sourceCode: source){
-        for(string destCode: destination){
-            printShortestPath(sourceCode, destCode, airlinesToSearch);
-        }
+    for (int i = 0; i < numberToShow; i++) {
+        printRoute(paths[i], airlinesToSearch);
     }
 }

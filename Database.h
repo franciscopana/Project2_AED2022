@@ -18,7 +18,9 @@ using namespace std;
 
 class Database {
 private:
-    unordered_map<string, Airline*> airlines;
+    unordered_map<string, Airline*> codeAirlines;
+    unordered_map<string, Airline*> nameAirlines;
+
     unordered_map<string, set<Airport*>> citiesAirports;
     unordered_map<string, vector<City*>> citiesCoordinates;
     Graph flights;
@@ -45,16 +47,15 @@ public:
     Airport* getAirport(const string& code) const;
     vector<string> getAirportsCodeFromCity(const string& city, double radius);
     vector<string> getAiportsCodeFromString(const string& codes) const;
+    string getAirlineCode(const string& name) const;
 
     // Printers
     void printAirlinesFromAirport(string& airportCode);
-    void printAirportsFromCity(string& city) const;
     void printAirportsReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     void printCitiesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     void printCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
+    void printRoute(pair<stack<Node*>, int>& p, set<string> &airlinesToFLy);
     void printPaths(vector <string> &source, vector <string> &destination, set<string>& airlines);
-    void printShortestPath(string &source, string &destination, set<string>& airlines);
-    void printShortestPaths(vector<string>& source, vector<string>& destination, set<string>& airlines);
 };
 
 #endif //TRABALHO2_DATABASE_H

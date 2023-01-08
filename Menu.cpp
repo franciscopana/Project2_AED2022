@@ -52,37 +52,7 @@ void Menu::showSearchFlightsMenu() {
 
     clearScreen();
     set<string> airlines = getAirlines();
-    cout << "Please select an option:" << endl;
-
-    cout << "1 - Shortest path" << endl;
-    cout << "2 - All paths" << endl;
-    cout << "3 - Go back" << endl;
-    cout << ">> ";
-
-    int option;
-    cin >> option;
-    if (cin.fail()) {
-        cout << "Invalid input" << endl;
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        showSearchFlightsMenu();
-    }
-    else {
-        switch (option) {
-            case 1:
-                database.printShortestPaths(origin, destination, airlines);
-                break;
-            case 2:
-                database.printPaths(origin, destination, airlines);
-                break;
-            case 3:
-                showInitialMenu();
-                break;
-            default:
-                cout << "Invalid option" << endl;
-                showSearchFlightsMenu();
-        }
-    }
+    database.printPaths(origin, destination, airlines);
 
     cout << "Do you want to search for another flight? (y/n): ";
     if (getYesOrNo()) {
@@ -168,7 +138,8 @@ set<string> Menu::getAirlines() {
         cin >> airline;
         while (airline != "0") {
             if (database.hasAirline(airline)) {
-                airlines.insert(airline);
+                if(airline.size()==3) airlines.insert(airline);
+                else airlines.insert(database.getAirlineCode(airline));
             }
             else {
                 cout << "Airline not found. Try again: ";
@@ -215,7 +186,8 @@ void Menu::listReachableAirports(string code, set<string>& airlines) {
     cout << "Please select an option:" << endl;
     cout << "1 - Change the number of flights" << endl;
     cout << "2 - Search for another airport" << endl;
-    cout << "3 - Go back to the main menu" << endl;
+    cout << "3 - Change the airlines" << endl;
+    cout << "4 - Go back to the main menu" << endl;
     cout << ">> ";
 
     cin >> option;
@@ -235,6 +207,10 @@ void Menu::listReachableAirports(string code, set<string>& airlines) {
                 showSearchAirportsMenu();
                 break;
             case 3:
+                airlines = getAirlines();
+                listReachableAirports(code, airlines);
+                break;
+            case 4:
                 showInitialMenu();
                 break;
             default:
@@ -387,7 +363,7 @@ vector<string> Menu::getAirportsCode() {
         result = database.getAiportsCodeFromString(input);
         if(!result.empty()) return result;
 
-        double radius = 120;
+        double radius = 100;
         result = database.getAirportsCodeFromCity(input, radius);
         if (!result.empty()) return result;
 
@@ -409,5 +385,5 @@ vector<string> Menu::getAirportsCode() {
 
 void Menu::clearScreen() {
     fflush(stdout);
-    system("cls");
+    system(CLEAR_SCREEN);
 }
