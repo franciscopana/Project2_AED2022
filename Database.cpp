@@ -7,7 +7,7 @@
  * Time complexity: O(N), where N is the number of lines in the airports.csv file
 */
 void Database::loadAirports() {
-    ifstream file("../dataset/airports.csv");
+    ifstream file("dataset/airports.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
         cerr << "Error opening file" << endl;
@@ -45,7 +45,7 @@ void Database::loadAirports() {
  * Time complexity: O(M), where M is the number of lines in the flights.csv file
 */
 void Database::loadAirlines(){
-    ifstream file("../dataset/airlines.csv");
+    ifstream file("dataset/airlines.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
         cerr << "Error opening file" << endl;
@@ -75,7 +75,7 @@ void Database::loadAirlines(){
  * Time complexity: O(P), where P is the number of lines in the flights.csv file
 */
 void Database::loadFlights(){
-    ifstream file("../dataset/flights.csv");
+    ifstream file("dataset/flights.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
         cerr << "Error opening file" << endl;
@@ -103,7 +103,7 @@ void Database::loadFlights(){
  * Time complexity: O(Q), where Q is the number of lines in the worldcities.csv file
 */
 void Database::loadCities() {
-    ifstream file("../dataset/worldcities.csv");
+    ifstream file("dataset/worldcities.csv");
     file.ignore(1000, '\n');
     if (!file.is_open()) {
         cerr << "Error opening file" << endl;
