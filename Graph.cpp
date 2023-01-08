@@ -27,7 +27,7 @@ void Graph::addEdge(string& source, string& dest, string& airline) {
                 return;
             }
         }
-        sourceIt->second.edges.push_back({dest, {airline}, sourceIt->second.airport->getDistance(destIt->second.airport)});
+        sourceIt->second.edges.push_back({dest, {airline}});
     }
 }
 

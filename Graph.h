@@ -19,7 +19,6 @@ using namespace std;
 struct Edge {
     string destAirport;
     set<string> airlines;
-    double distance;
 };
 
 /**
