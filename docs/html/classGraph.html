@@ -77,38 +77,285 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:aea50ed90ee86e449e3f3e4c1fdf47188"><td class="memItemLeft" align="right" valign="top"><a id="aea50ed90ee86e449e3f3e4c1fdf47188"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addNode</b> (string &amp;airportCode, <a class="el" href="classAirport.html">Airport</a> *airport)</td></tr>
+<tr class="memitem:aea50ed90ee86e449e3f3e4c1fdf47188"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#aea50ed90ee86e449e3f3e4c1fdf47188">addNode</a> (string &amp;airportCode, <a class="el" href="classAirport.html">Airport</a> *airport)</td></tr>
+<tr class="memdesc:aea50ed90ee86e449e3f3e4c1fdf47188"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a node to the graph.  <a href="classGraph.html#aea50ed90ee86e449e3f3e4c1fdf47188">More...</a><br /></td></tr>
 <tr class="separator:aea50ed90ee86e449e3f3e4c1fdf47188"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad5f010cab84bc36a2bbc749b069271b6"><td class="memItemLeft" align="right" valign="top"><a id="ad5f010cab84bc36a2bbc749b069271b6"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>addEdge</b> (string &amp;source, string &amp;dest, string &amp;airline)</td></tr>
+<tr class="memitem:ad5f010cab84bc36a2bbc749b069271b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#ad5f010cab84bc36a2bbc749b069271b6">addEdge</a> (string &amp;source, string &amp;dest, string &amp;airline)</td></tr>
+<tr class="memdesc:ad5f010cab84bc36a2bbc749b069271b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an edge from the source airport to the destination airport.  <a href="classGraph.html#ad5f010cab84bc36a2bbc749b069271b6">More...</a><br /></td></tr>
 <tr class="separator:ad5f010cab84bc36a2bbc749b069271b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a11b04557fb14020399c910263b5cf53b"><td class="memItemLeft" align="right" valign="top"><a id="a11b04557fb14020399c910263b5cf53b"></a>
-<a class="el" href="structNode.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getNode</b> (string &amp;airportCode)</td></tr>
+<tr class="memitem:a11b04557fb14020399c910263b5cf53b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structNode.html">Node</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a11b04557fb14020399c910263b5cf53b">getNode</a> (string &amp;airportCode)</td></tr>
+<tr class="memdesc:a11b04557fb14020399c910263b5cf53b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the node with the given airport code.  <a href="classGraph.html#a11b04557fb14020399c910263b5cf53b">More...</a><br /></td></tr>
 <tr class="separator:a11b04557fb14020399c910263b5cf53b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="memItemLeft" align="right" valign="top"><a id="a57300eccb49e95ab1dbcd0bb5b42f82d"></a>
-const unordered_map&lt; string, <a class="el" href="structNode.html">Node</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><b>getNodes</b> ()</td></tr>
+<tr class="memitem:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="memItemLeft" align="right" valign="top">const unordered_map&lt; string, <a class="el" href="structNode.html">Node</a> &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a57300eccb49e95ab1dbcd0bb5b42f82d">getNodes</a> ()</td></tr>
+<tr class="memdesc:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list with all the references for the nodes in the graph.  <a href="classGraph.html#a57300eccb49e95ab1dbcd0bb5b42f82d">More...</a><br /></td></tr>
 <tr class="separator:a57300eccb49e95ab1dbcd0bb5b42f82d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcac8822067ff76ff571cc08b022d8d3"><td class="memItemLeft" align="right" valign="top"><a id="afcac8822067ff76ff571cc08b022d8d3"></a>
-list&lt; <a class="el" href="structEdge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getEdges</b> (string &amp;airportCode)</td></tr>
+<tr class="memitem:afcac8822067ff76ff571cc08b022d8d3"><td class="memItemLeft" align="right" valign="top">list&lt; <a class="el" href="structEdge.html">Edge</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#afcac8822067ff76ff571cc08b022d8d3">getEdges</a> (string &amp;airportCode)</td></tr>
+<tr class="memdesc:afcac8822067ff76ff571cc08b022d8d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a list with all the edges of the node with the given airport code.  <a href="classGraph.html#afcac8822067ff76ff571cc08b022d8d3">More...</a><br /></td></tr>
 <tr class="separator:afcac8822067ff76ff571cc08b022d8d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd2b85aaadfb1f83eb6a035c8fc8a335"><td class="memItemLeft" align="right" valign="top"><a id="acd2b85aaadfb1f83eb6a035c8fc8a335"></a>
-vector&lt; vector&lt; <a class="el" href="structNode.html">Node</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>bfsWithNSteps</b> (string &amp;srcAirport, int n, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memitem:acd2b85aaadfb1f83eb6a035c8fc8a335"><td class="memItemLeft" align="right" valign="top">vector&lt; vector&lt; <a class="el" href="structNode.html">Node</a> * &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#acd2b85aaadfb1f83eb6a035c8fc8a335">bfsWithNSteps</a> (string &amp;srcAirport, int n, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memdesc:acd2b85aaadfb1f83eb6a035c8fc8a335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable in n steps (the index of the vector represents the number of steps)  <a href="classGraph.html#acd2b85aaadfb1f83eb6a035c8fc8a335">More...</a><br /></td></tr>
 <tr class="separator:acd2b85aaadfb1f83eb6a035c8fc8a335"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ae64362d3d09958143b9817001dbcfd"><td class="memItemLeft" align="right" valign="top"><a id="a6ae64362d3d09958143b9817001dbcfd"></a>
-vector&lt; pair&lt; stack&lt; <a class="el" href="structNode.html">Node</a> * &gt;, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>bfsWithDest</b> (vector&lt; string &gt; &amp;srcAirports, vector&lt; string &gt; &amp;destAirport, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memitem:a6ae64362d3d09958143b9817001dbcfd"><td class="memItemLeft" align="right" valign="top">vector&lt; pair&lt; stack&lt; <a class="el" href="structNode.html">Node</a> * &gt;, int &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a6ae64362d3d09958143b9817001dbcfd">bfsWithDest</a> (vector&lt; string &gt; &amp;srcAirports, vector&lt; string &gt; &amp;destAirport, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memdesc:a6ae64362d3d09958143b9817001dbcfd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable with (index number) of steps.  <a href="classGraph.html#a6ae64362d3d09958143b9817001dbcfd">More...</a><br /></td></tr>
 <tr class="separator:a6ae64362d3d09958143b9817001dbcfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae7a601a64fc3fbabed81dab1343b187d"><td class="memItemLeft" align="right" valign="top"><a id="ae7a601a64fc3fbabed81dab1343b187d"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasAirport</b> (const string &amp;airportCode) const</td></tr>
+<tr class="memitem:ae7a601a64fc3fbabed81dab1343b187d"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#ae7a601a64fc3fbabed81dab1343b187d">hasAirport</a> (const string &amp;airportCode) const</td></tr>
+<tr class="memdesc:ae7a601a64fc3fbabed81dab1343b187d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if the airport is in the graph.  <a href="classGraph.html#ae7a601a64fc3fbabed81dab1343b187d">More...</a><br /></td></tr>
 <tr class="separator:ae7a601a64fc3fbabed81dab1343b187d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8cb292d8536c7af11d809b46243de99b"><td class="memItemLeft" align="right" valign="top"><a id="a8cb292d8536c7af11d809b46243de99b"></a>
-<a class="el" href="classAirport.html">Airport</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getAirport</b> (const string &amp;airportCode) const</td></tr>
+<tr class="memitem:a8cb292d8536c7af11d809b46243de99b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAirport.html">Airport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classGraph.html#a8cb292d8536c7af11d809b46243de99b">getAirport</a> (const string &amp;airportCode) const</td></tr>
+<tr class="memdesc:a8cb292d8536c7af11d809b46243de99b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given an airport code, returns a pointer to the airport, or nullptr if it doesn't exist.  <a href="classGraph.html#a8cb292d8536c7af11d809b46243de99b">More...</a><br /></td></tr>
 <tr class="separator:a8cb292d8536c7af11d809b46243de99b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="classGraph.html" title="Graph class, where the airports are the nodes and the edges are the flights between them.">Graph</a> class, where the airports are the nodes and the edges are the flights between them. </p>
 <p>The graph is implemented using an adjacency list. The nodes are stored in a hash table, where the key is the airport code and the value is a <a class="el" href="structNode.html">Node</a> struct. </p>
-</div><hr/>The documentation for this class was generated from the following files:<ul>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad5f010cab84bc36a2bbc749b069271b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5f010cab84bc36a2bbc749b069271b6">&#9670;&nbsp;</a></span>addEdge()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::addEdge </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>dest</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airline</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds an edge from the source airport to the destination airport. </p>
+<p>Time complexity: O(E), where E is the number of edges in the adjency list of the source airport </p>
+
+</div>
+</div>
+<a id="aea50ed90ee86e449e3f3e4c1fdf47188"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea50ed90ee86e449e3f3e4c1fdf47188">&#9670;&nbsp;</a></span>addNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Graph::addNode </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classAirport.html">Airport</a> *&#160;</td>
+          <td class="paramname"><em>airport</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Adds a node to the graph. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="a6ae64362d3d09958143b9817001dbcfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6ae64362d3d09958143b9817001dbcfd">&#9670;&nbsp;</a></span>bfsWithDest()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; pair&lt; stack&lt; <a class="el" href="structNode.html">Node</a> * &gt;, int &gt; &gt; Graph::bfsWithDest </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>srcAirports</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>destAirport</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airlines</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable with (index number) of steps. </p>
+<p>Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) </p>
+
+</div>
+</div>
+<a id="acd2b85aaadfb1f83eb6a035c8fc8a335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd2b85aaadfb1f83eb6a035c8fc8a335">&#9670;&nbsp;</a></span>bfsWithNSteps()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; vector&lt; <a class="el" href="structNode.html">Node</a> * &gt; &gt; Graph::bfsWithNSteps </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>srcAirport</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>n</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airlines</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable in n steps (the index of the vector represents the number of steps) </p>
+<p>Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) </p>
+
+</div>
+</div>
+<a id="a8cb292d8536c7af11d809b46243de99b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cb292d8536c7af11d809b46243de99b">&#9670;&nbsp;</a></span>getAirport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAirport.html">Airport</a> * Graph::getAirport </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Given an airport code, returns a pointer to the airport, or nullptr if it doesn't exist. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="afcac8822067ff76ff571cc08b022d8d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afcac8822067ff76ff571cc08b022d8d3">&#9670;&nbsp;</a></span>getEdges()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">list&lt; <a class="el" href="structEdge.html">Edge</a> &gt; Graph::getEdges </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a list with all the edges of the node with the given airport code. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="a11b04557fb14020399c910263b5cf53b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a11b04557fb14020399c910263b5cf53b">&#9670;&nbsp;</a></span>getNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structNode.html">Node</a> * Graph::getNode </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns the node with the given airport code. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="a57300eccb49e95ab1dbcd0bb5b42f82d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57300eccb49e95ab1dbcd0bb5b42f82d">&#9670;&nbsp;</a></span>getNodes()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const unordered_map&lt; string, <a class="el" href="structNode.html">Node</a> &gt; &amp; Graph::getNodes </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a list with all the references for the nodes in the graph. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="ae7a601a64fc3fbabed81dab1343b187d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae7a601a64fc3fbabed81dab1343b187d">&#9670;&nbsp;</a></span>hasAirport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Graph::hasAirport </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Checks if the airport is in the graph. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Graph_8h_source.html">Graph.h</a></li>
 <li>Graph.cpp</li>
 </ul>

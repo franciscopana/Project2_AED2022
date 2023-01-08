@@ -12,31 +12,100 @@ Class that represents an airline.
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classAirline_a7e1bff00502bc22e95c4b777acb0c371}\label{classAirline_a7e1bff00502bc22e95c4b777acb0c371}} 
-{\bfseries Airline} (string \&code, string \&name, string \&call\+Sign, string \&country)
-\item 
-\mbox{\Hypertarget{classAirline_ac176cc0b3559361eab3d77db55334461}\label{classAirline_ac176cc0b3559361eab3d77db55334461}} 
-string {\bfseries get\+Code} ()
-\item 
-\mbox{\Hypertarget{classAirline_a48acf049e4030ac59816e86ee6a7b4aa}\label{classAirline_a48acf049e4030ac59816e86ee6a7b4aa}} 
-string {\bfseries get\+Name} ()
-\item 
-\mbox{\Hypertarget{classAirline_a8c83292de4b2a61d965ba2d35bbae081}\label{classAirline_a8c83292de4b2a61d965ba2d35bbae081}} 
-string {\bfseries get\+Call\+Sign} ()
-\item 
-\mbox{\Hypertarget{classAirline_aa2fbdf61b5dc431552fcea751cb3d101}\label{classAirline_aa2fbdf61b5dc431552fcea751cb3d101}} 
-string {\bfseries get\+Country} ()
-\item 
-\mbox{\Hypertarget{classAirline_af1d5bc59d21aed7759c6942ecdfce9ee}\label{classAirline_af1d5bc59d21aed7759c6942ecdfce9ee}} 
-bool {\bfseries operator$<$} (const \mbox{\hyperlink{classAirline}{Airline}} \&other)
-\item 
-\mbox{\Hypertarget{classAirline_ac95d8411917745553b7159e4670dc1c5}\label{classAirline_ac95d8411917745553b7159e4670dc1c5}} 
-void {\bfseries print} ()
-\end{DoxyCompactItemize}
+\mbox{\hyperlink{classAirline_a7e1bff00502bc22e95c4b777acb0c371}{Airline}} (string \&code, string \&name, string \&call\+Sign, string \&country)
+\begin{DoxyCompactList}\small\item\em Class constructor that sets code, name, call\+Sign and country. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classAirline_ac176cc0b3559361eab3d77db55334461}{get\+Code}} ()
+\begin{DoxyCompactList}\small\item\em Returns the code of the airline. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classAirline_a48acf049e4030ac59816e86ee6a7b4aa}{get\+Name}} ()
+\begin{DoxyCompactList}\small\item\em Returns the name of the airline. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classAirline_a8c83292de4b2a61d965ba2d35bbae081}{get\+Call\+Sign}} ()
+\begin{DoxyCompactList}\small\item\em Returns the call\+Sign of the airline. \end{DoxyCompactList}\item 
+string \mbox{\hyperlink{classAirline_aa2fbdf61b5dc431552fcea751cb3d101}{get\+Country}} ()
+\begin{DoxyCompactList}\small\item\em Returns the country of the airline. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classAirline_af1d5bc59d21aed7759c6942ecdfce9ee}{operator$<$}} (const \mbox{\hyperlink{classAirline}{Airline}} \&other)
+\begin{DoxyCompactList}\small\item\em Overloads the {\ttfamily $<$} operator for {\ttfamily \mbox{\hyperlink{classAirline}{Airline}}} objects. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classAirline_ac95d8411917745553b7159e4670dc1c5}{print}} ()
+\begin{DoxyCompactList}\small\item\em Prints the airline\textquotesingle{}s information (code, name, call\+Sign and country) \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 Class that represents an airline. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classAirline_a7e1bff00502bc22e95c4b777acb0c371}\label{classAirline_a7e1bff00502bc22e95c4b777acb0c371}} 
+\index{Airline@{Airline}!Airline@{Airline}}
+\index{Airline@{Airline}!Airline@{Airline}}
+\doxysubsubsection{\texorpdfstring{Airline()}{Airline()}}
+{\footnotesize\ttfamily Airline\+::\+Airline (\begin{DoxyParamCaption}\item[{string \&}]{code,  }\item[{string \&}]{name,  }\item[{string \&}]{call\+Sign,  }\item[{string \&}]{country }\end{DoxyParamCaption})}
+
+
+
+Class constructor that sets code, name, call\+Sign and country. 
+
+Time complexity\+: O(1) 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classAirline_a8c83292de4b2a61d965ba2d35bbae081}\label{classAirline_a8c83292de4b2a61d965ba2d35bbae081}} 
+\index{Airline@{Airline}!getCallSign@{getCallSign}}
+\index{getCallSign@{getCallSign}!Airline@{Airline}}
+\doxysubsubsection{\texorpdfstring{getCallSign()}{getCallSign()}}
+{\footnotesize\ttfamily string Airline\+::get\+Call\+Sign (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the call\+Sign of the airline. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirline_ac176cc0b3559361eab3d77db55334461}\label{classAirline_ac176cc0b3559361eab3d77db55334461}} 
+\index{Airline@{Airline}!getCode@{getCode}}
+\index{getCode@{getCode}!Airline@{Airline}}
+\doxysubsubsection{\texorpdfstring{getCode()}{getCode()}}
+{\footnotesize\ttfamily string Airline\+::get\+Code (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the code of the airline. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirline_aa2fbdf61b5dc431552fcea751cb3d101}\label{classAirline_aa2fbdf61b5dc431552fcea751cb3d101}} 
+\index{Airline@{Airline}!getCountry@{getCountry}}
+\index{getCountry@{getCountry}!Airline@{Airline}}
+\doxysubsubsection{\texorpdfstring{getCountry()}{getCountry()}}
+{\footnotesize\ttfamily string Airline\+::get\+Country (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the country of the airline. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirline_a48acf049e4030ac59816e86ee6a7b4aa}\label{classAirline_a48acf049e4030ac59816e86ee6a7b4aa}} 
+\index{Airline@{Airline}!getName@{getName}}
+\index{getName@{getName}!Airline@{Airline}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily string Airline\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns the name of the airline. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classAirline_af1d5bc59d21aed7759c6942ecdfce9ee}\label{classAirline_af1d5bc59d21aed7759c6942ecdfce9ee}} 
+\index{Airline@{Airline}!operator$<$@{operator$<$}}
+\index{operator$<$@{operator$<$}!Airline@{Airline}}
+\doxysubsubsection{\texorpdfstring{operator$<$()}{operator<()}}
+{\footnotesize\ttfamily bool Airline\+::operator$<$ (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classAirline}{Airline}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Overloads the {\ttfamily $<$} operator for {\ttfamily \mbox{\hyperlink{classAirline}{Airline}}} objects. 
+
+Returns true if {\ttfamily this} airline\textquotesingle{}s code is less than {\ttfamily other} airline\textquotesingle{}s code, and false otherwise Time complexity\+: O(1) \mbox{\Hypertarget{classAirline_ac95d8411917745553b7159e4670dc1c5}\label{classAirline_ac95d8411917745553b7159e4670dc1c5}} 
+\index{Airline@{Airline}!print@{print}}
+\index{print@{print}!Airline@{Airline}}
+\doxysubsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily void Airline\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Prints the airline\textquotesingle{}s information (code, name, call\+Sign and country) 
+
+Time complexity\+: O(1) 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

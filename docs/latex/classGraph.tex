@@ -12,39 +12,123 @@
 \doxysubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classGraph_aea50ed90ee86e449e3f3e4c1fdf47188}\label{classGraph_aea50ed90ee86e449e3f3e4c1fdf47188}} 
-void {\bfseries add\+Node} (string \&airport\+Code, \mbox{\hyperlink{classAirport}{Airport}} $\ast$airport)
-\item 
-\mbox{\Hypertarget{classGraph_ad5f010cab84bc36a2bbc749b069271b6}\label{classGraph_ad5f010cab84bc36a2bbc749b069271b6}} 
-void {\bfseries add\+Edge} (string \&source, string \&dest, string \&airline)
-\item 
-\mbox{\Hypertarget{classGraph_a11b04557fb14020399c910263b5cf53b}\label{classGraph_a11b04557fb14020399c910263b5cf53b}} 
-\mbox{\hyperlink{structNode}{Node}} $\ast$ {\bfseries get\+Node} (string \&airport\+Code)
-\item 
-\mbox{\Hypertarget{classGraph_a57300eccb49e95ab1dbcd0bb5b42f82d}\label{classGraph_a57300eccb49e95ab1dbcd0bb5b42f82d}} 
-const unordered\+\_\+map$<$ string, \mbox{\hyperlink{structNode}{Node}} $>$ \& {\bfseries get\+Nodes} ()
-\item 
-\mbox{\Hypertarget{classGraph_afcac8822067ff76ff571cc08b022d8d3}\label{classGraph_afcac8822067ff76ff571cc08b022d8d3}} 
-list$<$ \mbox{\hyperlink{structEdge}{Edge}} $>$ {\bfseries get\+Edges} (string \&airport\+Code)
-\item 
-\mbox{\Hypertarget{classGraph_acd2b85aaadfb1f83eb6a035c8fc8a335}\label{classGraph_acd2b85aaadfb1f83eb6a035c8fc8a335}} 
-vector$<$ vector$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$ $>$ {\bfseries bfs\+With\+NSteps} (string \&src\+Airport, int n, set$<$ string $>$ \&airlines)
-\item 
-\mbox{\Hypertarget{classGraph_a6ae64362d3d09958143b9817001dbcfd}\label{classGraph_a6ae64362d3d09958143b9817001dbcfd}} 
-vector$<$ pair$<$ stack$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$, int $>$ $>$ {\bfseries bfs\+With\+Dest} (vector$<$ string $>$ \&src\+Airports, vector$<$ string $>$ \&dest\+Airport, set$<$ string $>$ \&airlines)
-\item 
-\mbox{\Hypertarget{classGraph_ae7a601a64fc3fbabed81dab1343b187d}\label{classGraph_ae7a601a64fc3fbabed81dab1343b187d}} 
-bool {\bfseries has\+Airport} (const string \&airport\+Code) const
-\item 
-\mbox{\Hypertarget{classGraph_a8cb292d8536c7af11d809b46243de99b}\label{classGraph_a8cb292d8536c7af11d809b46243de99b}} 
-\mbox{\hyperlink{classAirport}{Airport}} $\ast$ {\bfseries get\+Airport} (const string \&airport\+Code) const
-\end{DoxyCompactItemize}
+void \mbox{\hyperlink{classGraph_aea50ed90ee86e449e3f3e4c1fdf47188}{add\+Node}} (string \&airport\+Code, \mbox{\hyperlink{classAirport}{Airport}} $\ast$airport)
+\begin{DoxyCompactList}\small\item\em Adds a node to the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classGraph_ad5f010cab84bc36a2bbc749b069271b6}{add\+Edge}} (string \&source, string \&dest, string \&airline)
+\begin{DoxyCompactList}\small\item\em Adds an edge from the source airport to the destination airport. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{structNode}{Node}} $\ast$ \mbox{\hyperlink{classGraph_a11b04557fb14020399c910263b5cf53b}{get\+Node}} (string \&airport\+Code)
+\begin{DoxyCompactList}\small\item\em Returns the node with the given airport code. \end{DoxyCompactList}\item 
+const unordered\+\_\+map$<$ string, \mbox{\hyperlink{structNode}{Node}} $>$ \& \mbox{\hyperlink{classGraph_a57300eccb49e95ab1dbcd0bb5b42f82d}{get\+Nodes}} ()
+\begin{DoxyCompactList}\small\item\em Returns a list with all the references for the nodes in the graph. \end{DoxyCompactList}\item 
+list$<$ \mbox{\hyperlink{structEdge}{Edge}} $>$ \mbox{\hyperlink{classGraph_afcac8822067ff76ff571cc08b022d8d3}{get\+Edges}} (string \&airport\+Code)
+\begin{DoxyCompactList}\small\item\em Returns a list with all the edges of the node with the given airport code. \end{DoxyCompactList}\item 
+vector$<$ vector$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$ $>$ \mbox{\hyperlink{classGraph_acd2b85aaadfb1f83eb6a035c8fc8a335}{bfs\+With\+NSteps}} (string \&src\+Airport, int n, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable in n steps (the index of the vector represents the number of steps) \end{DoxyCompactList}\item 
+vector$<$ pair$<$ stack$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$, int $>$ $>$ \mbox{\hyperlink{classGraph_a6ae64362d3d09958143b9817001dbcfd}{bfs\+With\+Dest}} (vector$<$ string $>$ \&src\+Airports, vector$<$ string $>$ \&dest\+Airport, set$<$ string $>$ \&airlines)
+\begin{DoxyCompactList}\small\item\em Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable with (index number) of steps. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classGraph_ae7a601a64fc3fbabed81dab1343b187d}{has\+Airport}} (const string \&airport\+Code) const
+\begin{DoxyCompactList}\small\item\em Checks if the airport is in the graph. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classAirport}{Airport}} $\ast$ \mbox{\hyperlink{classGraph_a8cb292d8536c7af11d809b46243de99b}{get\+Airport}} (const string \&airport\+Code) const
+\begin{DoxyCompactList}\small\item\em Given an airport code, returns a pointer to the airport, or nullptr if it doesn\textquotesingle{}t exist. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \mbox{\hyperlink{classGraph}{Graph}} class, where the airports are the nodes and the edges are the flights between them. 
 
 The graph is implemented using an adjacency list. The nodes are stored in a hash table, where the key is the airport code and the value is a \mbox{\hyperlink{structNode}{Node}} struct. 
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classGraph_ad5f010cab84bc36a2bbc749b069271b6}\label{classGraph_ad5f010cab84bc36a2bbc749b069271b6}} 
+\index{Graph@{Graph}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily void Graph\+::add\+Edge (\begin{DoxyParamCaption}\item[{string \&}]{source,  }\item[{string \&}]{dest,  }\item[{string \&}]{airline }\end{DoxyParamCaption})}
+
+
+
+Adds an edge from the source airport to the destination airport. 
+
+Time complexity\+: O(\+E), where E is the number of edges in the adjency list of the source airport \mbox{\Hypertarget{classGraph_aea50ed90ee86e449e3f3e4c1fdf47188}\label{classGraph_aea50ed90ee86e449e3f3e4c1fdf47188}} 
+\index{Graph@{Graph}!addNode@{addNode}}
+\index{addNode@{addNode}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{addNode()}{addNode()}}
+{\footnotesize\ttfamily void Graph\+::add\+Node (\begin{DoxyParamCaption}\item[{string \&}]{airport\+Code,  }\item[{\mbox{\hyperlink{classAirport}{Airport}} $\ast$}]{airport }\end{DoxyParamCaption})}
+
+
+
+Adds a node to the graph. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classGraph_a6ae64362d3d09958143b9817001dbcfd}\label{classGraph_a6ae64362d3d09958143b9817001dbcfd}} 
+\index{Graph@{Graph}!bfsWithDest@{bfsWithDest}}
+\index{bfsWithDest@{bfsWithDest}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfsWithDest()}{bfsWithDest()}}
+{\footnotesize\ttfamily vector$<$ pair$<$ stack$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$, int $>$ $>$ Graph\+::bfs\+With\+Dest (\begin{DoxyParamCaption}\item[{vector$<$ string $>$ \&}]{src\+Airports,  }\item[{vector$<$ string $>$ \&}]{dest\+Airport,  }\item[{set$<$ string $>$ \&}]{airlines }\end{DoxyParamCaption})}
+
+
+
+Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable with (index number) of steps. 
+
+Time complexity\+: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) \mbox{\Hypertarget{classGraph_acd2b85aaadfb1f83eb6a035c8fc8a335}\label{classGraph_acd2b85aaadfb1f83eb6a035c8fc8a335}} 
+\index{Graph@{Graph}!bfsWithNSteps@{bfsWithNSteps}}
+\index{bfsWithNSteps@{bfsWithNSteps}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{bfsWithNSteps()}{bfsWithNSteps()}}
+{\footnotesize\ttfamily vector$<$ vector$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$ $>$ Graph\+::bfs\+With\+NSteps (\begin{DoxyParamCaption}\item[{string \&}]{src\+Airport,  }\item[{int}]{n,  }\item[{set$<$ string $>$ \&}]{airlines }\end{DoxyParamCaption})}
+
+
+
+Returns a vector of vectors of nodes, where each vector of nodes represents airports that are reachable in n steps (the index of the vector represents the number of steps) 
+
+Time complexity\+: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) \mbox{\Hypertarget{classGraph_a8cb292d8536c7af11d809b46243de99b}\label{classGraph_a8cb292d8536c7af11d809b46243de99b}} 
+\index{Graph@{Graph}!getAirport@{getAirport}}
+\index{getAirport@{getAirport}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getAirport()}{getAirport()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classAirport}{Airport}} $\ast$ Graph\+::get\+Airport (\begin{DoxyParamCaption}\item[{const string \&}]{airport\+Code }\end{DoxyParamCaption}) const}
+
+
+
+Given an airport code, returns a pointer to the airport, or nullptr if it doesn\textquotesingle{}t exist. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classGraph_afcac8822067ff76ff571cc08b022d8d3}\label{classGraph_afcac8822067ff76ff571cc08b022d8d3}} 
+\index{Graph@{Graph}!getEdges@{getEdges}}
+\index{getEdges@{getEdges}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getEdges()}{getEdges()}}
+{\footnotesize\ttfamily list$<$ \mbox{\hyperlink{structEdge}{Edge}} $>$ Graph\+::get\+Edges (\begin{DoxyParamCaption}\item[{string \&}]{airport\+Code }\end{DoxyParamCaption})}
+
+
+
+Returns a list with all the edges of the node with the given airport code. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classGraph_a11b04557fb14020399c910263b5cf53b}\label{classGraph_a11b04557fb14020399c910263b5cf53b}} 
+\index{Graph@{Graph}!getNode@{getNode}}
+\index{getNode@{getNode}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getNode()}{getNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structNode}{Node}} $\ast$ Graph\+::get\+Node (\begin{DoxyParamCaption}\item[{string \&}]{airport\+Code }\end{DoxyParamCaption})}
+
+
+
+Returns the node with the given airport code. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classGraph_a57300eccb49e95ab1dbcd0bb5b42f82d}\label{classGraph_a57300eccb49e95ab1dbcd0bb5b42f82d}} 
+\index{Graph@{Graph}!getNodes@{getNodes}}
+\index{getNodes@{getNodes}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{getNodes()}{getNodes()}}
+{\footnotesize\ttfamily const unordered\+\_\+map$<$ string, \mbox{\hyperlink{structNode}{Node}} $>$ \& Graph\+::get\+Nodes (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a list with all the references for the nodes in the graph. 
+
+Time complexity\+: O(1) \mbox{\Hypertarget{classGraph_ae7a601a64fc3fbabed81dab1343b187d}\label{classGraph_ae7a601a64fc3fbabed81dab1343b187d}} 
+\index{Graph@{Graph}!hasAirport@{hasAirport}}
+\index{hasAirport@{hasAirport}!Graph@{Graph}}
+\doxysubsubsection{\texorpdfstring{hasAirport()}{hasAirport()}}
+{\footnotesize\ttfamily bool Graph\+::has\+Airport (\begin{DoxyParamCaption}\item[{const string \&}]{airport\+Code }\end{DoxyParamCaption}) const}
+
+
+
+Checks if the airport is in the graph. 
+
+Time complexity\+: O(1) 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 

@@ -18,7 +18,9 @@ private:
     double longitude;
 
 public:
+
     City(string& name, string& country, double latitude, double longitude);
+
     double getLatitude() const;
     double getLongitude() const;
     string getName() const;

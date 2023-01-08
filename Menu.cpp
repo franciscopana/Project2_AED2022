@@ -3,7 +3,7 @@
 #include <regex>
 #include "Menu.h"
 
-/*
+/**
 @brief Shows the main menu and allows the user to choose between searching for flights or airports
  */
 void Menu::showInitialMenu() {
@@ -39,7 +39,7 @@ void Menu::showInitialMenu() {
     }
 }
 
-/*
+/**
 @brief Shows a menu for searching for flights and allows the user to inputthe origin, destination (can be airport codes, cities or coordinates) and if he wants, desired airlines
 */
 void Menu::showSearchFlightsMenu() {
@@ -60,7 +60,7 @@ void Menu::showSearchFlightsMenu() {
     }
 }
 
-/*
+/**
 @brief Shows a menu for searching for airports and allows the user to choose between different options for querying information about the airport
 */
 void Menu::showSearchAirportsMenu() {
@@ -112,9 +112,9 @@ void Menu::showSearchAirportsMenu() {
     }
 }
 
-/*
+/**
  * @brief Asks the user to input whether they want to proceed
- * */
+*/
 bool Menu::getYesOrNo(){
     string answer;
     cin >> answer;
@@ -125,9 +125,9 @@ bool Menu::getYesOrNo(){
     return (answer == "y" || answer == "Y");
 }
 
-/*
+/**
  * @briefs Asks the user to input the desired airlines (either by name or code)
- * */
+*/
 set<string> Menu::getAirlines() {
     set<string> airlines;
     cout << "Do you want to filter by airline? (y/n): ";
@@ -153,9 +153,9 @@ set<string> Menu::getAirlines() {
     return airlines;
 }
 
-/*
+/**
  * @brief Asks the user to input the number of flights they are willing to make
- * */
+*/
 int Menu::getNumberOfFlights(){
     cout << "How many flights are you willing to take? (1 for direct flights): ";
     int flights;
@@ -178,9 +178,9 @@ int Menu::getNumberOfFlights(){
     return flights;
 }
 
-/*
+/**
  * @brief Lists the airports that can be reached from the given airport code, with the given airlines
- * */
+*/
 void Menu::listReachableAirports(string code, set<string>& airlines) {
     int nFlights = getNumberOfFlights();
     database.printAirportsReachableFrom(code, nFlights, airlines);
@@ -222,9 +222,9 @@ void Menu::listReachableAirports(string code, set<string>& airlines) {
     }
 }
 
-/*
+/**
  * @brief Lists the cities that can be reached from the given airport code, with the given airlines
- * */
+*/
 void Menu::listReachableCities(string code, set<string>& airlines) {
     int nFlights = getNumberOfFlights();
     database.printCitiesReachableFrom(code, nFlights, airlines);
@@ -261,9 +261,9 @@ void Menu::listReachableCities(string code, set<string>& airlines) {
     }
 }
 
-/*
+/**
  * @brief Lists the countries that can be reached from the given airport code, with the given airlines
- * */
+*/
 void Menu::listReachableCountries(string code, set<string>& airlines) {
     int nFlights = getNumberOfFlights();
     database.printCountriesReachableFrom(code, nFlights, airlines);
@@ -300,9 +300,9 @@ void Menu::listReachableCountries(string code, set<string>& airlines) {
     }
 }
 
-/*
+/**
  * @brief Lists the number of different airlines that depart from the given airport code
- * */
+*/
 void Menu::listDepartingAirlines(string code) {
     database.printAirlinesFromAirport(code);
 
@@ -334,9 +334,9 @@ void Menu::listDepartingAirlines(string code) {
     }
 }
 
-/*
+/**
  * @brief Prompts the user for an airport code and returns it (If the user inputs an invalid code, it will ask again)
- * */
+*/
 string Menu::getAirportCode() {
     string code;
     cin >> code;
@@ -363,10 +363,10 @@ string Menu::getAirportCode() {
     return code;
 }
 
-/*
+/**
  * @brief Prompts the user for a name of a city, a set of airports or a pair of coordinates code and returns a vector of airport Codes
  * @details If the user inputs an invalid location, it will ask again
- * */
+*/
 vector<string> Menu::getAirportsCode() {
     while (true) {
         string input;

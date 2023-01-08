@@ -72,58 +72,572 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a6970d65ede623624339d8c8c084215b9"><td class="memItemLeft" align="right" valign="top"><a id="a6970d65ede623624339d8c8c084215b9"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasAirport</b> (const string &amp;code) const</td></tr>
+<tr class="memitem:a4703c80e6969d33565ea340f768fdadf"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a4703c80e6969d33565ea340f768fdadf">Database</a> ()</td></tr>
+<tr class="memdesc:a4703c80e6969d33565ea340f768fdadf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that initializes the <a class="el" href="classDatabase.html">Database</a> by loading all data from the dataset files into memory.  <a href="classDatabase.html#a4703c80e6969d33565ea340f768fdadf">More...</a><br /></td></tr>
+<tr class="separator:a4703c80e6969d33565ea340f768fdadf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6970d65ede623624339d8c8c084215b9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a6970d65ede623624339d8c8c084215b9">hasAirport</a> (const string &amp;code) const</td></tr>
+<tr class="memdesc:a6970d65ede623624339d8c8c084215b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the airport with the given code is in the database.  <a href="classDatabase.html#a6970d65ede623624339d8c8c084215b9">More...</a><br /></td></tr>
 <tr class="separator:a6970d65ede623624339d8c8c084215b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af441bddf0f68bcf4a2a9abee130f7916"><td class="memItemLeft" align="right" valign="top"><a id="af441bddf0f68bcf4a2a9abee130f7916"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasAirline</b> (const string &amp;code) const</td></tr>
+<tr class="memitem:af441bddf0f68bcf4a2a9abee130f7916"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#af441bddf0f68bcf4a2a9abee130f7916">hasAirline</a> (const string &amp;code) const</td></tr>
+<tr class="memdesc:af441bddf0f68bcf4a2a9abee130f7916"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the airline with the given code is in the database.  <a href="classDatabase.html#af441bddf0f68bcf4a2a9abee130f7916">More...</a><br /></td></tr>
 <tr class="separator:af441bddf0f68bcf4a2a9abee130f7916"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afccd747f544f62f66b7d529229218a2f"><td class="memItemLeft" align="right" valign="top"><a id="afccd747f544f62f66b7d529229218a2f"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>hasCity</b> (const string &amp;city) const</td></tr>
+<tr class="memitem:afccd747f544f62f66b7d529229218a2f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#afccd747f544f62f66b7d529229218a2f">hasCity</a> (const string &amp;city) const</td></tr>
+<tr class="memdesc:afccd747f544f62f66b7d529229218a2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns whether the city with the given name is in the database.  <a href="classDatabase.html#afccd747f544f62f66b7d529229218a2f">More...</a><br /></td></tr>
 <tr class="separator:afccd747f544f62f66b7d529229218a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad23949b3bde8862b2b3e03dc33caf32f"><td class="memItemLeft" align="right" valign="top"><a id="ad23949b3bde8862b2b3e03dc33caf32f"></a>
-vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAirportsCodeFromCity</b> (const string &amp;city) const</td></tr>
+<tr class="memitem:ad23949b3bde8862b2b3e03dc33caf32f"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#ad23949b3bde8862b2b3e03dc33caf32f">getAirportsCodeFromCity</a> (const string &amp;city) const</td></tr>
+<tr class="memdesc:ad23949b3bde8862b2b3e03dc33caf32f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of airport codes for all airports in the given city.  <a href="classDatabase.html#ad23949b3bde8862b2b3e03dc33caf32f">More...</a><br /></td></tr>
 <tr class="separator:ad23949b3bde8862b2b3e03dc33caf32f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab5fcc976c49c48bf1f9dcf897a9acfae"><td class="memItemLeft" align="right" valign="top"><a id="ab5fcc976c49c48bf1f9dcf897a9acfae"></a>
-vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAirportsCodeFromCoordinates</b> (double latitude, double longitude, double radius)</td></tr>
+<tr class="memitem:ab5fcc976c49c48bf1f9dcf897a9acfae"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#ab5fcc976c49c48bf1f9dcf897a9acfae">getAirportsCodeFromCoordinates</a> (double latitude, double longitude, double radius)</td></tr>
+<tr class="memdesc:ab5fcc976c49c48bf1f9dcf897a9acfae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of airport codes for all airports within a certain radius of the given coordinates.  <a href="classDatabase.html#ab5fcc976c49c48bf1f9dcf897a9acfae">More...</a><br /></td></tr>
 <tr class="separator:ab5fcc976c49c48bf1f9dcf897a9acfae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31995eb0b62df5a43185dfa04412172e"><td class="memItemLeft" align="right" valign="top"><a id="a31995eb0b62df5a43185dfa04412172e"></a>
-vector&lt; set&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCitiesReachableFrom</b> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memitem:a31995eb0b62df5a43185dfa04412172e"><td class="memItemLeft" align="right" valign="top">vector&lt; set&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a31995eb0b62df5a43185dfa04412172e">getCitiesReachableFrom</a> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memdesc:a31995eb0b62df5a43185dfa04412172e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of sets of cities that can be reached from the given airport within a certain number of flights and using only the given airlines.  <a href="classDatabase.html#a31995eb0b62df5a43185dfa04412172e">More...</a><br /></td></tr>
 <tr class="separator:a31995eb0b62df5a43185dfa04412172e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0616efd0bf4cc2decf714984f0aa293a"><td class="memItemLeft" align="right" valign="top"><a id="a0616efd0bf4cc2decf714984f0aa293a"></a>
-vector&lt; set&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getCountriesReachableFrom</b> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memitem:a0616efd0bf4cc2decf714984f0aa293a"><td class="memItemLeft" align="right" valign="top">vector&lt; set&lt; string &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a0616efd0bf4cc2decf714984f0aa293a">getCountriesReachableFrom</a> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memdesc:a0616efd0bf4cc2decf714984f0aa293a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of sets of countries that can be reached from the given airport within a certain number of flights and using only the given airlines.  <a href="classDatabase.html#a0616efd0bf4cc2decf714984f0aa293a">More...</a><br /></td></tr>
 <tr class="separator:a0616efd0bf4cc2decf714984f0aa293a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a000864aaa2edcda626f60b323f872716"><td class="memItemLeft" align="right" valign="top"><a id="a000864aaa2edcda626f60b323f872716"></a>
-<a class="el" href="classAirport.html">Airport</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>getAirport</b> (const string &amp;code) const</td></tr>
+<tr class="memitem:a000864aaa2edcda626f60b323f872716"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAirport.html">Airport</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a000864aaa2edcda626f60b323f872716">getAirport</a> (const string &amp;code) const</td></tr>
+<tr class="memdesc:a000864aaa2edcda626f60b323f872716"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to the airport with the given code.  <a href="classDatabase.html#a000864aaa2edcda626f60b323f872716">More...</a><br /></td></tr>
 <tr class="separator:a000864aaa2edcda626f60b323f872716"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2b210decbe77fa9161bcd77812e1d1a6"><td class="memItemLeft" align="right" valign="top"><a id="a2b210decbe77fa9161bcd77812e1d1a6"></a>
-vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAirportsCodeFromCity</b> (const string &amp;city, double radius)</td></tr>
+<tr class="memitem:a2b210decbe77fa9161bcd77812e1d1a6"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a2b210decbe77fa9161bcd77812e1d1a6">getAirportsCodeFromCity</a> (const string &amp;city, double radius)</td></tr>
+<tr class="memdesc:a2b210decbe77fa9161bcd77812e1d1a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of airport codes for all airports within a certain radius of the given city.  <a href="classDatabase.html#a2b210decbe77fa9161bcd77812e1d1a6">More...</a><br /></td></tr>
 <tr class="separator:a2b210decbe77fa9161bcd77812e1d1a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73ab56e56978207aedb181775263d492"><td class="memItemLeft" align="right" valign="top"><a id="a73ab56e56978207aedb181775263d492"></a>
-vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>getAiportsCodeFromString</b> (const string &amp;codes) const</td></tr>
+<tr class="memitem:a73ab56e56978207aedb181775263d492"><td class="memItemLeft" align="right" valign="top">vector&lt; string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a73ab56e56978207aedb181775263d492">getAiportsCodeFromString</a> (const string &amp;codes) const</td></tr>
+<tr class="memdesc:a73ab56e56978207aedb181775263d492"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a vector of airport codes for all airports with codes in the given string.  <a href="classDatabase.html#a73ab56e56978207aedb181775263d492">More...</a><br /></td></tr>
 <tr class="separator:a73ab56e56978207aedb181775263d492"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2a72a3f4a08a15b20a2467d4ef448e3a"><td class="memItemLeft" align="right" valign="top"><a id="a2a72a3f4a08a15b20a2467d4ef448e3a"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>getAirlineCode</b> (const string &amp;name) const</td></tr>
+<tr class="memitem:a2a72a3f4a08a15b20a2467d4ef448e3a"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a2a72a3f4a08a15b20a2467d4ef448e3a">getAirlineCode</a> (const string &amp;name) const</td></tr>
+<tr class="memdesc:a2a72a3f4a08a15b20a2467d4ef448e3a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a list of all airlines that fly to the given airport.  <a href="classDatabase.html#a2a72a3f4a08a15b20a2467d4ef448e3a">More...</a><br /></td></tr>
 <tr class="separator:a2a72a3f4a08a15b20a2467d4ef448e3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a05f79e269875588b2bc61b645ce95fd9"><td class="memItemLeft" align="right" valign="top"><a id="a05f79e269875588b2bc61b645ce95fd9"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printAirlinesFromAirport</b> (string &amp;airportCode)</td></tr>
+<tr class="memitem:a05f79e269875588b2bc61b645ce95fd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a05f79e269875588b2bc61b645ce95fd9">printAirlinesFromAirport</a> (string &amp;airportCode)</td></tr>
+<tr class="memdesc:a05f79e269875588b2bc61b645ce95fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints the different airlines that fly from the given airport.  <a href="classDatabase.html#a05f79e269875588b2bc61b645ce95fd9">More...</a><br /></td></tr>
 <tr class="separator:a05f79e269875588b2bc61b645ce95fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14d713eb4899725456c8dd2aa828ad52"><td class="memItemLeft" align="right" valign="top"><a id="a14d713eb4899725456c8dd2aa828ad52"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printAirportsReachableFrom</b> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memitem:a14d713eb4899725456c8dd2aa828ad52"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a14d713eb4899725456c8dd2aa828ad52">printAirportsReachableFrom</a> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memdesc:a14d713eb4899725456c8dd2aa828ad52"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a list of all airports that can be reached from the given airport within a certain number of flights and using only the given airlines.  <a href="classDatabase.html#a14d713eb4899725456c8dd2aa828ad52">More...</a><br /></td></tr>
 <tr class="separator:a14d713eb4899725456c8dd2aa828ad52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29c67a04b89e0a853ad2b98cb90d87af"><td class="memItemLeft" align="right" valign="top"><a id="a29c67a04b89e0a853ad2b98cb90d87af"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printCitiesReachableFrom</b> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memitem:a29c67a04b89e0a853ad2b98cb90d87af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a29c67a04b89e0a853ad2b98cb90d87af">printCitiesReachableFrom</a> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memdesc:a29c67a04b89e0a853ad2b98cb90d87af"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a list of cities that are reachable from the airport within the given number of flights, using only the specified airlines.  <a href="classDatabase.html#a29c67a04b89e0a853ad2b98cb90d87af">More...</a><br /></td></tr>
 <tr class="separator:a29c67a04b89e0a853ad2b98cb90d87af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8b0ce11ae5d4c1d53cb5ef6e6f178b36"><td class="memItemLeft" align="right" valign="top"><a id="a8b0ce11ae5d4c1d53cb5ef6e6f178b36"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printCountriesReachableFrom</b> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memitem:a8b0ce11ae5d4c1d53cb5ef6e6f178b36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a8b0ce11ae5d4c1d53cb5ef6e6f178b36">printCountriesReachableFrom</a> (string &amp;airportCode, int nFlights, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memdesc:a8b0ce11ae5d4c1d53cb5ef6e6f178b36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints a list of countries that are reachable from the airport within the given number of flights, using only the specified airlines.  <a href="classDatabase.html#a8b0ce11ae5d4c1d53cb5ef6e6f178b36">More...</a><br /></td></tr>
 <tr class="separator:a8b0ce11ae5d4c1d53cb5ef6e6f178b36"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0543994406849306b8d211ece7ea70a"><td class="memItemLeft" align="right" valign="top"><a id="aa0543994406849306b8d211ece7ea70a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printRoute</b> (pair&lt; stack&lt; <a class="el" href="structNode.html">Node</a> * &gt;, int &gt; &amp;p, set&lt; string &gt; &amp;airlinesToFLy)</td></tr>
+<tr class="memitem:aa0543994406849306b8d211ece7ea70a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#aa0543994406849306b8d211ece7ea70a">printRoute</a> (pair&lt; stack&lt; <a class="el" href="structNode.html">Node</a> * &gt;, int &gt; &amp;p, set&lt; string &gt; &amp;airlinesToFLy)</td></tr>
+<tr class="memdesc:aa0543994406849306b8d211ece7ea70a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Given a pair of a stack of nodes and a distance, this method prints the route taken and the total distance of the route.  <a href="classDatabase.html#aa0543994406849306b8d211ece7ea70a">More...</a><br /></td></tr>
 <tr class="separator:aa0543994406849306b8d211ece7ea70a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23e3bf0b70a35f9c25625650e464133d"><td class="memItemLeft" align="right" valign="top"><a id="a23e3bf0b70a35f9c25625650e464133d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>printPaths</b> (vector&lt; string &gt; &amp;source, vector&lt; string &gt; &amp;destination, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memitem:a23e3bf0b70a35f9c25625650e464133d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabase.html#a23e3bf0b70a35f9c25625650e464133d">printPaths</a> (vector&lt; string &gt; &amp;source, vector&lt; string &gt; &amp;destination, set&lt; string &gt; &amp;airlines)</td></tr>
+<tr class="memdesc:a23e3bf0b70a35f9c25625650e464133d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This method takes in two vectors of strings representing the source and destination airports, and a set of airlines. It then prints all the paths from the source airports to the destination airports that can be taken by using any of the specified airlines.  <a href="classDatabase.html#a23e3bf0b70a35f9c25625650e464133d">More...</a><br /></td></tr>
 <tr class="separator:a23e3bf0b70a35f9c25625650e464133d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a4703c80e6969d33565ea340f768fdadf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4703c80e6969d33565ea340f768fdadf">&#9670;&nbsp;</a></span>Database()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Database::Database </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor that initializes the <a class="el" href="classDatabase.html">Database</a> by loading all data from the dataset files into memory. </p>
+<p>Time complexity: O(N+M+P+Q), where N is the number of lines in the airports.csv file, M is the number of lines in the airlines.csv file, P is the number of lines in the flights.csv file and Q is the number of lines in the worldcities.csv file </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a73ab56e56978207aedb181775263d492"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a73ab56e56978207aedb181775263d492">&#9670;&nbsp;</a></span>getAiportsCodeFromString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; string &gt; Database::getAiportsCodeFromString </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>input</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a vector of airport codes for all airports with codes in the given string. </p>
+<p>Time complexity: O(M) </p>
+
+</div>
+</div>
+<a id="a2a72a3f4a08a15b20a2467d4ef448e3a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a72a3f4a08a15b20a2467d4ef448e3a">&#9670;&nbsp;</a></span>getAirlineCode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string Database::getAirlineCode </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a list of all airlines that fly to the given airport. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="a000864aaa2edcda626f60b323f872716"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a000864aaa2edcda626f60b323f872716">&#9670;&nbsp;</a></span>getAirport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAirport.html">Airport</a> * Database::getAirport </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a pointer to the airport with the given code. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="ad23949b3bde8862b2b3e03dc33caf32f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad23949b3bde8862b2b3e03dc33caf32f">&#9670;&nbsp;</a></span>getAirportsCodeFromCity() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; string &gt; Database::getAirportsCodeFromCity </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>city</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a vector of airport codes for all airports in the given city. </p>
+<p>Time complexity: O(H), where H is the number of airports in the given city </p>
+
+</div>
+</div>
+<a id="a2b210decbe77fa9161bcd77812e1d1a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b210decbe77fa9161bcd77812e1d1a6">&#9670;&nbsp;</a></span>getAirportsCodeFromCity() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; string &gt; Database::getAirportsCodeFromCity </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>city</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>radius</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a vector of airport codes for all airports within a certain radius of the given city. </p>
+<p>Time complexity: O(C) + O(Q), where C is the number of cities with the name city and Q is the number of airports in the database </p>
+
+</div>
+</div>
+<a id="ab5fcc976c49c48bf1f9dcf897a9acfae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5fcc976c49c48bf1f9dcf897a9acfae">&#9670;&nbsp;</a></span>getAirportsCodeFromCoordinates()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; string &gt; Database::getAirportsCodeFromCoordinates </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>latitude</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>longitude</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>radius</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a vector of airport codes for all airports within a certain radius of the given coordinates. </p>
+<p>Time complexity: O(Q), where Q is the number of airports in the database </p>
+
+</div>
+</div>
+<a id="a31995eb0b62df5a43185dfa04412172e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31995eb0b62df5a43185dfa04412172e">&#9670;&nbsp;</a></span>getCitiesReachableFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; set&lt; string &gt; &gt; Database::getCitiesReachableFrom </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nFlights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airlinesToSearch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a vector of sets of cities that can be reached from the given airport within a certain number of flights and using only the given airlines. </p>
+<p>Time complexity: O(V+E), where V is the number of airports in the database and E is the number of flights in the database </p>
+
+</div>
+</div>
+<a id="a0616efd0bf4cc2decf714984f0aa293a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0616efd0bf4cc2decf714984f0aa293a">&#9670;&nbsp;</a></span>getCountriesReachableFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vector&lt; set&lt; string &gt; &gt; Database::getCountriesReachableFrom </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nFlights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airlinesToSearch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns a vector of sets of countries that can be reached from the given airport within a certain number of flights and using only the given airlines. </p>
+<p>Time complexity: O(V+E), where V is the number of airports in the database and E is the number of flights in the database </p>
+
+</div>
+</div>
+<a id="af441bddf0f68bcf4a2a9abee130f7916"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af441bddf0f68bcf4a2a9abee130f7916">&#9670;&nbsp;</a></span>hasAirline()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Database::hasAirline </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns whether the airline with the given code is in the database. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="a6970d65ede623624339d8c8c084215b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6970d65ede623624339d8c8c084215b9">&#9670;&nbsp;</a></span>hasAirport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Database::hasAirport </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>code</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns whether the airport with the given code is in the database. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="afccd747f544f62f66b7d529229218a2f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afccd747f544f62f66b7d529229218a2f">&#9670;&nbsp;</a></span>hasCity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Database::hasCity </td>
+          <td>(</td>
+          <td class="paramtype">const string &amp;&#160;</td>
+          <td class="paramname"><em>city</em></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Returns whether the city with the given name is in the database. </p>
+<p>Time complexity: O(1) </p>
+
+</div>
+</div>
+<a id="a05f79e269875588b2bc61b645ce95fd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05f79e269875588b2bc61b645ce95fd9">&#9670;&nbsp;</a></span>printAirlinesFromAirport()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::printAirlinesFromAirport </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints the different airlines that fly from the given airport. </p>
+<p>Time complexity: O(E + A), where E is the number of edges in the adjacency list of the given airport and A is the number of airlines that fly from the given airport </p>
+
+</div>
+</div>
+<a id="a14d713eb4899725456c8dd2aa828ad52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14d713eb4899725456c8dd2aa828ad52">&#9670;&nbsp;</a></span>printAirportsReachableFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::printAirportsReachableFrom </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nFlights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airlinesToSearch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a list of all airports that can be reached from the given airport within a certain number of flights and using only the given airlines. </p>
+<p>Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) </p>
+
+</div>
+</div>
+<a id="a29c67a04b89e0a853ad2b98cb90d87af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29c67a04b89e0a853ad2b98cb90d87af">&#9670;&nbsp;</a></span>printCitiesReachableFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::printCitiesReachableFrom </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nFlights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airlinesToSearch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a list of cities that are reachable from the airport within the given number of flights, using only the specified airlines. </p>
+<p>Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) </p>
+
+</div>
+</div>
+<a id="a8b0ce11ae5d4c1d53cb5ef6e6f178b36"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b0ce11ae5d4c1d53cb5ef6e6f178b36">&#9670;&nbsp;</a></span>printCountriesReachableFrom()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::printCountriesReachableFrom </td>
+          <td>(</td>
+          <td class="paramtype">string &amp;&#160;</td>
+          <td class="paramname"><em>airportCode</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>nFlights</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airlinesToSearch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints a list of countries that are reachable from the airport within the given number of flights, using only the specified airlines. </p>
+<p>Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) </p>
+
+</div>
+</div>
+<a id="a23e3bf0b70a35f9c25625650e464133d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23e3bf0b70a35f9c25625650e464133d">&#9670;&nbsp;</a></span>printPaths()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::printPaths </td>
+          <td>(</td>
+          <td class="paramtype">vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>source</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">vector&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>destination</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airlinesToSearch</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This method takes in two vectors of strings representing the source and destination airports, and a set of airlines. It then prints all the paths from the source airports to the destination airports that can be taken by using any of the specified airlines. </p>
+<p>Time complexity: O(V + E), where V is the number of nodes in the graph(airports) and E is the number of edges in the graph(flights) </p>
+
+</div>
+</div>
+<a id="aa0543994406849306b8d211ece7ea70a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0543994406849306b8d211ece7ea70a">&#9670;&nbsp;</a></span>printRoute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Database::printRoute </td>
+          <td>(</td>
+          <td class="paramtype">pair&lt; stack&lt; <a class="el" href="structNode.html">Node</a> * &gt;, int &gt; &amp;&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">set&lt; string &gt; &amp;&#160;</td>
+          <td class="paramname"><em>airlinesToFLy</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Given a pair of a stack of nodes and a distance, this method prints the route taken and the total distance of the route. </p>
+<p>Time complexity: O(N) where N is the number of nodes in the stack p </p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li><a class="el" href="Database_8h_source.html">Database.h</a></li>
 <li>Database.cpp</li>

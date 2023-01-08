@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vertexdistance_17',['vertexDistance',['../structvertexDistance.html',1,'']]]
+  ['vertexdistance_63',['vertexDistance',['../structvertexDistance.html',1,'']]]
 ];
