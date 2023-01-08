@@ -21,7 +21,7 @@ private:
     unordered_map<string, Airline*> codeAirlines;
     unordered_map<string, Airline*> nameAirlines;
 
-    unordered_map<string, set<Airport*>> citiesAirports;
+    unordered_map<string, set<Airport*>> countryAirports;
     unordered_map<string, vector<City*>> citiesCoordinates;
     Graph flights;
 
@@ -37,10 +37,9 @@ public:
     // Booleans
     bool hasAirport(const string& code) const;
     bool hasAirline(const string& code) const;
-    bool hasCity(const string& city) const;
 
     // Getters
-    vector<string> getAirportsCodeFromCity(const string& city) const;
+    vector<string> getAirportsCodeFromCountry(const string& input);
     vector<string> getAirportsCodeFromCoordinates(double latitude, double longitude, double radius);
     vector<set<string>> getCitiesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);
     vector<set<string>> getCountriesReachableFrom(string& airportCode, int nFlights, set<string>& airlines);

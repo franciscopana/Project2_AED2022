@@ -23,14 +23,15 @@ void Database::loadAirports() {
         }
         string code = fields[0];
         string city = fields[2];
+        string country = fields[3];
         auto airportPtr = new Airport(code, fields[1], city, fields[3], stof(fields[4]), stof(fields[5]));
         flights.addNode(code, airportPtr);
 
-        auto cityIt = citiesAirports.find(city);
-        if (cityIt != citiesAirports.end()) {
-            cityIt->second.insert(airportPtr);
+        auto countryIt = countryAirports.find(country);
+        if (countryIt != countryAirports.end()) {
+            countryIt->second.insert(airportPtr);
         } else {
-            citiesAirports.insert({city, {airportPtr}});
+            countryAirports.insert({country, {airportPtr}});
         }
     }
     file.close();
@@ -139,22 +140,6 @@ bool Database::hasAirline(const string &code) const {
     return codeAirlines.find(code) != codeAirlines.end() || nameAirlines.find(code) != nameAirlines.end();
 }
 
-bool Database::hasCity(const string &city) const {
-    return citiesAirports.find(city) != citiesAirports.end();
-}
-
-/*    Getters    */
-vector<string> Database::getAirportsCodeFromCity(const string& city) const {
-    vector<string> airports;
-    auto cityIt = citiesAirports.find(city);
-    if (cityIt != citiesAirports.end()) {
-        for (auto airport : cityIt->second) {
-            airports.push_back(airport->getCode());
-        }
-    }
-    return airports;
-}
-
 vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,const double longitude, double radius) {
     vector<string> airports;
 
@@ -208,6 +193,17 @@ vector<set<string>> Database::getCountriesReachableFrom(string &airportCode, int
 
 Airport* Database::getAirport(const string &code) const {
     return flights.getAirport(code);
+}
+
+vector<string> Database::getAirportsCodeFromCountry(const string& input){
+    auto countryIt = countryAirports.find(input);
+    if(countryIt == countryAirports.end()){return {};}
+
+    vector<string> countryAirports;
+    for(auto& airport : countryIt->second){
+        countryAirports.push_back(airport->getCode());
+    }
+    return countryAirports;
 }
 
 vector<string> Database::getAirportsCodeFromCity(const string& city, double radius){
