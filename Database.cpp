@@ -27,9 +27,9 @@ void Database::loadAirports() {
         string code = fields[0];
         string city = fields[2];
         auto airportPtr = new Airport(code, fields[1], city, fields[3], stof(fields[4]), stof(fields[5]));
-        flights.addNode(code, airportPtr); //O(1)
+        flights.addNode(code, airportPtr);
 
-        auto cityIt = citiesAirports.find(city); //O(1)
+        auto cityIt = citiesAirports.find(city);
         if (cityIt != citiesAirports.end()) {
             cityIt->second.insert(airportPtr);
         } else {
@@ -186,7 +186,7 @@ vector<string> Database::getAirportsCodeFromCoordinates(const double latitude,co
  * @details Time complexity: O(V+E), where V is the number of airports in the database and E is the number of flights in the database
 */
 vector<set<string>> Database::getCitiesReachableFrom(string &airportCode, int nFlights, set<string> &airlinesToSearch) {
-    auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlinesToSearch); // O(V + E)
+    auto airports = flights.bfsWithNSteps(airportCode, nFlights, airlinesToSearch);
 
     unordered_set<string> cities_;
     vector<set<string>> citiesByLevel;
