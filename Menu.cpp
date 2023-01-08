@@ -75,6 +75,7 @@ void Menu::showSearchAirportsMenu() {
     cout << "2 - How many different cities can be reached from " << code << "?\n";
     cout << "3 - How many different countries can be reached from " << code << "?\n";
     cout << "4 - How many different airlines depart from " << code << "?\n";
+    cout << "5 - List all flights departing from " << code << endl;
     cout << ">> ";
 
     set<string> airlines = {};
