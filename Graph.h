@@ -42,19 +42,6 @@ struct Node {
     }
 };
 
-
-/**
- * @struct vertexDistance
- */
-struct vertexDistance{
-    Node* node;
-    double distance;
-
-    bool operator<(const vertexDistance& other) const{
-        return distance > other.distance;
-    }
-};
-
 /**
  * @class Graph
  * @brief Graph class, where the airports are the nodes and the edges are the flights between them.
