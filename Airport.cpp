@@ -101,14 +101,6 @@ bool Airport::operator<(const Airport& other) {
 }
 
 /**
- * @brief Prints the airport's information (code, name, city, country, latitude and longitude)
- * @details Time complexity: O(1)
- */
-void Airport::print() const {
-    cout << "Code: " << code << "  |  Name: " << name << "  |  City: " << city << "  |  Country: " << country << "  |  Latitude: " << latitude << "  |  Longitude: " << longitude << endl;
-}
-
-/**
  * @brief Prints a brief summary of the airport's information (name, code, city and country)
  * @details Time complexity: O(1)
  */

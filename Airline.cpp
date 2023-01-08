@@ -28,14 +28,6 @@ string Airline::getName() {
 }
 
 /**
- * @brief Returns the callSign of the airline
- * @details Time complexity: O(1)
-*/
-string Airline::getCallSign() {
-    return this->callSign;
-}
-
-/**
  * @brief Returns the country of the airline
  * @details Time complexity: O(1)
 */
@@ -50,12 +42,4 @@ string Airline::getCountry() {
 */
 bool Airline::operator<(const Airline& other) {
     return this->code < other.code;
-}
-
-/**
- * @brief Prints the airline's information (code, name, callSign and country)
- * @details Time complexity: O(1)
-*/
-void Airline::print() {
-    cout << "Code: " << code << "  |  Name: " << name << "  |  Call Sign: " << callSign << "  |  Country: " << country << endl;
 }
