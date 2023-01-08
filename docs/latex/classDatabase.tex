@@ -1,0 +1,62 @@
+\hypertarget{classDatabase}{}\doxysection{Database Class Reference}
+\label{classDatabase}\index{Database@{Database}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classDatabase_a6970d65ede623624339d8c8c084215b9}\label{classDatabase_a6970d65ede623624339d8c8c084215b9}} 
+bool {\bfseries has\+Airport} (const string \&code) const
+\item 
+\mbox{\Hypertarget{classDatabase_af441bddf0f68bcf4a2a9abee130f7916}\label{classDatabase_af441bddf0f68bcf4a2a9abee130f7916}} 
+bool {\bfseries has\+Airline} (const string \&code) const
+\item 
+\mbox{\Hypertarget{classDatabase_afccd747f544f62f66b7d529229218a2f}\label{classDatabase_afccd747f544f62f66b7d529229218a2f}} 
+bool {\bfseries has\+City} (const string \&city) const
+\item 
+\mbox{\Hypertarget{classDatabase_ad23949b3bde8862b2b3e03dc33caf32f}\label{classDatabase_ad23949b3bde8862b2b3e03dc33caf32f}} 
+vector$<$ string $>$ {\bfseries get\+Airports\+Code\+From\+City} (const string \&city) const
+\item 
+\mbox{\Hypertarget{classDatabase_ab5fcc976c49c48bf1f9dcf897a9acfae}\label{classDatabase_ab5fcc976c49c48bf1f9dcf897a9acfae}} 
+vector$<$ string $>$ {\bfseries get\+Airports\+Code\+From\+Coordinates} (double latitude, double longitude, double radius)
+\item 
+\mbox{\Hypertarget{classDatabase_a31995eb0b62df5a43185dfa04412172e}\label{classDatabase_a31995eb0b62df5a43185dfa04412172e}} 
+vector$<$ set$<$ string $>$ $>$ {\bfseries get\+Cities\+Reachable\+From} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\item 
+\mbox{\Hypertarget{classDatabase_a0616efd0bf4cc2decf714984f0aa293a}\label{classDatabase_a0616efd0bf4cc2decf714984f0aa293a}} 
+vector$<$ set$<$ string $>$ $>$ {\bfseries get\+Countries\+Reachable\+From} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\item 
+\mbox{\Hypertarget{classDatabase_a000864aaa2edcda626f60b323f872716}\label{classDatabase_a000864aaa2edcda626f60b323f872716}} 
+\mbox{\hyperlink{classAirport}{Airport}} $\ast$ {\bfseries get\+Airport} (const string \&code) const
+\item 
+\mbox{\Hypertarget{classDatabase_a2b210decbe77fa9161bcd77812e1d1a6}\label{classDatabase_a2b210decbe77fa9161bcd77812e1d1a6}} 
+vector$<$ string $>$ {\bfseries get\+Airports\+Code\+From\+City} (const string \&city, double radius)
+\item 
+\mbox{\Hypertarget{classDatabase_a73ab56e56978207aedb181775263d492}\label{classDatabase_a73ab56e56978207aedb181775263d492}} 
+vector$<$ string $>$ {\bfseries get\+Aiports\+Code\+From\+String} (const string \&codes) const
+\item 
+\mbox{\Hypertarget{classDatabase_a2a72a3f4a08a15b20a2467d4ef448e3a}\label{classDatabase_a2a72a3f4a08a15b20a2467d4ef448e3a}} 
+string {\bfseries get\+Airline\+Code} (const string \&name) const
+\item 
+\mbox{\Hypertarget{classDatabase_a05f79e269875588b2bc61b645ce95fd9}\label{classDatabase_a05f79e269875588b2bc61b645ce95fd9}} 
+void {\bfseries print\+Airlines\+From\+Airport} (string \&airport\+Code)
+\item 
+\mbox{\Hypertarget{classDatabase_a14d713eb4899725456c8dd2aa828ad52}\label{classDatabase_a14d713eb4899725456c8dd2aa828ad52}} 
+void {\bfseries print\+Airports\+Reachable\+From} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\item 
+\mbox{\Hypertarget{classDatabase_a29c67a04b89e0a853ad2b98cb90d87af}\label{classDatabase_a29c67a04b89e0a853ad2b98cb90d87af}} 
+void {\bfseries print\+Cities\+Reachable\+From} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\item 
+\mbox{\Hypertarget{classDatabase_a8b0ce11ae5d4c1d53cb5ef6e6f178b36}\label{classDatabase_a8b0ce11ae5d4c1d53cb5ef6e6f178b36}} 
+void {\bfseries print\+Countries\+Reachable\+From} (string \&airport\+Code, int n\+Flights, set$<$ string $>$ \&airlines)
+\item 
+\mbox{\Hypertarget{classDatabase_aa0543994406849306b8d211ece7ea70a}\label{classDatabase_aa0543994406849306b8d211ece7ea70a}} 
+void {\bfseries print\+Route} (pair$<$ stack$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$, int $>$ \&p, set$<$ string $>$ \&airlines\+To\+FLy)
+\item 
+\mbox{\Hypertarget{classDatabase_a23e3bf0b70a35f9c25625650e464133d}\label{classDatabase_a23e3bf0b70a35f9c25625650e464133d}} 
+void {\bfseries print\+Paths} (vector$<$ string $>$ \&source, vector$<$ string $>$ \&destination, set$<$ string $>$ \&airlines)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Database.\+h\item 
+Database.\+cpp\end{DoxyCompactItemize}

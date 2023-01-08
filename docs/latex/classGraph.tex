@@ -1,0 +1,52 @@
+\hypertarget{classGraph}{}\doxysection{Graph Class Reference}
+\label{classGraph}\index{Graph@{Graph}}
+
+
+\mbox{\hyperlink{classGraph}{Graph}} class, where the airports are the nodes and the edges are the flights between them.  
+
+
+
+
+{\ttfamily \#include $<$Graph.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classGraph_aea50ed90ee86e449e3f3e4c1fdf47188}\label{classGraph_aea50ed90ee86e449e3f3e4c1fdf47188}} 
+void {\bfseries add\+Node} (string \&airport\+Code, \mbox{\hyperlink{classAirport}{Airport}} $\ast$airport)
+\item 
+\mbox{\Hypertarget{classGraph_ad5f010cab84bc36a2bbc749b069271b6}\label{classGraph_ad5f010cab84bc36a2bbc749b069271b6}} 
+void {\bfseries add\+Edge} (string \&source, string \&dest, string \&airline)
+\item 
+\mbox{\Hypertarget{classGraph_a11b04557fb14020399c910263b5cf53b}\label{classGraph_a11b04557fb14020399c910263b5cf53b}} 
+\mbox{\hyperlink{structNode}{Node}} $\ast$ {\bfseries get\+Node} (string \&airport\+Code)
+\item 
+\mbox{\Hypertarget{classGraph_a57300eccb49e95ab1dbcd0bb5b42f82d}\label{classGraph_a57300eccb49e95ab1dbcd0bb5b42f82d}} 
+const unordered\+\_\+map$<$ string, \mbox{\hyperlink{structNode}{Node}} $>$ \& {\bfseries get\+Nodes} ()
+\item 
+\mbox{\Hypertarget{classGraph_afcac8822067ff76ff571cc08b022d8d3}\label{classGraph_afcac8822067ff76ff571cc08b022d8d3}} 
+list$<$ \mbox{\hyperlink{structEdge}{Edge}} $>$ {\bfseries get\+Edges} (string \&airport\+Code)
+\item 
+\mbox{\Hypertarget{classGraph_acd2b85aaadfb1f83eb6a035c8fc8a335}\label{classGraph_acd2b85aaadfb1f83eb6a035c8fc8a335}} 
+vector$<$ vector$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$ $>$ {\bfseries bfs\+With\+NSteps} (string \&src\+Airport, int n, set$<$ string $>$ \&airlines)
+\item 
+\mbox{\Hypertarget{classGraph_a6ae64362d3d09958143b9817001dbcfd}\label{classGraph_a6ae64362d3d09958143b9817001dbcfd}} 
+vector$<$ pair$<$ stack$<$ \mbox{\hyperlink{structNode}{Node}} $\ast$ $>$, int $>$ $>$ {\bfseries bfs\+With\+Dest} (vector$<$ string $>$ \&src\+Airports, vector$<$ string $>$ \&dest\+Airport, set$<$ string $>$ \&airlines)
+\item 
+\mbox{\Hypertarget{classGraph_ae7a601a64fc3fbabed81dab1343b187d}\label{classGraph_ae7a601a64fc3fbabed81dab1343b187d}} 
+bool {\bfseries has\+Airport} (const string \&airport\+Code) const
+\item 
+\mbox{\Hypertarget{classGraph_a8cb292d8536c7af11d809b46243de99b}\label{classGraph_a8cb292d8536c7af11d809b46243de99b}} 
+\mbox{\hyperlink{classAirport}{Airport}} $\ast$ {\bfseries get\+Airport} (const string \&airport\+Code) const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{classGraph}{Graph}} class, where the airports are the nodes and the edges are the flights between them. 
+
+The graph is implemented using an adjacency list. The nodes are stored in a hash table, where the key is the airport code and the value is a \mbox{\hyperlink{structNode}{Node}} struct. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Graph.\+h\item 
+Graph.\+cpp\end{DoxyCompactItemize}
